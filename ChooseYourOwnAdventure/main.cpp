@@ -1,15 +1,9 @@
-//
-//  main.cpp
-//  ChooseYourOwnAdventure
-//
-//  Created by Peter Chheu on 2/20/17.
-//  Copyright © 2017 Peter Chheu. All rights reserved.
-//
-
+#include "MainGame.hpp"
 #include <iostream>
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+int main( int argc, char* args[] ){
+    MainGame maingame;
+    maingame.run();
+    
     return 0;
 }
