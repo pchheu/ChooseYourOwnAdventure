@@ -7,11 +7,22 @@
 //
 
 #include "MainGame.hpp"
+#include "Map.hpp"
+#include "Sprite.hpp"
+
+//Helper function incase the window was unable to be created
+void fatalError(std::string errorString){
+    std::cout << errorString << std::endl;
+    std::cout << "Enter any key to quit..." << std::endl;
+    int tmp;
+    std::cin >> tmp;
+    SDL_Quit();
+}
 
 MainGame::MainGame(){
     window = nullptr;
     screenWidth = 1024;
-    screenHeight = 650;
+    screenHeight = 700;
     
     currentState = GameState::PLAY;
 }
@@ -35,12 +46,42 @@ void MainGame::initSystems(){
                               screenWidth,
                               screenHeight,
                               SDL_WINDOW_OPENGL);
+    
+    if(window == nullptr){
+        fatalError("SDL Window could not be created.");
+    }
+    
+    //Initializes the renderer
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    
 }
 
 void MainGame::gameLoop(){
+    /*Test stuff
+    SDL_Texture* map = nullptr;
+    map = IMG_LoadTexture(renderer, "Images/map.bmp");
+    if(map == NULL){
+        std::cout << "Image could not be loaded" << std::endl;
+    }
+    
+    SDL_Rect map_rect;
+    map_rect.x = 0;
+    map_rect.y = 0;
+    map_rect.w = 1200;
+    map_rect.h = 750;
+    
+     */
+    
+    Map a = *new Map("Images/map.bmp");
     
     while(currentState != GameState::EXIT){
         processInput();
+        
+        SDL_RenderClear(renderer);
+        
+        a.renderMap();
+        
+        SDL_RenderPresent(renderer);
     }
 }
 

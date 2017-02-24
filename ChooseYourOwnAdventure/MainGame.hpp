@@ -31,5 +31,7 @@ private:
     int screenHeight;
     int screenWidth;
     
+    SDL_Renderer* renderer;
+    
     GameState currentState;
 };
