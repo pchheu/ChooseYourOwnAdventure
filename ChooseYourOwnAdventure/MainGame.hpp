@@ -7,6 +7,7 @@
 //
 
 #pragma once
+#include "Sprite.hpp"
 #include <iostream>
 #include "SDL2/SDL.h"
 #include "SDL2_image/SDL_image.h"
@@ -28,10 +29,13 @@ private:
     void processInput();
     
     SDL_Window* window;
+    SDL_Rect screen;
     int screenHeight;
     int screenWidth;
     
     SDL_Renderer* renderer;
     
     GameState currentState;
+    
+    Sprite character = *new Sprite();
 };

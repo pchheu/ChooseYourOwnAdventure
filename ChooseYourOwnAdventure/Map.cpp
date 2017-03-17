@@ -12,13 +12,12 @@ Map::Map(const char *path){
     map_surface = IMG_Load(path);
     
     if(map_surface == nullptr){
-        std::cout << "Error: Could not load image" << std::endl;
+        std::cout << "Error: Could not load map image" << std::endl;
     }
     
     window = SDL_GL_GetCurrentWindow();
     renderer = SDL_GetRenderer(window);
     map_texture = SDL_CreateTextureFromSurface(renderer, map_surface);
-    SDL_FreeSurface(map_surface);
 }
 
 Map::~Map(){
@@ -26,7 +25,7 @@ Map::~Map(){
 }
 
 void Map::renderMap(){
-    SDL_RenderCopy(renderer, map_texture, NULL, NULL);
+    //SDL_RenderCopy(renderer, map_texture, &screen, NULL);
 }
 
 void Map::destroyMap(){
@@ -36,4 +35,16 @@ void Map::destroyMap(){
     SDL_DestroyRenderer(renderer);
      
     */
+}
+
+int Map::getlevelWidth(){
+    return map_surface->w;
+}
+
+int Map::getlevelHeight(){
+    return map_surface->h;
+}
+
+SDL_Surface* Map::getMapSurface(){
+    return map_surface;
 }

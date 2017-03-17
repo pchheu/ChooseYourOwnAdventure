@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB235EAA1E79F9B9008F8C19 /* Tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB235EA81E79F9B9008F8C19 /* Tile.cpp */; };
 		ABF749A11E5B7BD700A7699D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF749A01E5B7BD700A7699D /* main.cpp */; };
 		ABF749A91E5B7E9500A7699D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF749A81E5B7E9500A7699D /* Cocoa.framework */; };
 		ABF749AB1E5B7ED800A7699D /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF749AA1E5B7ED800A7699D /* SDL2.framework */; };
@@ -33,6 +34,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB235EA81E79F9B9008F8C19 /* Tile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tile.cpp; sourceTree = "<group>"; };
+		AB235EA91E79F9B9008F8C19 /* Tile.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tile.hpp; sourceTree = "<group>"; };
 		ABF7499D1E5B7BD700A7699D /* ChooseYourOwnAdventure */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChooseYourOwnAdventure; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABF749A01E5B7BD700A7699D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		ABF749A81E5B7E9500A7699D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -104,6 +107,7 @@
 		ABF749BF1E5D010E00A7699D /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				AB235EA91E79F9B9008F8C19 /* Tile.hpp */,
 				ABF749BA1E5CE8FB00A7699D /* MainGame.hpp */,
 				ABF749C51E5D03E900A7699D /* Map.hpp */,
 				ABF749BD1E5D010400A7699D /* Sprite.hpp */,
@@ -118,6 +122,7 @@
 				ABF749B91E5CE8FB00A7699D /* MainGame.cpp */,
 				ABF749BC1E5D010400A7699D /* Sprite.cpp */,
 				ABF749C41E5D03E900A7699D /* Map.cpp */,
+				AB235EA81E79F9B9008F8C19 /* Tile.cpp */,
 			);
 			name = "Source Files";
 			sourceTree = "<group>";
@@ -148,6 +153,9 @@
 		ABF749951E5B7BD700A7699D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Peter Chheu";
 				TargetAttributes = {
@@ -183,6 +191,7 @@
 				ABF749A11E5B7BD700A7699D /* main.cpp in Sources */,
 				ABF749C61E5D03E900A7699D /* Map.cpp in Sources */,
 				ABF749BE1E5D010400A7699D /* Sprite.cpp in Sources */,
+				AB235EAA1E79F9B9008F8C19 /* Tile.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +292,7 @@
 					/Library/Frameworks,
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -294,6 +304,7 @@
 					/Library/Frameworks,
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
+				GCC_WARN_INHIBIT_ALL_WARNINGS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

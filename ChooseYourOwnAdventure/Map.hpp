@@ -19,8 +19,12 @@ public:
     ~Map();
     
     void renderMap();
-    
     void destroyMap();
+    
+    int getlevelWidth();
+    int getlevelHeight();
+    
+    SDL_Surface* getMapSurface();
     
 private:
     SDL_Window* window;

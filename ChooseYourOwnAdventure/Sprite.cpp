@@ -8,23 +8,119 @@
 
 #include "Sprite.hpp"
 
+const int SCREEN_WIDTH = 1080;
+const int SCREEN_HEIGHT = 700;
+
+//Pulls the image being used ffor the sprite
 Sprite::Sprite(){
-    
 }
 
 Sprite::~Sprite(){
     
 }
 
-void Sprite::init(int _x, int _y, int _width, int _height){
+//Initializes the sprites dimensions and pulls the window/renderer
+void Sprite::init(const char *path, SDL_Rect c, int _x, int _y, int _width, int _height){
+    ssprite = IMG_Load(path);
+    
+    if(ssprite == nullptr){
+        std::cout << "Error: " << IMG_GetError() << std::endl;
+    }
+    
+    window = SDL_GL_GetCurrentWindow();
+    renderer = SDL_GetRenderer(window);
+    tsprite = SDL_CreateTextureFromSurface(renderer, ssprite);
+    
+    camera = c;
+    
     x = _x;
     y = _y;
     width = _width;
     height = _height;
     
+    posX = 100;
+    posY = 300;
     
+    velX = 30;
+    velY = 30;
 }
 
-void Sprite::draw(){
+//Redraws the sprite to show movement
+void Sprite::move(Movement command){
+    switch (command) {
+        case Movement::LEFT:
+            posX -= velX;
+            if( posX < 0 || (posX + width > LEVEL_WIDTH)){
+                //Move back
+                posX -= velX;
+            }
+            
+            render();
+            
+            //std::cout << "Left key pressed" << std::endl;
+            break;
+        case Movement::RIGHT:
+            posX += velX;
+            if( posX < 0 || (posX + width > LEVEL_WIDTH)){
+                //Move back
+                posX -= velX;
+            }
+            
+            render();
+            
+            //std::cout << "Right key pressed" << std::endl;
+            break;
+        case Movement::JUMP:
+            posY += velY;
+            
+            if( (posY < 0) || (posY + height > LEVEL_HEIGHT)){
+                //Move back
+                posY -= velY;
+            }
+            
+            render();
+            
+            //std::cout << "Space pressed" << std::endl;
+            break;
+            
+        break;
+    }
+}
+
+void Sprite::set_camera(){
+    //Centers the camera over the sprite
+    camera.x = (posX + width/2);
+    camera.y = (posY + height/2);
     
+    std::cout << "CameraX: " << camera.x << std::endl;
+    std::cout << "CameraY: " << camera.y << std::endl;
+    
+    //Keeps the camera in bounds
+    if(camera.x < 0){
+        camera.x = 0;
+    }
+    if( camera.y < 0 ){
+        camera.y = 0;
+    }
+    if( camera.x > LEVEL_WIDTH - camera.w ){
+        camera.x = LEVEL_WIDTH - camera.w;
+    }
+    if( camera.y > LEVEL_HEIGHT - camera.h ){
+        camera.y = LEVEL_HEIGHT - camera.h;
+    }
+}
+
+void Sprite::render(){
+    //Updates camera as the sprite moves
+    set_camera();
+    
+    SDL_Texture* tcurrentMap = SDL_CreateTextureFromSurface(renderer, currentMap);
+    SDL_RenderCopy(renderer, tcurrentMap, &camera, NULL);
+    SDL_RenderCopy(renderer, tsprite, NULL, NULL);
+}
+
+void Sprite::getCurrentMapInfo(Map m){
+    currentMap = m.getMapSurface();
+    LEVEL_WIDTH = m.getlevelWidth();
+    LEVEL_HEIGHT = m.getlevelHeight();
 }
