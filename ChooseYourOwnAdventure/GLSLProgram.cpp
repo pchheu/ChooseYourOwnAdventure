@@ -7,6 +7,7 @@
 //
 
 #include "GLSLProgram.hpp"
+#include <iostream>
 
 GLSLProgram::GLSLProgram() : programID(0), vertexShaderID(0), fragmentShaderID(0){
     
