@@ -27,6 +27,7 @@ private:
     void initSystems();
     void gameLoop();
     void processInput();
+    void drawGame();
     
     SDL_Window* window;
     SDL_Rect screen;

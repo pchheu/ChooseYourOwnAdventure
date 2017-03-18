@@ -11,25 +11,60 @@
 const int SCREEN_WIDTH = 1080;
 const int SCREEN_HEIGHT = 700;
 
-//Pulls the image being used ffor the sprite
 Sprite::Sprite(){
+    vboID = 0;
 }
 
 Sprite::~Sprite(){
-    
+    if(vboID != 0){
+        glDeleteBuffers(1, &vboID);
+    }
 }
 
 //Initializes the sprites dimensions and pulls the window/renderer
-void Sprite::init(const char *path, SDL_Rect c, int _x, int _y, int _width, int _height){
+void Sprite::init(const char *path, SDL_Rect c, float _x, float _y, float _width, float _height){
     ssprite = IMG_Load(path);
     
     if(ssprite == nullptr){
         std::cout << "Error: " << IMG_GetError() << std::endl;
     }
     
+    /*
     window = SDL_GL_GetCurrentWindow();
     renderer = SDL_GetRenderer(window);
     tsprite = SDL_CreateTextureFromSurface(renderer, ssprite);
+     */
+    
+    if(vboID == 0){
+        glGenBuffers(1, &vboID);
+    }
+    
+    float vertexData[12];
+    
+    //First Triangle
+    vertexData[0] = x + width;
+    vertexData[1] = y + width;
+    
+    vertexData[2] = x;
+    vertexData[3] = y + height;
+    
+    vertexData[4] = x;
+    vertexData[5] = y;
+    
+    //Second Triangle
+    vertexData[6] = x;
+    vertexData[7] = y;
+    
+    vertexData[8] = x + width;
+    vertexData[9] = y;
+    
+    vertexData[10] = x + width;
+    vertexData[11] = y + height;
+    
+    glBindBuffer(GL_ARRAY_BUFFER, vboID);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
     
     camera = c;
     
@@ -38,7 +73,7 @@ void Sprite::init(const char *path, SDL_Rect c, int _x, int _y, int _width, int 
     width = _width;
     height = _height;
     
-    posX = 100;
+    posX = 500;
     posY = 300;
     
     velX = 30;
@@ -89,8 +124,8 @@ void Sprite::move(Movement command){
 
 void Sprite::set_camera(){
     //Centers the camera over the sprite
-    camera.x = (posX + width/2);
-    camera.y = (posY + height/2);
+    camera.x = (posX + width/2) - SCREEN_WIDTH/2;
+    camera.y = (posY + height/2) - SCREEN_HEIGHT/2;
     
     std::cout << "CameraX: " << camera.x << std::endl;
     std::cout << "CameraY: " << camera.y << std::endl;
@@ -111,12 +146,26 @@ void Sprite::set_camera(){
 }
 
 void Sprite::render(){
+    glBindBuffer(GL_ARRAY_BUFFER, vboID);
+    
+    glEnableVertexAttribArray(0);
+    
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
+    
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    
+    glDisableVertexAttribArray(0);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    
+    /*
     //Updates camera as the sprite moves
     set_camera();
     
     SDL_Texture* tcurrentMap = SDL_CreateTextureFromSurface(renderer, currentMap);
     SDL_RenderCopy(renderer, tcurrentMap, &camera, NULL);
-    SDL_RenderCopy(renderer, tsprite, NULL, NULL);
+    SDL_RenderCopy(renderer, tsprite, &csprite, NULL);
+     */
 }
 
 void Sprite::getCurrentMapInfo(Map m){

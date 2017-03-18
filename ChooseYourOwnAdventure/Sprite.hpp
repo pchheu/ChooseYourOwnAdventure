@@ -20,7 +20,7 @@ public:
     Sprite();
     ~Sprite();
     
-    void init(const char *path, SDL_Rect c, int _x, int _y, int _width, int _height);
+    void init(const char *path, SDL_Rect c, float _x, float _y, float _width, float _height);
     
     void move(Movement command);
     void render();
@@ -37,6 +37,7 @@ private:
     int height;
     int LEVEL_WIDTH;
     int LEVEL_HEIGHT;
+    GLuint vboID;
     
     int posX;
     int posY;
@@ -49,8 +50,7 @@ private:
     SDL_Surface* ssprite;
     SDL_Texture* tsprite;
     SDL_Rect camera;
+    SDL_Rect csprite;
     
     SDL_Surface* currentMap;
 };
-
-

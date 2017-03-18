@@ -33,16 +33,18 @@ MainGame::~MainGame(){
 
 void MainGame::run(){
     initSystems();
+    character.init("Images/sprite.png", screen, -1.0f, -1.0f, 1.0f, 1.0f);
     gameLoop();
 }
 
 void MainGame::initSystems(){
-    //Initializes SDL
+    //Initializes SDL and other packages
     SDL_Init(SDL_INIT_EVERYTHING);
     if(!IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG)){
         std::cout << "Init Error: " << IMG_GetError() << std::endl;
     }
     
+    //Creates the window
     window = SDL_CreateWindow("ChooseYourOwnAdventure",
                               SDL_WINDOWPOS_UNDEFINED,
                               SDL_WINDOWPOS_UNDEFINED,
@@ -54,28 +56,36 @@ void MainGame::initSystems(){
         fatalError("SDL Window could not be created.");
     }
     
+    //Sets up our OpenGL context
+    SDL_GLContext glContext = SDL_GL_CreateContext(window);
+    if(glContext == nullptr){
+        fatalError("SDL_GL context could not be created.");
+    }
+    
+    //Tells SDL that we want a double buffered window so we don't
+    //have any flickering
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    
     //Initializes the renderer
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    
+    //Sets the background color once the screen is flushed
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0);
     
     //Defines the camera size
     screen.x = 0;
     screen.y = 0;
     screen.w = screenWidth;
     screen.h = screenHeight;
-    
 }
 
 void MainGame::gameLoop(){
     Map firstlevel = *new Map("Images/map.bmp");
     character.getCurrentMapInfo(firstlevel);
-    character.init("Images/sprite.png", screen, 100, 300, 50, 50);
     
     while(currentState != GameState::EXIT){
         processInput();
-        
-        SDL_RenderClear(renderer);
-        character.render();
-        SDL_RenderPresent(renderer);
+        drawGame();
     }
 }
 
@@ -108,4 +118,16 @@ void MainGame::processInput(){
                 break;
         }
     }
+}
+
+void MainGame::drawGame(){
+    //Sets the base depth to 1.0
+    glClearDepth(1.0);
+    //Clear the color and depth buffer
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+    character.render();
+    
+    //Swaps the buffer and draw everything to the scrren
+    SDL_GL_SwapWindow(window);
 }
