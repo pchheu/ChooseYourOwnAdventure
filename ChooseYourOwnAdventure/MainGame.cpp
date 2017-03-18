@@ -9,15 +9,7 @@
 #include "MainGame.hpp"
 #include "Map.hpp"
 #include "Sprite.hpp"
-
-//Helper function incase the window was unable to be created
-void fatalError(std::string errorString){
-    std::cout << errorString << std::endl;
-    std::cout << "Enter any key to quit..." << std::endl;
-    int tmp;
-    std::cin >> tmp;
-    SDL_Quit();
-}
+#include "Errors.hpp"
 
 MainGame::MainGame(){
     window = nullptr;
