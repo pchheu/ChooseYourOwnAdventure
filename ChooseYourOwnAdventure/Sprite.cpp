@@ -9,110 +9,87 @@
 #include "Sprite.hpp"
 
 const int SCREEN_WIDTH = 1080;
-const int SCREEN_HEIGHT = 700;
+const int SCREEN_HEIGHT = 800;
+
+int FPS = 60;
+int FrameStartTimeMs = 0;
 
 Sprite::Sprite(){
-    vboID = 0;
+    //vboID = 0;
 }
 
 Sprite::~Sprite(){
-    if(vboID != 0){
+    /*if(vboID != 0){
         glDeleteBuffers(1, &vboID);
-    }
+    }*/
 }
 
 //Initializes the sprites dimensions and pulls the window/renderer
-void Sprite::init(const char *path, SDL_Rect c, float _x, float _y, float _width, float _height){
-    ssprite = IMG_Load(path);
+void Sprite::init(std::string path, SDL_Rect c, float _width, float _height){
+    ssprite = IMG_Load(path.c_str());
     
     if(ssprite == nullptr){
         std::cout << "Error: " << IMG_GetError() << std::endl;
     }
     
-    /*
     window = SDL_GL_GetCurrentWindow();
     renderer = SDL_GetRenderer(window);
     tsprite = SDL_CreateTextureFromSurface(renderer, ssprite);
-     */
-    
-    if(vboID == 0){
-        glGenBuffers(1, &vboID);
-    }
-    
-    float vertexData[12];
-    
-    //First Triangle
-    vertexData[0] = x + width;
-    vertexData[1] = y + width;
-    
-    vertexData[2] = x;
-    vertexData[3] = y + height;
-    
-    vertexData[4] = x;
-    vertexData[5] = y;
-    
-    //Second Triangle
-    vertexData[6] = x;
-    vertexData[7] = y;
-    
-    vertexData[8] = x + width;
-    vertexData[9] = y;
-    
-    vertexData[10] = x + width;
-    vertexData[11] = y + height;
-    
-    glBindBuffer(GL_ARRAY_BUFFER, vboID);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
-    
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    
+     
     camera = c;
     
-    x = _x;
-    y = _y;
+    csprite.x = 0;
+    csprite.y = 300;
+    csprite.w = _width;
+    csprite.h = _height;
+    
     width = _width;
     height = _height;
     
-    posX = 500;
-    posY = 300;
+    posX = 500.0;
+    posY = 600.0;
     
-    velX = 30;
-    velY = 30;
+    velX = 400.0/FPS;
+    velY = 400.0/FPS;
 }
 
 //Redraws the sprite to show movement
 void Sprite::move(Movement command){
+    FrameStartTimeMs = SDL_GetTicks();
+    
     switch (command) {
         case Movement::LEFT:
-            posX -= velX;
+            if(posX > 0)
+                posX -= velX;
+            /*
             if( posX < 0 || (posX + width > LEVEL_WIDTH)){
                 //Move back
                 posX -= velX;
-            }
+            }*/
             
+            csprite.x = posX;
             render();
             
             //std::cout << "Left key pressed" << std::endl;
             break;
         case Movement::RIGHT:
-            posX += velX;
-            if( posX < 0 || (posX + width > LEVEL_WIDTH)){
-                //Move back
-                posX -= velX;
-            }
+            if(posX < LEVEL_WIDTH)
+                posX += velX;
             
+            csprite.x = posX;
             render();
             
             //std::cout << "Right key pressed" << std::endl;
             break;
         case Movement::JUMP:
-            posY += velY;
+            posY -= velY;
             
             if( (posY < 0) || (posY + height > LEVEL_HEIGHT)){
                 //Move back
-                posY -= velY;
+                posY += velY;
             }
             
+            csprite.y = posY;
             render();
             
             //std::cout << "Space pressed" << std::endl;
@@ -120,6 +97,8 @@ void Sprite::move(Movement command){
             
         break;
     }
+    
+    while(SDL_GetTicks() - FrameStartTimeMs < 1000/FPS);
 }
 
 void Sprite::set_camera(){
@@ -127,8 +106,8 @@ void Sprite::set_camera(){
     camera.x = (posX + width/2) - SCREEN_WIDTH/2;
     camera.y = (posY + height/2) - SCREEN_HEIGHT/2;
     
-    std::cout << "CameraX: " << camera.x << std::endl;
-    std::cout << "CameraY: " << camera.y << std::endl;
+    //std::cout << "CameraX: " << camera.x << std::endl;
+    //std::cout << "CameraY: " << camera.y << std::endl;
     
     //Keeps the camera in bounds
     if(camera.x < 0){
@@ -146,6 +125,7 @@ void Sprite::set_camera(){
 }
 
 void Sprite::render(){
+    /*
     glBindBuffer(GL_ARRAY_BUFFER, vboID);
     
     glEnableVertexAttribArray(0);
@@ -157,19 +137,35 @@ void Sprite::render(){
     glDisableVertexAttribArray(0);
     
     glBindBuffer(GL_ARRAY_BUFFER, 0);
-    
-    /*
-    //Updates camera as the sprite moves
-    set_camera();
-    
-    SDL_Texture* tcurrentMap = SDL_CreateTextureFromSurface(renderer, currentMap);
-    SDL_RenderCopy(renderer, tcurrentMap, &camera, NULL);
-    SDL_RenderCopy(renderer, tsprite, &csprite, NULL);
      */
+    //Updates camera as the sprite moves
+    //set_camera();
+    //currentMap.updateCamera(camera);
+    //SDL_Texture* tcurrentMap = SDL_CreateTextureFromSurface(renderer, scurrentMap);
+    
+    //SDL_RenderCopy(renderer, tcurrentMap, &camera, NULL);
+    SDL_RenderCopy(renderer, tsprite, NULL, &csprite);
 }
 
 void Sprite::getCurrentMapInfo(Map m){
-    currentMap = m.getMapSurface();
+    currentMap = m;
+    scurrentMap = m.getMapSurface();
     LEVEL_WIDTH = m.getlevelWidth();
     LEVEL_HEIGHT = m.getlevelHeight();
+}
+
+float Sprite::getPosX(){
+    return posX;
+}
+
+float Sprite::getPosY(){
+    return posY;
+}
+
+int Sprite::getLevelWidth(){
+    return LEVEL_WIDTH;
+}
+
+int Sprite::getLevelHeight(){
+    return LEVEL_HEIGHT;
 }

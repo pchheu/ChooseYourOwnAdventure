@@ -7,6 +7,8 @@
 //
 
 #pragma once
+
+#include "Camera.hpp"
 #include "Sprite.hpp"
 #include <iostream>
 #include "SDL2/SDL.h"
@@ -30,7 +32,6 @@ private:
     void drawGame();
     
     SDL_Window* window;
-    SDL_Rect screen;
     int screenHeight;
     int screenWidth;
     
@@ -39,4 +40,5 @@ private:
     GameState currentState;
     
     Sprite character = *new Sprite();
+    Camera screen = *new Camera();
 };

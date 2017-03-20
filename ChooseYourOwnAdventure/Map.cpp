@@ -8,7 +8,15 @@
 
 #include "Map.hpp"
 
-Map::Map(const char *path){
+Map::Map(){
+    
+}
+
+Map::~Map(){
+    
+}
+
+void Map::mapInit(const char *path){
     map_surface = IMG_Load(path);
     
     if(map_surface == nullptr){
@@ -20,12 +28,8 @@ Map::Map(const char *path){
     map_texture = SDL_CreateTextureFromSurface(renderer, map_surface);
 }
 
-Map::~Map(){
-    
-}
-
-void Map::renderMap(){
-    //SDL_RenderCopy(renderer, map_texture, &screen, NULL);
+void Map::renderMap(SDL_Rect c){
+    SDL_RenderCopy(renderer, map_texture, &c, NULL);
 }
 
 void Map::destroyMap(){
@@ -35,6 +39,12 @@ void Map::destroyMap(){
     SDL_DestroyRenderer(renderer);
      
     */
+}
+
+void Map::updateCamera(SDL_Rect c){
+    camera = c;
+    //std::cout << "CameraX: " << camera.x << std::endl;
+    //std::cout << "CameraY: " << camera.y << std::endl;
 }
 
 int Map::getlevelWidth(){

@@ -6,12 +6,14 @@
 //  Copyright © 2017 Peter Chheu. All rights reserved.
 //
 #pragma once
+
 #include "Map.hpp"
 #include <iostream>
 #include "SDL2/SDL.h"
 #include "SDL2_image/SDL_image.h"
 #include <OpenGL/gl.h>
 #include <stdio.h>
+#include <string>
 
 enum class Movement{LEFT, RIGHT, JUMP};
 
@@ -20,15 +22,18 @@ public:
     Sprite();
     ~Sprite();
     
-    void init(const char *path, SDL_Rect c, float _x, float _y, float _width, float _height);
+    void init(std::string, SDL_Rect c, float _width, float _height);
     
     void move(Movement command);
     void render();
     void set_camera();
     void getCurrentMapInfo(Map m);
     
-    int getPosX();
-    int getPosY();
+    float getPosX();
+    float getPosY();
+    
+    int getLevelWidth();
+    int getLevelHeight();
     
 private:
     int x;
@@ -39,18 +44,20 @@ private:
     int LEVEL_HEIGHT;
     GLuint vboID;
     
-    int posX;
-    int posY;
+    Map currentMap = *new Map();
     
-    int velX;
-    int velY;
+    float posX;
+    float posY;
+    
+    float velX;
+    float velY;
     
     SDL_Window* window;
     SDL_Renderer* renderer;
-    SDL_Surface* ssprite;
+    SDL_Surface* ssprite, swindow;
     SDL_Texture* tsprite;
     SDL_Rect camera;
-    SDL_Rect csprite;
+    SDL_Rect csprite, dsprite;
     
-    SDL_Surface* currentMap;
+    SDL_Surface* scurrentMap;
 };

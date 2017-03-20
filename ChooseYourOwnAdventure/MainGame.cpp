@@ -14,9 +14,10 @@
 MainGame::MainGame(){
     window = nullptr;
     screenWidth = 1080;
-    screenHeight = 700;
+    screenHeight = 800;
     
     currentState = GameState::PLAY;
+    
 }
 
 MainGame::~MainGame(){
@@ -25,7 +26,7 @@ MainGame::~MainGame(){
 
 void MainGame::run(){
     initSystems();
-    character.init("Images/sprite.png", screen, -1.0f, -1.0f, 1.0f, 1.0f);
+    character.init("Images/sprite.png", screen.getCamInfo(), 118, 185);
     gameLoop();
 }
 
@@ -48,6 +49,7 @@ void MainGame::initSystems(){
         fatalError("SDL Window could not be created.");
     }
     
+    
     //Sets up our OpenGL context
     SDL_GLContext glContext = SDL_GL_CreateContext(window);
     if(glContext == nullptr){
@@ -64,46 +66,58 @@ void MainGame::initSystems(){
     //Sets the background color once the screen is flushed
     glClearColor(1.0f, 1.0f, 1.0f, 1.0);
     
-    //Defines the camera size
-    screen.x = 0;
-    screen.y = 0;
-    screen.w = screenWidth;
-    screen.h = screenHeight;
 }
 
 void MainGame::gameLoop(){
-    Map firstlevel = *new Map("Images/map.bmp");
+    Map firstlevel = *new Map();
+    firstlevel.mapInit("Images/map.bmp");
     character.getCurrentMapInfo(firstlevel);
+    screen.initCamera(character);
+    SDL_Rect camera = screen.getCamInfo();
     
     while(currentState != GameState::EXIT){
         processInput();
+        camera = screen.getCamInfo();
+        SDL_RenderClear(renderer);
+        firstlevel.renderMap(camera);
         drawGame();
+        SDL_RenderPresent(renderer);
     }
 }
 
 void MainGame::processInput(){
     SDL_Event evnt;
+    float posX, posY;
     
     while(SDL_PollEvent(&evnt) == true){
         switch (evnt.type) {
             case SDL_QUIT:
                 currentState = GameState::EXIT;
                 break;
-            /*case SDL_MOUSEMOTION:
-                std::cout << evnt.motion.x << " " << evnt.motion.y << std::endl;
-                break;*/
             case SDL_KEYDOWN:
                 switch (evnt.key.keysym.sym) {
                     case SDLK_LEFT:
                         character.move(Movement::LEFT);
+                        posX = character.getPosX();
+                        posY = character.getPosY();
+                        screen.updateCamera(posX, posY);
+                        
                         std::cout << "Left key pressed" << std::endl;
                         break;
                     case SDLK_RIGHT:
                         character.move(Movement::RIGHT);
+                        posX = character.getPosX();
+                        posY = character.getPosY();
+                        screen.updateCamera(posX, posY);
+                        
                         std::cout << "Right key pressed" << std::endl;
                         break;
                     case SDLK_SPACE:
                         character.move(Movement::JUMP);
+                        posX = character.getPosX();
+                        posY = character.getPosY();
+                        screen.updateCamera(posX, posY);
+                        
                         std::cout << "Space pressed" << std::endl;
                         break;
                 }
@@ -113,13 +127,5 @@ void MainGame::processInput(){
 }
 
 void MainGame::drawGame(){
-    //Sets the base depth to 1.0
-    glClearDepth(1.0);
-    //Clear the color and depth buffer
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    
     character.render();
-    
-    //Swaps the buffer and draw everything to the scrren
-    SDL_GL_SwapWindow(window);
 }

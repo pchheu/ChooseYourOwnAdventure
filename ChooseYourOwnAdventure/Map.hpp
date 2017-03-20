@@ -7,6 +7,7 @@
 //
 
 #pragma once
+
 #include <iostream>
 #include "SDL2/SDL.h"
 #include "SDL2_image/SDL_image.h"
@@ -15,11 +16,13 @@
 
 class Map{
 public:
-    Map(const char *path);
+    Map();
     ~Map();
     
-    void renderMap();
+    void mapInit(const char* path);
+    void renderMap(SDL_Rect c);
     void destroyMap();
+    void updateCamera(SDL_Rect c);
     
     int getlevelWidth();
     int getlevelHeight();
@@ -31,4 +34,6 @@ private:
     SDL_Renderer* renderer;
     SDL_Texture* map_texture;
     SDL_Surface* map_surface;
+    
+    SDL_Rect camera;
 };
