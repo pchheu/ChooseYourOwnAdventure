@@ -32,7 +32,6 @@ void Camera::initCamera(Sprite c){
     
     LEVEL_WIDTH = mc->getLevelWidth();
     LEVEL_HEIGHT = mc->getLevelHeight();
-    
 }
 
 void Camera::updateCamera(float x, float y){
@@ -45,8 +44,8 @@ void Camera::updateCamera(float x, float y){
     posY = y;
     
     //Centers the camera over the sprite
-    camera.x = (posX + swidth/2) - SCREEN_WIDTH/3;
-    camera.y = (posY + sheight/2) - SCREEN_HEIGHT/3;
+    camera.x = (posX + swidth/2) - SCREEN_WIDTH/2;
+    camera.y = (posY + sheight/2) - SCREEN_HEIGHT/2;
  
     std::cout << camera.x << " " << camera.y << std::endl;
     

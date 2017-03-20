@@ -32,6 +32,8 @@ private:
     void drawGame();
     
     SDL_Window* window;
+    SDL_Rect camera;
+    
     int screenHeight;
     int screenWidth;
     

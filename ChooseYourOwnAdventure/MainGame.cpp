@@ -17,16 +17,14 @@ MainGame::MainGame(){
     screenHeight = 800;
     
     currentState = GameState::PLAY;
-    
 }
 
 MainGame::~MainGame(){
-    
 }
 
 void MainGame::run(){
     initSystems();
-    character.init("Images/sprite.png", screen.getCamInfo(), 118, 185);
+    character.init("Images/sprite.png", 118, 185);
     gameLoop();
 }
 
@@ -73,7 +71,7 @@ void MainGame::gameLoop(){
     firstlevel.mapInit("Images/map.bmp");
     character.getCurrentMapInfo(firstlevel);
     screen.initCamera(character);
-    SDL_Rect camera = screen.getCamInfo();
+    camera = screen.getCamInfo();
     
     while(currentState != GameState::EXIT){
         processInput();

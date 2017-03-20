@@ -22,11 +22,10 @@ public:
     Sprite();
     ~Sprite();
     
-    void init(std::string, SDL_Rect c, float _width, float _height);
+    void init(std::string, float _width, float _height);
     
     void move(Movement command);
     void render();
-    void set_camera();
     void getCurrentMapInfo(Map m);
     
     float getPosX();
@@ -42,7 +41,6 @@ private:
     int height;
     int LEVEL_WIDTH;
     int LEVEL_HEIGHT;
-    GLuint vboID;
     
     Map currentMap = *new Map();
     
@@ -57,7 +55,7 @@ private:
     SDL_Surface* ssprite, swindow;
     SDL_Texture* tsprite;
     SDL_Rect camera;
-    SDL_Rect csprite, dsprite;
+    SDL_Rect csprite;
     
     SDL_Surface* scurrentMap;
 };
