@@ -12,6 +12,7 @@
 		AB235EB21E7CC319008F8C19 /* Shaders in Copy Files */ = {isa = PBXBuildFile; fileRef = AB235EB11E7CC319008F8C19 /* Shaders */; };
 		AB235EB51E7CC553008F8C19 /* Errors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB235EB31E7CC553008F8C19 /* Errors.cpp */; };
 		AB235EB81E7DE3E6008F8C19 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB235EB61E7DE3E6008F8C19 /* Camera.cpp */; };
+		AB96D4A91E80560C00EFEC09 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB96D4A71E80560C00EFEC09 /* Timer.cpp */; };
 		ABF749A11E5B7BD700A7699D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF749A01E5B7BD700A7699D /* main.cpp */; };
 		ABF749A91E5B7E9500A7699D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF749A81E5B7E9500A7699D /* Cocoa.framework */; };
 		ABF749AB1E5B7ED800A7699D /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF749AA1E5B7ED800A7699D /* SDL2.framework */; };
@@ -48,6 +49,8 @@
 		AB235EB41E7CC553008F8C19 /* Errors.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Errors.hpp; sourceTree = "<group>"; };
 		AB235EB61E7DE3E6008F8C19 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		AB235EB71E7DE3E6008F8C19 /* Camera.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
+		AB96D4A71E80560C00EFEC09 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
+		AB96D4A81E80560C00EFEC09 /* Timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Timer.hpp; sourceTree = "<group>"; };
 		ABF7499D1E5B7BD700A7699D /* ChooseYourOwnAdventure */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChooseYourOwnAdventure; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABF749A01E5B7BD700A7699D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		ABF749A81E5B7E9500A7699D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -120,6 +123,7 @@
 		ABF749BF1E5D010E00A7699D /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				AB96D4A81E80560C00EFEC09 /* Timer.hpp */,
 				AB235EB71E7DE3E6008F8C19 /* Camera.hpp */,
 				AB235EB41E7CC553008F8C19 /* Errors.hpp */,
 				AB235EAF1E7CBB81008F8C19 /* GLSLProgram.hpp */,
@@ -142,6 +146,7 @@
 				AB235EAE1E7CBB81008F8C19 /* GLSLProgram.cpp */,
 				AB235EB31E7CC553008F8C19 /* Errors.cpp */,
 				AB235EB61E7DE3E6008F8C19 /* Camera.cpp */,
+				AB96D4A71E80560C00EFEC09 /* Timer.cpp */,
 			);
 			name = "Source Files";
 			sourceTree = "<group>";
@@ -212,6 +217,7 @@
 				ABF749C61E5D03E900A7699D /* Map.cpp in Sources */,
 				AB235EB81E7DE3E6008F8C19 /* Camera.cpp in Sources */,
 				ABF749BE1E5D010400A7699D /* Sprite.cpp in Sources */,
+				AB96D4A91E80560C00EFEC09 /* Timer.cpp in Sources */,
 				AB235EAA1E79F9B9008F8C19 /* Tile.cpp in Sources */,
 				AB235EB51E7CC553008F8C19 /* Errors.cpp in Sources */,
 			);

@@ -58,15 +58,13 @@ void Sprite::move(Movement command){
             }
             
             csprite.x = posX;
-            render();
             break;
         case Movement::RIGHT:
-            if(posX < LEVEL_WIDTH){
+            if(posX + width < LEVEL_WIDTH){
                 posX += velX;
             }
             
             csprite.x = posX;
-            render();
             break;
         case Movement::JUMP:
             posY -= velY;
@@ -77,29 +75,18 @@ void Sprite::move(Movement command){
             }
             
             csprite.y = posY;
-            render();
             break;
             
         break;
     }
     
-    while(SDL_GetTicks() - FrameStartTimeMs < 1000/FPS);
+    //while(SDL_GetTicks() - FrameStartTimeMs < 1000/FPS);
 }
 
-void Sprite::render(){
-    /*
-    glBindBuffer(GL_ARRAY_BUFFER, vboID);
+void Sprite::render(float camX, float camY){
+    csprite.x = posX - camX;
+    csprite.y = posY - camY;
     
-    glEnableVertexAttribArray(0);
-    
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, 0);
-    
-    glDrawArrays(GL_TRIANGLES, 0, 6);
-    
-    glDisableVertexAttribArray(0);
-    
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-     */
     SDL_RenderCopy(renderer, tsprite, NULL, &csprite);
 }
 

@@ -46,8 +46,6 @@ void Camera::updateCamera(float x, float y){
     //Centers the camera over the sprite
     camera.x = (posX + swidth/2) - SCREEN_WIDTH/2;
     camera.y = (posY + sheight/2) - SCREEN_HEIGHT/2;
- 
-    std::cout << camera.x << " " << camera.y << std::endl;
     
     //Keeps the camera in bounds
     if(camera.x < 0){
@@ -62,6 +60,9 @@ void Camera::updateCamera(float x, float y){
     if( camera.y > LEVEL_HEIGHT - camera.h ){
         camera.y = LEVEL_HEIGHT - camera.h;
     }
+    
+    //std::cout << camera.x << " " << camera.y << std::endl;
+    //std::cout << posX << " " << posY << std::endl;
 }
 
 SDL_Rect Camera::getCamInfo(){

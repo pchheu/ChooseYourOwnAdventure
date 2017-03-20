@@ -7,9 +7,10 @@
 //
 
 #include "MainGame.hpp"
-#include "Map.hpp"
 #include "Sprite.hpp"
 #include "Errors.hpp"
+
+
 
 MainGame::MainGame(){
     window = nullptr;
@@ -64,6 +65,9 @@ void MainGame::initSystems(){
     //Sets the background color once the screen is flushed
     glClearColor(1.0f, 1.0f, 1.0f, 1.0);
     
+    countedFrames = 0;
+    fpsTimer.start();
+    
 }
 
 void MainGame::gameLoop(){
@@ -74,12 +78,25 @@ void MainGame::gameLoop(){
     camera = screen.getCamInfo();
     
     while(currentState != GameState::EXIT){
+//-------------------Calculate average FPS-------------------//
+        
         processInput();
         camera = screen.getCamInfo();
+        
+//------------------Render graphics--------------------//
         SDL_RenderClear(renderer);
+        
         firstlevel.renderMap(camera);
-        drawGame();
+        character.render(camera.x, camera.y);
+        
         SDL_RenderPresent(renderer);
+        float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);
+        if(avgFPS > 2000000){
+            avgFPS = 0;
+        }
+        if(fpsTimer.getTicks() < 1000/60){
+            SDL_Delay((1000/60) - fpsTimer.getTicks());
+        }
     }
 }
 
@@ -125,5 +142,5 @@ void MainGame::processInput(){
 }
 
 void MainGame::drawGame(){
-    character.render();
+    //character.render();
 }

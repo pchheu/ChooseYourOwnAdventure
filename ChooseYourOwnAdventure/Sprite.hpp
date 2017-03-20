@@ -25,7 +25,7 @@ public:
     void init(std::string, float _width, float _height);
     
     void move(Movement command);
-    void render();
+    void render(float camX, float camY);
     void getCurrentMapInfo(Map m);
     
     float getPosX();

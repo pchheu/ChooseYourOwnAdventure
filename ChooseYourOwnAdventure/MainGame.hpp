@@ -9,12 +9,14 @@
 #pragma once
 
 #include "Camera.hpp"
+#include "Map.hpp"
 #include "Sprite.hpp"
 #include <iostream>
 #include "SDL2/SDL.h"
 #include "SDL2_image/SDL_image.h"
 #include <OpenGL/gl.h>
 #include <stdio.h>
+#include "Timer.hpp"
 
 enum class GameState{PLAY, EXIT};
 
@@ -36,6 +38,7 @@ private:
     
     int screenHeight;
     int screenWidth;
+    int countedFrames;
     
     SDL_Renderer* renderer;
     
@@ -43,4 +46,5 @@ private:
     
     Sprite character = *new Sprite();
     Camera screen = *new Camera();
+    Timer fpsTimer;
 };
