@@ -86,7 +86,7 @@ void Sprite::move(Movement command){
 void Sprite::render(float camX, float camY){
     csprite.x = posX - camX;
     csprite.y = posY - camY;
-    
+
     SDL_RenderCopy(renderer, tsprite, NULL, &csprite);
 }
 
@@ -111,4 +111,12 @@ int Sprite::getLevelWidth(){
 
 int Sprite::getLevelHeight(){
     return LEVEL_HEIGHT;
+}
+
+int Sprite::getWidth(){
+    return width;
+}
+
+int Sprite::getHeight(){
+    return height;
 }

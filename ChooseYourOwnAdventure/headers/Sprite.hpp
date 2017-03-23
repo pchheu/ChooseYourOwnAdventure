@@ -33,6 +33,8 @@ public:
     
     int getLevelWidth();
     int getLevelHeight();
+    int getWidth();
+    int getHeight();
     
 private:
     int x;
