@@ -51,6 +51,7 @@
 		AB235EB71E7DE3E6008F8C19 /* Camera.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
 		AB96D4A71E80560C00EFEC09 /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
 		AB96D4A81E80560C00EFEC09 /* Timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Timer.hpp; sourceTree = "<group>"; };
+		ABB7B11F1E8223C2005DCFB4 /* Vector2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vector2.h; sourceTree = "<group>"; };
 		ABF7499D1E5B7BD700A7699D /* ChooseYourOwnAdventure */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChooseYourOwnAdventure; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABF749A01E5B7BD700A7699D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		ABF749A81E5B7E9500A7699D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -123,6 +124,7 @@
 		ABF749BF1E5D010E00A7699D /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				ABB7B11F1E8223C2005DCFB4 /* Vector2.h */,
 				AB96D4A81E80560C00EFEC09 /* Timer.hpp */,
 				AB235EB71E7DE3E6008F8C19 /* Camera.hpp */,
 				AB235EB41E7CC553008F8C19 /* Errors.hpp */,
@@ -133,7 +135,8 @@
 				ABF749BD1E5D010400A7699D /* Sprite.hpp */,
 			);
 			name = Headers;
-			sourceTree = "<group>";
+			path = "/Users/peterchheu/Documents/Software Design/ChooseYourOwnAdventure/ChooseYourOwnAdventure/headers";
+			sourceTree = "<absolute>";
 		};
 		ABF749C01E5D013200A7699D /* Source Files */ = {
 			isa = PBXGroup;
@@ -149,7 +152,8 @@
 				AB96D4A71E80560C00EFEC09 /* Timer.cpp */,
 			);
 			name = "Source Files";
-			sourceTree = "<group>";
+			path = "/Users/peterchheu/Documents/Software Design/ChooseYourOwnAdventure/ChooseYourOwnAdventure/src";
+			sourceTree = "<absolute>";
 		};
 /* End PBXGroup section */
 
