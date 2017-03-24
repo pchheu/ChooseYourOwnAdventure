@@ -7,6 +7,8 @@
 //
 
 #include "AnimatedSprite.hpp"
+#include "SDL2/SDL.h"
+#include "SDL2_image/SDL_image.h"
 //#include "Map.hpp"
 
 enum Direction {

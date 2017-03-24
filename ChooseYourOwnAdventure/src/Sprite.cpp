@@ -33,7 +33,7 @@ void Sprite::init(std::string path, float _width, float _height){
     tsprite = SDL_CreateTextureFromSurface(renderer, ssprite);
     
     csprite.x = 0;
-    csprite.y = 300;
+    csprite.y = 0;
     csprite.w = _width;
     csprite.h = _height;
     

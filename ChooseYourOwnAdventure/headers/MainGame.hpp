@@ -44,7 +44,8 @@ private:
     
     GameState currentState;
     
-    Player character = *new Player();
+    Sprite character = *new Sprite();
+    Player player = *new Player();
     Camera screen = *new Camera();
     Timer fpsTimer;
 };

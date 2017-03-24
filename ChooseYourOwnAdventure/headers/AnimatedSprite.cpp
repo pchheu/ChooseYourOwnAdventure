@@ -11,7 +11,7 @@
 AnimatedSprite::AnimatedSprite(){
 }
 
-AnimatedSprite::AnimatedSprite(const std::string &filePath,
+AnimatedSprite::AnimatedSprite(const std::string filePath,
                                int sourceX,
                                int sourceY,
                                int width,
@@ -19,12 +19,15 @@ AnimatedSprite::AnimatedSprite(const std::string &filePath,
                                float posX,
                                float posY,
                                float ntimeToUpdate){
-    Sprite a = *new Sprite();
     a.init(filePath, width, height);
     frameIndex = 0;
     timeToUpdate = ntimeToUpdate;
     currentAnimation = "";
     currentAnimationOnce = false;
+    visible = true;
+    
+    window = SDL_GL_GetCurrentWindow();
+    renderer = SDL_GetRenderer(window);
 }
 
 void AnimatedSprite::addAnimation(int frames, int x, int y, std::string name, int width, int height, Vector2 offset){
@@ -80,14 +83,13 @@ void AnimatedSprite::update(int elapsedTime){
 void AnimatedSprite::draw(int x, int y){
     if(this->visible){
         SDL_Rect destRect;
-        destRect.x = x + this->offsets[this->currentAnimation].x;
-        destRect.y = y + this->offsets[this->currentAnimation].y;
+        destRect.x = x ;//+ this->offsets[this->currentAnimation].x;
+        destRect.y = y ;//+ this->offsets[this->currentAnimation].y;
         destRect.w = this->Sprite::getWidth();
         destRect.h = this->Sprite::getHeight();
         
         SDL_Rect sourceRect = this->animations[this->currentAnimation][this->frameIndex];
-        SDL_Texture* tsprite = SDL_CreateTextureFromSurface(renderer, this->ssprite);
-        SDL_RenderCopy(renderer, tsprite, &sourceRect, &destRect);
+        SDL_RenderCopy(renderer, tsprite, NULL, &csprite);
     }
 }
 

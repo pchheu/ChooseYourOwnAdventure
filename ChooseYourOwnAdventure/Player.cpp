@@ -18,13 +18,16 @@ namespace player_constants {
 Player::Player() {}
 
 Player::Player(Vector2 spawnPoint) :
-AnimatedSprite("Images/bunnyspritesheet.png", 0, 0, 16, 16, spawnPoint.x, spawnPoint.y, 100),
+AnimatedSprite("spritesheets/bunnyspritesheet.png", 0, 0, 118, 185, spawnPoint.x, spawnPoint.y, 100),
 _dx(0),
 _dy(0),
 _facing(RIGHT),
 _grounded(false)
 {
     SDL_Surface* player = IMG_Load("Images/bunnyspritesheet.png");
+    if(player == nullptr){
+        std::cout << "Could not open the image" << std::endl;
+    }
     
     this->setupAnimations();
     this->playAnimation("IdleRight");

@@ -11,12 +11,14 @@
 #include "Vector2.h"
 #include <map>
 #include <vector>
+#include "SDL2/SDL.h"
+#include "SDL2_image/SDL_image.h"
 
 class AnimatedSprite : public Sprite{
 public:
     AnimatedSprite();
     
-    AnimatedSprite(const std::string &filePath,
+    AnimatedSprite(const std::string filePath,
                    int sourceX,
                    int sourceY,
                    int width,
@@ -53,8 +55,10 @@ protected:
     virtual void animationDone(std::string currentAnimation);
     
 private:
-    SDL_Window* window = SDL_GL_GetCurrentWindow();
-    SDL_Renderer* renderer = SDL_GetRenderer(window);
+    SDL_Window* window;
+    SDL_Renderer* renderer;
+    
+    Sprite a = *new Sprite();
     
     std::map<std::string, std::vector<SDL_Rect>> animations;
     std::map<std::string, Vector2> offsets;

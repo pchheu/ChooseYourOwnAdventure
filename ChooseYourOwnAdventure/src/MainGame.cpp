@@ -24,7 +24,8 @@ MainGame::~MainGame(){
 
 void MainGame::run(){
     initSystems();
-    character = *new Player(Vector2(0,300));
+    character.init("Images/sprite.png", 118, 185);
+    player = *new Player(Vector2(0,300));
     gameLoop();
 }
 
@@ -82,11 +83,13 @@ void MainGame::gameLoop(){
         processInput();
         camera = screen.getCamInfo();
         
-//----------------------Render graphics----------------------//
+//------------------Render graphics--------------------//
         SDL_RenderClear(renderer);
         
         firstlevel.draw(camera);
-        character.draw();
+        //firstlevel.renderMap("firstlevel");
+        character.render(camera.x, camera.y);
+        player.draw();
         
         SDL_RenderPresent(renderer);
         float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);

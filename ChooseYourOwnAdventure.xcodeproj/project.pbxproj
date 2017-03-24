@@ -17,6 +17,8 @@
 		ABA4EE201E83F9A200241D99 /* AnimatedSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABA4EE1E1E83F9A200241D99 /* AnimatedSprite.cpp */; };
 		ABBE22981E84AF370067FB70 /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABBE22971E84AF370067FB70 /* Map.cpp */; };
 		ABBE22A01E84ED740067FB70 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABBE229E1E84ED740067FB70 /* Player.cpp */; };
+		ABBE22D11E8508E90067FB70 /* Maps in Copy Files */ = {isa = PBXBuildFile; fileRef = ABBE22D01E8508E90067FB70 /* Maps */; };
+		ABBE22E91E8512C30067FB70 /* spritesheets in Copy Files */ = {isa = PBXBuildFile; fileRef = ABBE22E81E8512C30067FB70 /* spritesheets */; };
 		ABF749A11E5B7BD700A7699D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF749A01E5B7BD700A7699D /* main.cpp */; };
 		ABF749A91E5B7E9500A7699D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF749A81E5B7E9500A7699D /* Cocoa.framework */; };
 		ABF749AB1E5B7ED800A7699D /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF749AA1E5B7ED800A7699D /* SDL2.framework */; };
@@ -34,6 +36,8 @@
 			dstPath = Images;
 			dstSubfolderSpec = 7;
 			files = (
+				ABBE22E91E8512C30067FB70 /* spritesheets in Copy Files */,
+				ABBE22D11E8508E90067FB70 /* Maps in Copy Files */,
 				AB235EB21E7CC319008F8C19 /* Shaders in Copy Files */,
 				ABF749CA1E5E0DAC00A7699D /* Images in Copy Files */,
 			);
@@ -64,6 +68,8 @@
 		ABBE229C1E84B4CC0067FB70 /* Rectangle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Rectangle.hpp; path = ../Rectangle.hpp; sourceTree = "<group>"; };
 		ABBE229E1E84ED740067FB70 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = ../Player.cpp; sourceTree = "<group>"; };
 		ABBE229F1E84ED740067FB70 /* Player.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Player.hpp; path = ../Player.hpp; sourceTree = "<group>"; };
+		ABBE22D01E8508E90067FB70 /* Maps */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Maps; path = ChooseYourOwnAdventure/Maps; sourceTree = "<group>"; };
+		ABBE22E81E8512C30067FB70 /* spritesheets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spritesheets; path = ChooseYourOwnAdventure/spritesheets; sourceTree = "<group>"; };
 		ABF7499D1E5B7BD700A7699D /* ChooseYourOwnAdventure */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChooseYourOwnAdventure; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABF749A01E5B7BD700A7699D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		ABF749A81E5B7E9500A7699D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -95,6 +101,8 @@
 		ABF749941E5B7BD700A7699D = {
 			isa = PBXGroup;
 			children = (
+				ABBE22E81E8512C30067FB70 /* spritesheets */,
+				ABBE22D01E8508E90067FB70 /* Maps */,
 				AB235EB11E7CC319008F8C19 /* Shaders */,
 				ABF749C91E5E0DAC00A7699D /* Images */,
 				ABF7499F1E5B7BD700A7699D /* ChooseYourOwnAdventure */,

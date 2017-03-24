@@ -28,12 +28,14 @@ public:
     
     void mapInit(const char* path, std::string name);
     void draw(SDL_Rect c);
-    void renderMap(std::string mapName);
+    void renderMap(char* mapName);
     void destroyMap();
     void updateCamera(SDL_Rect c);
     
     int getlevelWidth();
     int getlevelHeight();
+    
+    bool Test();
     
     std::vector<Rectangle> checkTileCollisions(const Rectangle &other);
     

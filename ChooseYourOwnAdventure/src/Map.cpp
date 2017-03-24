@@ -6,10 +6,10 @@
 //  Copyright © 2017 Peter Chheu. All rights reserved.
 //
 #include "Map.hpp"
-#include "tinyxml2.h"
 #include <algorithm>
 #include <cmath>
 #include <sstream>
+#include "tinyxml2.h"
 
 using namespace tinyxml2;
 
@@ -49,14 +49,18 @@ void Map::updateCamera(SDL_Rect c){
     camera = c;
 }
 
-void Map::renderMap(std::string mapName) {
+void Map::renderMap(char* mapName) {
     //Parse the .tmx file
-    XMLDocument doc;
     std::stringstream ss;
-    ss << "maps/" << mapName << ".tmx"; //Pass in Map 1, we get maps/Map 1.tmx
-    doc.LoadFile(ss.str().c_str());
+    ss << "Maps/" << mapName << ".tmx"; //Pass in Map 1, we get maps/Map 1.tmx
+    XMLDocument doc("Maps/firstlevel.tmx");
     
     XMLElement* mapNode = doc.FirstChildElement("map");
+    /*
+    if(mapNode == nullptr){
+        std::cout << "Unable to retreive first node" << std::endl;
+    }*/
+    
     
     //Get the width and the height of the whole map and store it in _size
     int width, height;
@@ -243,48 +247,7 @@ void Map::renderMap(std::string mapName) {
                     }
                 }
             }
-            /*
-            //Other objectgroups go here with an else if (ss.str() == "whatever")
-            else if (ss.str() == "slopes") {
-                XMLElement* pObject = pObjectGroup->FirstChildElement("object");
-                if (pObject != NULL) {
-                    while (pObject) {
-                        std::vector<Vector2> points;
-                        Vector2 p1;
-                        p1 = Vector2(std::ceil(pObject->FloatAttribute("x")), std::ceil(pObject->FloatAttribute("y")));
-                        
-                        XMLElement* pPolyline = pObject->FirstChildElement("polyline");
-                        if (pPolyline != NULL) {
-                            std::vector<std::string> pairs;
-                            const char* pointString = pPolyline->Attribute("points");
-                            
-                            std::stringstream ss;
-                            ss << pointString;
-                            Utils::split(ss.str(), pairs, ' ');
-                            //Now we have each of the pairs. Loop through the list of pairs
-                            //and split them into Vector2s and then store them in our points vector
-                            for (int i = 0; i < pairs.size(); i++) {
-                                std::vector<std::string> ps;
-                                Utils::split(pairs.at(i), ps, ',');
-                                points.push_back(Vector2(std::stoi(ps.at(0)), std::stoi(ps.at(1))));
-                            }
-                        }
-                        
-                        for (int i = 0; i < points.size(); i += 2) {
-                            this->_slopes.push_back(Slope(
-                                                          Vector2((p1.x + points.at(i < 2 ? i : i - 1).x),
-                                                                  (p1.y + points.at(i < 2 ? i : i - 1).y)),
-                                                          Vector2((p1.x + points.at(i < 2 ? i + 1 : i).x),
-                                                                  (p1.y + points.at(i < 2 ? i + 1 : i).y))
-                                                          ));
-                        }
-                        
-                        pObject = pObject->NextSiblingElement("object");
-                    }
-                }
-             
-            }*/
-            else if (ss.str() == "spawn points") {
+            if (ss.str() == "spawn points") {
                 XMLElement* pObject = pObjectGroup->FirstChildElement("object");
                 if (pObject != NULL) {
                     while (pObject) {
@@ -402,4 +365,20 @@ Vector2 Map::getTilesetPosition(Tileset tls, int gid, int tileWidth, int tileHei
     tsyy = tileHeight * amt;
     Vector2 finalTilesetPosition = Vector2(tsxx, tsyy);
     return finalTilesetPosition;
+}
+
+bool Map::Test()
+{
+    XMLDocument xml_doc;
+    
+    XMLError eResult = xml_doc.LoadFile("test.xml");
+    if (eResult != XML_SUCCESS) return false;
+    
+    XMLNode* root = xml_doc.FirstChildElement("to");
+    if (root == nullptr) return false;
+    
+    XMLElement* element = root->FirstChildElement("from");
+    if (element == nullptr) return false;
+    
+    return true;
 }
