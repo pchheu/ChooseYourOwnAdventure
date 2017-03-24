@@ -45,6 +45,8 @@ void Sprite::init(std::string path, float _width, float _height){
     
     velX = 400.0/FPS;
     velY = 400.0/FPS;
+    
+    boundingBox = Rectangle(x, y, width, height);
 }
 
 //Redraws the sprite to show movement
@@ -119,4 +121,31 @@ int Sprite::getWidth(){
 
 int Sprite::getHeight(){
     return height;
+}
+
+const sides::Side Sprite::getCollisionSide(Rectangle &other) const{
+    int amtRight, amtLeft, amtTop, amtBottom;
+    amtRight = this->getBoundingBox().getRight() - other.getLeft();
+    amtLeft = other.getRight() - this->getBoundingBox().getLeft();
+    amtTop = other.getBottom() - this->getBoundingBox().getTop();
+    amtBottom = this->getBoundingBox().getBottom() - other.getTop();
+    
+    int vals[4] = { abs(amtRight), abs(amtLeft), abs(amtTop), abs(amtBottom) };
+    int lowest = vals[0];
+    for (int i = 0; i < 4; i++) {
+        if (vals[i] < lowest) {
+            lowest = vals[i];
+        }
+    }
+    
+    return
+    lowest == abs(amtRight) ? sides::RIGHT :
+    lowest == abs(amtLeft) ? sides::LEFT :
+    lowest == abs(amtTop) ? sides::TOP :
+    lowest == abs(amtBottom) ? sides::BOTTOM :
+    sides::NONE;
+}
+
+const Rectangle Sprite::getBoundingBox() const{
+    return boundingBox;
 }

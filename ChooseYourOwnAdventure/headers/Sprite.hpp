@@ -36,15 +36,14 @@ public:
     int getWidth();
     int getHeight();
     
-private:
+    const sides::Side getCollisionSide(Rectangle &other) const;
+    const Rectangle getBoundingBox() const;
+    
+protected:
     int x;
     int y;
     int width;
     int height;
-    int LEVEL_WIDTH;
-    int LEVEL_HEIGHT;
-    
-    Map currentMap = *new Map();
     
     float posX;
     float posY;
@@ -52,12 +51,20 @@ private:
     float velX;
     float velY;
     
-    SDL_Window* window;
-    SDL_Renderer* renderer;
     SDL_Surface* ssprite, swindow;
     SDL_Texture* tsprite;
-
+    
     SDL_Rect csprite;
+    Rectangle boundingBox;
+    
+private:
+    int LEVEL_WIDTH;
+    int LEVEL_HEIGHT;
+    
+    Map currentMap = *new Map();
+    
+    SDL_Window* window;
+    SDL_Renderer* renderer;
     SDL_Rect collisionBox;
     
     SDL_Surface* scurrentMap;

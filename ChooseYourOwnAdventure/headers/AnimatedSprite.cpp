@@ -86,7 +86,8 @@ void AnimatedSprite::draw(int x, int y){
         destRect.h = this->Sprite::getHeight();
         
         SDL_Rect sourceRect = this->animations[this->currentAnimation][this->frameIndex];
-        
+        SDL_Texture* tsprite = SDL_CreateTextureFromSurface(renderer, this->ssprite);
+        SDL_RenderCopy(renderer, tsprite, &sourceRect, &destRect);
     }
 }
 

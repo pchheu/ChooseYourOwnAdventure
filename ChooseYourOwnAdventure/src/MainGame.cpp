@@ -7,7 +7,6 @@
 //
 
 #include "MainGame.hpp"
-#include "Sprite.hpp"
 #include "Errors.hpp"
 
 
@@ -25,7 +24,7 @@ MainGame::~MainGame(){
 
 void MainGame::run(){
     initSystems();
-    character.init("Images/sprite.png", 118, 185);
+    character = *new Player(Vector2(0,300));
     gameLoop();
 }
 
@@ -83,11 +82,11 @@ void MainGame::gameLoop(){
         processInput();
         camera = screen.getCamInfo();
         
-//------------------Render graphics--------------------//
+//----------------------Render graphics----------------------//
         SDL_RenderClear(renderer);
         
         firstlevel.draw(camera);
-        character.render(camera.x, camera.y);
+        character.draw();
         
         SDL_RenderPresent(renderer);
         float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);

@@ -9,8 +9,7 @@
 #pragma once
 
 #include "Camera.hpp"
-#include "Map.hpp"
-#include "Sprite.hpp"
+#include "Player.hpp"
 #include <iostream>
 #include "SDL2/SDL.h"
 #include "SDL2_image/SDL_image.h"
@@ -32,6 +31,7 @@ private:
     void gameLoop();
     void processInput();
     void drawGame();
+    void update(float elapsedTime);
     
     SDL_Window* window;
     SDL_Rect camera;
@@ -44,7 +44,7 @@ private:
     
     GameState currentState;
     
-    Sprite character = *new Sprite();
+    Player character = *new Player();
     Camera screen = *new Camera();
     Timer fpsTimer;
 };
