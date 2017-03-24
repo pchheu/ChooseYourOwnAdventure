@@ -8,34 +8,20 @@
 
 #include "Tile.hpp"
 
-//Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+Tile::Tile() {}
 
-//Tile constants
-const int TILE_WIDTH = 100;
-const int TILE_HEIGHT = 100;
+Tile::Tile(SDL_Texture* tileset, Vector2 size, Vector2 tilesetPosition, Vector2 position) :
+_tileset(tileset),
+_size(size),
+_tilesetPosition(tilesetPosition),
+_position(Vector2(position.x, position.y))
+{}
 
-Tile::Tile( int x, int y, int tileType ){
-    //Get the offsets
-    mBox.x = x;
-    mBox.y = y;
-    
-    //Set the collision box
-    mBox.w = TILE_WIDTH;
-    mBox.h = TILE_HEIGHT;
-    
-    //Get the tile type
-    mType = tileType;
+void Tile::update(int elapsedTime) {}
+
+void Tile::draw() {
+    SDL_Rect destRect = { this->_position.x, this->_position.y, this->_size.x, this->_size.y};
+    SDL_Rect sourceRect = { this->_tilesetPosition.x, this->_tilesetPosition.y, this->_size.x, this->_size.y };
+
+    SDL_RenderCopy(renderer, _tileset, &sourceRect, &destRect);
 }
-
-/*
-void Tile::render( SDL_Rect& camera ){
-    //If the tile is on screen
-    if( checkCollision( camera, mBox ) )
-    {
-        //Show the tile
-        gTileTexture.render( mBox.x - camera.x, mBox.y - camera.y, &gTileClips[ mType ] );
-    }
-}
-*/

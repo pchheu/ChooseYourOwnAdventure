@@ -15,6 +15,7 @@
 		AB96D4A91E80560C00EFEC09 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB96D4A71E80560C00EFEC09 /* Timer.cpp */; };
 		ABA4EE1C1E838C4C00241D99 /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABA4EE1B1E838C4C00241D99 /* tinyxml2.cpp */; };
 		ABA4EE201E83F9A200241D99 /* AnimatedSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABA4EE1E1E83F9A200241D99 /* AnimatedSprite.cpp */; };
+		ABBE22981E84AF370067FB70 /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABBE22971E84AF370067FB70 /* Map.cpp */; };
 		ABF749A11E5B7BD700A7699D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF749A01E5B7BD700A7699D /* main.cpp */; };
 		ABF749A91E5B7E9500A7699D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF749A81E5B7E9500A7699D /* Cocoa.framework */; };
 		ABF749AB1E5B7ED800A7699D /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF749AA1E5B7ED800A7699D /* SDL2.framework */; };
@@ -22,7 +23,6 @@
 		ABF749B61E5CE58300A7699D /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF749B51E5CE58300A7699D /* OpenGL.framework */; };
 		ABF749BB1E5CE8FB00A7699D /* MainGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF749B91E5CE8FB00A7699D /* MainGame.cpp */; };
 		ABF749BE1E5D010400A7699D /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF749BC1E5D010400A7699D /* Sprite.cpp */; };
-		ABF749C61E5D03E900A7699D /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF749C41E5D03E900A7699D /* Map.cpp */; };
 		ABF749CA1E5E0DAC00A7699D /* Images in Copy Files */ = {isa = PBXBuildFile; fileRef = ABF749C91E5E0DAC00A7699D /* Images */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +58,9 @@
 		ABA4EE1E1E83F9A200241D99 /* AnimatedSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AnimatedSprite.cpp; path = ../headers/AnimatedSprite.cpp; sourceTree = "<group>"; };
 		ABA4EE1F1E83F9A200241D99 /* AnimatedSprite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimatedSprite.hpp; sourceTree = "<group>"; };
 		ABB7B11F1E8223C2005DCFB4 /* Vector2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vector2.h; sourceTree = "<group>"; };
+		ABBE22971E84AF370067FB70 /* Map.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Map.cpp; sourceTree = "<group>"; };
+		ABBE229A1E84B1520067FB70 /* Map.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Map.hpp; sourceTree = "<group>"; };
+		ABBE229C1E84B4CC0067FB70 /* Rectangle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Rectangle.hpp; path = ../Rectangle.hpp; sourceTree = "<group>"; };
 		ABF7499D1E5B7BD700A7699D /* ChooseYourOwnAdventure */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChooseYourOwnAdventure; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABF749A01E5B7BD700A7699D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		ABF749A81E5B7E9500A7699D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -68,8 +71,6 @@
 		ABF749BA1E5CE8FB00A7699D /* MainGame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MainGame.hpp; sourceTree = "<group>"; };
 		ABF749BC1E5D010400A7699D /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
 		ABF749BD1E5D010400A7699D /* Sprite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
-		ABF749C41E5D03E900A7699D /* Map.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Map.cpp; sourceTree = "<group>"; };
-		ABF749C51E5D03E900A7699D /* Map.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Map.hpp; sourceTree = "<group>"; };
 		ABF749C91E5E0DAC00A7699D /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Images; path = ChooseYourOwnAdventure/Images; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +131,8 @@
 		ABF749BF1E5D010E00A7699D /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				ABBE229C1E84B4CC0067FB70 /* Rectangle.hpp */,
+				ABBE229A1E84B1520067FB70 /* Map.hpp */,
 				ABA4EE1D1E838C5500241D99 /* tinyxml2.h */,
 				ABB7B11F1E8223C2005DCFB4 /* Vector2.h */,
 				ABA4EE1F1E83F9A200241D99 /* AnimatedSprite.hpp */,
@@ -139,7 +142,6 @@
 				AB235EAF1E7CBB81008F8C19 /* GLSLProgram.hpp */,
 				AB235EA91E79F9B9008F8C19 /* Tile.hpp */,
 				ABF749BA1E5CE8FB00A7699D /* MainGame.hpp */,
-				ABF749C51E5D03E900A7699D /* Map.hpp */,
 				ABF749BD1E5D010400A7699D /* Sprite.hpp */,
 			);
 			name = Headers;
@@ -153,8 +155,8 @@
 				ABF749A01E5B7BD700A7699D /* main.cpp */,
 				ABF749B91E5CE8FB00A7699D /* MainGame.cpp */,
 				ABF749BC1E5D010400A7699D /* Sprite.cpp */,
+				ABBE22971E84AF370067FB70 /* Map.cpp */,
 				ABA4EE1E1E83F9A200241D99 /* AnimatedSprite.cpp */,
-				ABF749C41E5D03E900A7699D /* Map.cpp */,
 				AB235EA81E79F9B9008F8C19 /* Tile.cpp */,
 				AB235EAE1E7CBB81008F8C19 /* GLSLProgram.cpp */,
 				AB235EB31E7CC553008F8C19 /* Errors.cpp */,
@@ -228,9 +230,9 @@
 				ABF749BB1E5CE8FB00A7699D /* MainGame.cpp in Sources */,
 				ABF749A11E5B7BD700A7699D /* main.cpp in Sources */,
 				AB235EB01E7CBB81008F8C19 /* GLSLProgram.cpp in Sources */,
-				ABF749C61E5D03E900A7699D /* Map.cpp in Sources */,
 				ABA4EE1C1E838C4C00241D99 /* tinyxml2.cpp in Sources */,
 				AB235EB81E7DE3E6008F8C19 /* Camera.cpp in Sources */,
+				ABBE22981E84AF370067FB70 /* Map.cpp in Sources */,
 				ABF749BE1E5D010400A7699D /* Sprite.cpp in Sources */,
 				AB96D4A91E80560C00EFEC09 /* Timer.cpp in Sources */,
 				ABA4EE201E83F9A200241D99 /* AnimatedSprite.cpp in Sources */,

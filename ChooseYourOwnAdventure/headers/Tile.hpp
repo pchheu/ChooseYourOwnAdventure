@@ -6,33 +6,27 @@
 //  Copyright © 2017 Peter Chheu. All rights reserved.
 //
 
-#include "MainGame.hpp"
 #include <iostream>
 #include "SDL2/SDL.h"
 #include "SDL2_image/SDL_image.h"
 #include <OpenGL/gl.h>
 #include <stdio.h>
 #include <fstream>
+#include "Vector2.h"
 
-class Tile
-{
+class Tile {
 public:
-    //Initializes position and type
-    Tile( int x, int y, int tileType );
+    Tile();
+    Tile(SDL_Texture* tileset, Vector2 size, Vector2 tilesetPosition, Vector2 position);
+    void update(int elapsedTime);
+    void draw();
     
-    //Shows the tile
-    void render( SDL_Rect& camera );
+protected:
+    SDL_Texture* _tileset;
+    Vector2 _size;
+    Vector2 _tilesetPosition;
+    Vector2 _position;
     
-    //Get the tile type
-    int getType();
-    
-    //Get the collision box
-    SDL_Rect getBox();
-    
-private:
-    //The attributes of the tile
-    SDL_Rect mBox;
-    
-    //The tile type
-    int mType;
+    SDL_Window* window = SDL_GL_GetCurrentWindow();
+    SDL_Renderer* renderer = SDL_GetRenderer(window);
 };

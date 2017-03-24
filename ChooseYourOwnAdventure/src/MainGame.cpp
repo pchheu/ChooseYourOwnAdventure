@@ -86,7 +86,7 @@ void MainGame::gameLoop(){
 //------------------Render graphics--------------------//
         SDL_RenderClear(renderer);
         
-        firstlevel.renderMap(camera);
+        firstlevel.draw(camera);
         character.render(camera.x, camera.y);
         
         SDL_RenderPresent(renderer);
