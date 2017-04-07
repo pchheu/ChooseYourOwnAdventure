@@ -89,7 +89,7 @@ void MainGame::gameLoop(){
         firstlevel.draw(camera);
         //firstlevel.renderMap("firstlevel");
         character.render(camera.x, camera.y);
-        player.draw();
+        //player.draw();
         
         SDL_RenderPresent(renderer);
         float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);

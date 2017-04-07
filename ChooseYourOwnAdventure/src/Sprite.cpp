@@ -33,7 +33,7 @@ void Sprite::init(std::string path, float _width, float _height){
     tsprite = SDL_CreateTextureFromSurface(renderer, ssprite);
     
     csprite.x = 0;
-    csprite.y = 0;
+    csprite.y = 300;
     csprite.w = _width;
     csprite.h = _height;
     
@@ -41,7 +41,7 @@ void Sprite::init(std::string path, float _width, float _height){
     height = _height;
     
     posX = 500.0;
-    posY = 600.0;
+    posY = 300.0;
     
     velX = 400.0/FPS;
     velY = 400.0/FPS;

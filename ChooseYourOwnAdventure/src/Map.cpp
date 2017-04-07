@@ -53,7 +53,7 @@ void Map::renderMap(char* mapName) {
     //Parse the .tmx file
     std::stringstream ss;
     ss << "Maps/" << mapName << ".tmx"; //Pass in Map 1, we get maps/Map 1.tmx
-    XMLDocument doc("Maps/firstlevel.tmx");
+    XMLDocument doc("ChooseYourOwnAdventure/Maps/firstlevel.tmx");
     
     XMLElement* mapNode = doc.FirstChildElement("map");
     /*

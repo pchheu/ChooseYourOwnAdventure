@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		AB235EAA1E79F9B9008F8C19 /* Tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB235EA81E79F9B9008F8C19 /* Tile.cpp */; };
-		AB235EB01E7CBB81008F8C19 /* GLSLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB235EAE1E7CBB81008F8C19 /* GLSLProgram.cpp */; };
-		AB235EB21E7CC319008F8C19 /* Shaders in Copy Files */ = {isa = PBXBuildFile; fileRef = AB235EB11E7CC319008F8C19 /* Shaders */; };
 		AB235EB51E7CC553008F8C19 /* Errors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB235EB31E7CC553008F8C19 /* Errors.cpp */; };
 		AB235EB81E7DE3E6008F8C19 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB235EB61E7DE3E6008F8C19 /* Camera.cpp */; };
 		AB96D4A91E80560C00EFEC09 /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB96D4A71E80560C00EFEC09 /* Timer.cpp */; };
@@ -38,7 +36,6 @@
 			files = (
 				ABBE22E91E8512C30067FB70 /* spritesheets in Copy Files */,
 				ABBE22D11E8508E90067FB70 /* Maps in Copy Files */,
-				AB235EB21E7CC319008F8C19 /* Shaders in Copy Files */,
 				ABF749CA1E5E0DAC00A7699D /* Images in Copy Files */,
 			);
 			name = "Copy Files";
@@ -49,9 +46,6 @@
 /* Begin PBXFileReference section */
 		AB235EA81E79F9B9008F8C19 /* Tile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tile.cpp; sourceTree = "<group>"; };
 		AB235EA91E79F9B9008F8C19 /* Tile.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tile.hpp; sourceTree = "<group>"; };
-		AB235EAE1E7CBB81008F8C19 /* GLSLProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLSLProgram.cpp; sourceTree = "<group>"; };
-		AB235EAF1E7CBB81008F8C19 /* GLSLProgram.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLSLProgram.hpp; sourceTree = "<group>"; };
-		AB235EB11E7CC319008F8C19 /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Shaders; path = ChooseYourOwnAdventure/Shaders; sourceTree = "<group>"; };
 		AB235EB31E7CC553008F8C19 /* Errors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Errors.cpp; sourceTree = "<group>"; };
 		AB235EB41E7CC553008F8C19 /* Errors.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Errors.hpp; sourceTree = "<group>"; };
 		AB235EB61E7DE3E6008F8C19 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
@@ -60,14 +54,14 @@
 		AB96D4A81E80560C00EFEC09 /* Timer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Timer.hpp; sourceTree = "<group>"; };
 		ABA4EE1B1E838C4C00241D99 /* tinyxml2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml2.cpp; sourceTree = "<group>"; };
 		ABA4EE1D1E838C5500241D99 /* tinyxml2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml2.h; sourceTree = "<group>"; };
-		ABA4EE1E1E83F9A200241D99 /* AnimatedSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AnimatedSprite.cpp; path = ../headers/AnimatedSprite.cpp; sourceTree = "<group>"; };
+		ABA4EE1E1E83F9A200241D99 /* AnimatedSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimatedSprite.cpp; sourceTree = "<group>"; };
 		ABA4EE1F1E83F9A200241D99 /* AnimatedSprite.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AnimatedSprite.hpp; sourceTree = "<group>"; };
 		ABB7B11F1E8223C2005DCFB4 /* Vector2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vector2.h; sourceTree = "<group>"; };
 		ABBE22971E84AF370067FB70 /* Map.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Map.cpp; sourceTree = "<group>"; };
 		ABBE229A1E84B1520067FB70 /* Map.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Map.hpp; sourceTree = "<group>"; };
-		ABBE229C1E84B4CC0067FB70 /* Rectangle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Rectangle.hpp; path = ../Rectangle.hpp; sourceTree = "<group>"; };
-		ABBE229E1E84ED740067FB70 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Player.cpp; path = ../Player.cpp; sourceTree = "<group>"; };
-		ABBE229F1E84ED740067FB70 /* Player.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Player.hpp; path = ../Player.hpp; sourceTree = "<group>"; };
+		ABBE229C1E84B4CC0067FB70 /* Rectangle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Rectangle.hpp; sourceTree = "<group>"; };
+		ABBE229E1E84ED740067FB70 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		ABBE229F1E84ED740067FB70 /* Player.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
 		ABBE22D01E8508E90067FB70 /* Maps */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Maps; path = ChooseYourOwnAdventure/Maps; sourceTree = "<group>"; };
 		ABBE22E81E8512C30067FB70 /* spritesheets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = spritesheets; path = ChooseYourOwnAdventure/spritesheets; sourceTree = "<group>"; };
 		ABF7499D1E5B7BD700A7699D /* ChooseYourOwnAdventure */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChooseYourOwnAdventure; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,7 +97,6 @@
 			children = (
 				ABBE22E81E8512C30067FB70 /* spritesheets */,
 				ABBE22D01E8508E90067FB70 /* Maps */,
-				AB235EB11E7CC319008F8C19 /* Shaders */,
 				ABF749C91E5E0DAC00A7699D /* Images */,
 				ABF7499F1E5B7BD700A7699D /* ChooseYourOwnAdventure */,
 				ABF7499E1E5B7BD700A7699D /* Products */,
@@ -150,7 +143,6 @@
 				AB96D4A81E80560C00EFEC09 /* Timer.hpp */,
 				AB235EB71E7DE3E6008F8C19 /* Camera.hpp */,
 				AB235EB41E7CC553008F8C19 /* Errors.hpp */,
-				AB235EAF1E7CBB81008F8C19 /* GLSLProgram.hpp */,
 				AB235EA91E79F9B9008F8C19 /* Tile.hpp */,
 				ABF749BA1E5CE8FB00A7699D /* MainGame.hpp */,
 				ABF749BD1E5D010400A7699D /* Sprite.hpp */,
@@ -170,7 +162,6 @@
 				ABBE22971E84AF370067FB70 /* Map.cpp */,
 				ABA4EE1E1E83F9A200241D99 /* AnimatedSprite.cpp */,
 				AB235EA81E79F9B9008F8C19 /* Tile.cpp */,
-				AB235EAE1E7CBB81008F8C19 /* GLSLProgram.cpp */,
 				AB235EB31E7CC553008F8C19 /* Errors.cpp */,
 				AB235EB61E7DE3E6008F8C19 /* Camera.cpp */,
 				AB96D4A71E80560C00EFEC09 /* Timer.cpp */,
@@ -242,7 +233,6 @@
 			files = (
 				ABF749BB1E5CE8FB00A7699D /* MainGame.cpp in Sources */,
 				ABF749A11E5B7BD700A7699D /* main.cpp in Sources */,
-				AB235EB01E7CBB81008F8C19 /* GLSLProgram.cpp in Sources */,
 				ABA4EE1C1E838C4C00241D99 /* tinyxml2.cpp in Sources */,
 				AB235EB81E7DE3E6008F8C19 /* Camera.cpp in Sources */,
 				ABBE22981E84AF370067FB70 /* Map.cpp in Sources */,
