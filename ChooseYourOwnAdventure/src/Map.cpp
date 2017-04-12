@@ -57,10 +57,9 @@ void Map::renderMap(char* mapName) {
     
     XMLElement* mapNode = doc.FirstChildElement("map");
     
-    /*
     if(mapNode == nullptr){
         std::cout << "Unable to retreive first node" << std::endl;
-    }*/
+    }
     
     
     //Get the width and the height of the whole map and store it in _size

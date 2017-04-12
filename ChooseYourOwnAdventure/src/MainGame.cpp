@@ -92,7 +92,6 @@ void MainGame::gameLoop(){
         //screen.updateMap(firstlevel.getlevelWidth(), firstlevel.getlevelHeight());
         
         camera = screen.getCamInfo();
-        std::cout << camera.x << " " << camera.y << " " << camera.w << " " << camera.h << std::endl;
         firstlevel.draw(camera);
         //firstlevel.renderMap("firstlevel");
         screen.updateCamera(player.getX(), player.getY());
@@ -107,9 +106,12 @@ void MainGame::processInput(){
     float posX, posY;
     
     while(SDL_PollEvent(&evnt) == true){
-        switch (evnt.type) {
+        switch (evnt.type){
             case SDL_QUIT:
                 currentState = GameState::EXIT;
+                break;
+            case SDL_KEYUP:
+                player.stopMoving();
                 break;
             case SDL_KEYDOWN:
                 switch (evnt.key.keysym.sym) {
@@ -123,9 +125,6 @@ void MainGame::processInput(){
                         player.jump();
                         break;
                 }
-                break;
-            case SDL_KEYUP:
-                player.stopMoving();
                 break;
         }
     }

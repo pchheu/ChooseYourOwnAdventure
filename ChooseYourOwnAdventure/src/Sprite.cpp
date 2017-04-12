@@ -56,14 +56,14 @@ void Sprite::getCurrentMapInfo(Map m){
     LEVEL_WIDTH = m.getlevelWidth();
     LEVEL_HEIGHT = m.getlevelHeight();
 }
-/*
+
 float Sprite::getX(){
     return x;
 }
 
 float Sprite::getY(){
     return y;
-}*/
+}
 
 int Sprite::getLevelWidth(){
     return LEVEL_WIDTH;

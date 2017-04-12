@@ -19,7 +19,7 @@ Player::Player(){
 }
 
 Player::Player(Vector2 spawnPoint) :
-AnimatedSprite("Images/bunny2.png", 0, 300, 145, 105, spawnPoint.x, spawnPoint.y, 200){
+AnimatedSprite("Images/bunny2.png", 0, 300, 145, 105, spawnPoint.x, spawnPoint.y, 175){
     
     dx = 0;
     dy = 0;
@@ -78,6 +78,11 @@ void Player::jump() {
     if (this->grounded) {
         this->dy = 0;
         this->dy -= player_constants::JUMP_SPEED;
+        if(facing == LEFT){
+            this->playAnimation("JumpLeft");
+        }else if(facing == RIGHT){
+            this->playAnimation("JumpRight");
+        }
         this->grounded = false;
     }
 }
