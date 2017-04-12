@@ -20,6 +20,7 @@ enum class Movement{LEFT, RIGHT, JUMP};
 class Sprite{
 public:
     Sprite();
+    Sprite(std::string path, float _width, float _height);
     ~Sprite();
     
     void init(std::string, float _width, float _height);

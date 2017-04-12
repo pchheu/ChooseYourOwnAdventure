@@ -53,9 +53,10 @@ void Map::renderMap(char* mapName) {
     //Parse the .tmx file
     std::stringstream ss;
     ss << "Maps/" << mapName << ".tmx"; //Pass in Map 1, we get maps/Map 1.tmx
-    XMLDocument doc("ChooseYourOwnAdventure/Maps/firstlevel.tmx");
+    XMLDocument doc(ss.str().c_str());
     
     XMLElement* mapNode = doc.FirstChildElement("map");
+    
     /*
     if(mapNode == nullptr){
         std::cout << "Unable to retreive first node" << std::endl;
@@ -367,8 +368,7 @@ Vector2 Map::getTilesetPosition(Tileset tls, int gid, int tileWidth, int tileHei
     return finalTilesetPosition;
 }
 
-bool Map::Test()
-{
+bool Map::Test(){
     XMLDocument xml_doc;
     
     XMLError eResult = xml_doc.LoadFile("test.xml");

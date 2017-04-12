@@ -31,7 +31,7 @@
 		ABF7499B1E5B7BD700A7699D /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
-			dstPath = Images;
+			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
 				ABBE22E91E8512C30067FB70 /* spritesheets in Copy Files */,

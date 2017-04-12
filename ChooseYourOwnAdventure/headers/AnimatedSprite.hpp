@@ -58,8 +58,6 @@ private:
     SDL_Window* window;
     SDL_Renderer* renderer;
     
-    Sprite a = *new Sprite();
-    
     std::map<std::string, std::vector<SDL_Rect>> animations;
     std::map<std::string, Vector2> offsets;
     

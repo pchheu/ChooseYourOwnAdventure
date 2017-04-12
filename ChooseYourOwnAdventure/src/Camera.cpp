@@ -61,8 +61,8 @@ void Camera::updateCamera(float x, float y){
         camera.y = LEVEL_HEIGHT - camera.h;
     }
     
-    std::cout << camera.x << " " << camera.y << std::endl;
-    std::cout << posX << " " << posY << std::endl;
+    //std::cout << camera.x << " " << camera.y << std::endl;
+    //std::cout << posX << " " << posY << std::endl;
 }
 
 SDL_Rect Camera::getCamInfo(){

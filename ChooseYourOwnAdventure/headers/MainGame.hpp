@@ -40,6 +40,8 @@ private:
     int screenWidth;
     int countedFrames;
     
+    float elaspedTime;
+    
     SDL_Renderer* renderer;
     
     GameState currentState;

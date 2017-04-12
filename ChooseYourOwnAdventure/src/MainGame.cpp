@@ -9,7 +9,8 @@
 #include "MainGame.hpp"
 #include "Errors.hpp"
 
-
+const int FPS = 60;
+const int maxFPS = 1000/FPS;
 
 MainGame::MainGame(){
     window = nullptr;
@@ -24,8 +25,6 @@ MainGame::~MainGame(){
 
 void MainGame::run(){
     initSystems();
-    character.init("Images/sprite.png", 118, 185);
-    player = *new Player(Vector2(0,300));
     gameLoop();
 }
 
@@ -65,40 +64,40 @@ void MainGame::initSystems(){
     //Sets the background color once the screen is flushed
     glClearColor(1.0f, 1.0f, 1.0f, 1.0);
     
-    countedFrames = 0;
-    fpsTimer.start();
-    
 }
 
 void MainGame::gameLoop(){
     Map firstlevel = *new Map();
+    player = *new Player(Vector2(0,300));
     firstlevel.mapInit("Images/map.bmp", "level1");
     character.getCurrentMapInfo(firstlevel);
     screen.initCamera(character);
     camera = screen.getCamInfo();
     
+    int lastUpdate = SDL_GetTicks();
+    
+    //Game loop starts
     while(currentState != GameState::EXIT){
-//-------------------Calculate average FPS-------------------//
+        //-------------------Calculate FPS-------------------//
         
         processInput();
         camera = screen.getCamInfo();
         
-//------------------Render graphics--------------------//
+        const int currentTimeMS = SDL_GetTicks();
+        int elaspedTime = currentTimeMS - lastUpdate;
+        update(std::min(elaspedTime, maxFPS));
+        lastUpdate = currentTimeMS;
+        
+        //------------------Render graphics--------------------//
+        
         SDL_RenderClear(renderer);
         
         firstlevel.draw(camera);
         //firstlevel.renderMap("firstlevel");
-        character.render(camera.x, camera.y);
-        //player.draw();
+        //character.render(camera.x, camera.y);
+        player.draw();
         
         SDL_RenderPresent(renderer);
-        float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);
-        if(avgFPS > 2000000){
-            avgFPS = 0;
-        }
-        if(fpsTimer.getTicks() < 1000/60){
-            SDL_Delay((1000/60) - fpsTimer.getTicks());
-        }
     }
 }
 
@@ -114,35 +113,24 @@ void MainGame::processInput(){
             case SDL_KEYDOWN:
                 switch (evnt.key.keysym.sym) {
                     case SDLK_LEFT:
-                        character.move(Movement::LEFT);
-                        posX = character.getPosX();
-                        posY = character.getPosY();
-                        screen.updateCamera(posX, posY);
-                        
-                        std::cout << "Left key pressed" << std::endl;
+                        player.moveLeft();
                         break;
                     case SDLK_RIGHT:
-                        character.move(Movement::RIGHT);
-                        posX = character.getPosX();
-                        posY = character.getPosY();
-                        screen.updateCamera(posX, posY);
-                        
-                        std::cout << "Right key pressed" << std::endl;
+                        player.moveRight();
                         break;
                     case SDLK_SPACE:
-                        character.move(Movement::JUMP);
-                        posX = character.getPosX();
-                        posY = character.getPosY();
-                        screen.updateCamera(posX, posY);
-                        
-                        std::cout << "Space pressed" << std::endl;
+                        player.jump();
                         break;
                 }
-                break;
+            break;
         }
     }
 }
 
 void MainGame::drawGame(){
     //character.render();
+}
+
+void MainGame::update(float elaspedTime){
+    player.update(elaspedTime);
 }

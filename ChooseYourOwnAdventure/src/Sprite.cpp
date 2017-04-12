@@ -20,8 +20,8 @@ Sprite::Sprite(){
 Sprite::~Sprite(){
 }
 
-//Initializes the sprites dimensions and pulls the window/renderer
-void Sprite::init(std::string path, float _width, float _height){
+//Alternative constructor that creates the display and gets sprite dimensions
+Sprite::Sprite(std::string path, float _width, float _height){
     ssprite = IMG_Load(path.c_str());
     
     if(ssprite == nullptr){
