@@ -19,7 +19,7 @@ AnimatedSprite::AnimatedSprite(const std::string filePath,
                                float posX,
                                float posY,
                                float ntimeToUpdate):
-Sprite(filePath, width, height){
+Sprite(filePath, width, height, posX, posY){
     frameIndex = 0;
     timeToUpdate = ntimeToUpdate;
     currentAnimation = "";
@@ -74,11 +74,11 @@ void AnimatedSprite::update(int elapsedTime){
     }
 }
 
-void AnimatedSprite::draw(int x, int y){
+void AnimatedSprite::draw(int x, int y, int camx, int camy){
     if(this->visible){
         SDL_Rect destRect;
-        destRect.x = x + offsets[currentAnimation].x;
-        destRect.y = y + offsets[currentAnimation].y;
+        destRect.x = (x + offsets[currentAnimation].x) - camx;
+        destRect.y = (y + offsets[currentAnimation].y) - camy;
         destRect.w = Sprite::getWidth();
         destRect.h = Sprite::getHeight();
         

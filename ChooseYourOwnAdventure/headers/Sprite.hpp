@@ -20,34 +20,31 @@ enum class Movement{LEFT, RIGHT, JUMP};
 class Sprite{
 public:
     Sprite();
-    Sprite(std::string path, float _width, float _height);
+    Sprite(std::string path, float _width, float _height, float posX, float posY);
     ~Sprite();
     
     void init(std::string, float _width, float _height);
     
-    void move(Movement command);
     void render(float camX, float camY);
     void getCurrentMapInfo(Map m);
-    
-    float getPosX();
-    float getPosY();
     
     int getLevelWidth();
     int getLevelHeight();
     int getWidth();
     int getHeight();
     
+    float getX();
+    float getY();
+    
     const sides::Side getCollisionSide(Rectangle &other) const;
     const Rectangle getBoundingBox() const;
     
 protected:
-    int x;
-    int y;
+    float x;
+    float y;
+    
     int width;
     int height;
-    
-    float posX;
-    float posY;
     
     float velX;
     float velY;

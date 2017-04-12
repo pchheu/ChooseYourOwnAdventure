@@ -19,7 +19,7 @@ Player::Player(){
 }
 
 Player::Player(Vector2 spawnPoint) :
-AnimatedSprite("Images/bunny.png", 0, 0, 145, 105, spawnPoint.x, spawnPoint.y, 100){
+AnimatedSprite("Images/bunny2.png", 0, 300, 145, 105, spawnPoint.x, spawnPoint.y, 200){
     
     dx = 0;
     dy = 0;
@@ -39,18 +39,14 @@ void Player::setupAnimations() {
     this->addAnimation(1, 1, 210, "JumpRight", 145, 105, Vector2(0,0));
 }
 
-void printAnimations(){
-
-}
-
 void Player::animationDone(std::string currentAnimation){
 }
 
-const float Player::getX() const {
+float Player::getX(){
     return this->x;
 }
 
-const float Player::getY() const {
+float Player::getY(){
     return this->y;
 }
 
@@ -124,18 +120,32 @@ void Player::update(float elapsedTime) {
     //Apply gravity
     if (dy <= player_constants::GRAVITY_CAP) {
         dy += player_constants::GRAVITY * elapsedTime;
-    }*/
-    std::cout << "y: " << y << std::endl;
-    std::cout << "x: " << x << std::endl;
+    }
+    */
     
     //Move by dx
     x += dx * elapsedTime;
+    
+    //Checks left and right bounds
+    if( x < 0 ){
+        x = 0;
+    }
+    if( x + getWidth() > getLevelWidth() ){
+        x = getLevelWidth() - getWidth();
+    }
+    
     //Move by dy
     y += dy * elapsedTime;
+    
+    //Checks upper bounds
+    if( y > getLevelHeight()){
+        y = getLevelHeight();
+    }
+    std::cout << "x: " << x << " y: " << y << std::endl;
     
     AnimatedSprite::update(elapsedTime);
 }
 
-void Player::draw(){
-    AnimatedSprite::draw(x, y);
+void Player::draw(int camx, int camy){
+    AnimatedSprite::draw(x, y, camx, camy);
 }

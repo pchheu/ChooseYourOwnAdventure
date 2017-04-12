@@ -11,9 +11,6 @@
 const int SCREEN_WIDTH = 1080;
 const int SCREEN_HEIGHT = 800;
 
-int FPS = 60;
-int FrameStartTimeMs = 0;
-
 Sprite::Sprite(){
 }
 
@@ -21,7 +18,7 @@ Sprite::~Sprite(){
 }
 
 //Alternative constructor that creates the display and gets sprite dimensions
-Sprite::Sprite(std::string path, float _width, float _height){
+Sprite::Sprite(std::string path, float _width, float _height, float posX, float posY){
     ssprite = IMG_Load(path.c_str());
     
     if(ssprite == nullptr){
@@ -37,57 +34,18 @@ Sprite::Sprite(std::string path, float _width, float _height){
     csprite.w = _width;
     csprite.h = _height;
     
+    x = posX;
+    y = posY;
+    
     width = _width;
     height = _height;
-    
-    posX = 500.0;
-    posY = 300.0;
-    
-    velX = 400.0/FPS;
-    velY = 400.0/FPS;
     
     boundingBox = Rectangle(x, y, width, height);
 }
 
-//Redraws the sprite to show movement
-void Sprite::move(Movement command){
-    FrameStartTimeMs = SDL_GetTicks();
-    
-    switch (command) {
-        case Movement::LEFT:
-            if(posX > 0){
-                posX -= velX;
-            }
-            
-            collisionBox.x = posX;
-            break;
-        case Movement::RIGHT:
-            if(posX + width < LEVEL_WIDTH){
-                posX += velX;
-            }
-            
-            collisionBox.x = posX;
-            break;
-        case Movement::JUMP:
-            posY -= velY;
-            
-            if( (posY < 0) || (posY + height > LEVEL_HEIGHT)){
-                //Move back
-                posY += velY;
-            }
-            
-            collisionBox.y = posY;
-            break;
-            
-        break;
-    }
-    
-    //while(SDL_GetTicks() - FrameStartTimeMs < 1000/FPS);
-}
-
 void Sprite::render(float camX, float camY){
-    csprite.x = posX - camX;
-    csprite.y = posY - camY;
+    csprite.x = x - camX;
+    csprite.y = y - camY;
 
     SDL_RenderCopy(renderer, tsprite, NULL, &csprite);
 }
@@ -98,14 +56,14 @@ void Sprite::getCurrentMapInfo(Map m){
     LEVEL_WIDTH = m.getlevelWidth();
     LEVEL_HEIGHT = m.getlevelHeight();
 }
-
-float Sprite::getPosX(){
-    return posX;
+/*
+float Sprite::getX(){
+    return x;
 }
 
-float Sprite::getPosY(){
-    return posY;
-}
+float Sprite::getY(){
+    return y;
+}*/
 
 int Sprite::getLevelWidth(){
     return LEVEL_WIDTH;

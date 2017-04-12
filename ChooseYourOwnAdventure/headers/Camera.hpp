@@ -7,27 +7,31 @@
 //
 #pragma once
 
-#include "Sprite.hpp"
 #include <stdio.h>
 #include <iostream>
 #include "SDL2/SDL.h"
 #include "SDL2_image/SDL_image.h"
 #include <OpenGL/gl.h>
+#include "Player.hpp"
 
 class Camera{
 public:
     Camera();
     ~Camera();
     
-    void initCamera(Sprite c);
+    void initCamera(Player p);
     void updateCamera(float x, float y);
     void getSpriteInfo();
+    void updateMap(int width, int height);
     SDL_Rect getCamInfo();
     
     SDL_Rect camera;
     
-    int x;
-    int y;
+    float x;
+    float y;
+    
+    int getCamX();
+    int getCamY();
     
 private:
     float posX;
@@ -39,5 +43,5 @@ private:
     int LEVEL_WIDTH;
     int LEVEL_HEIGHT;
     
-    Sprite* mc;
+    Player* p1;
 };

@@ -5,11 +5,12 @@
 //  Created by Peter Chheu on 3/24/17.
 //  Copyright © 2017 Peter Chheu. All rights reserved.
 //
+#ifndef OBJECT_H
+#define OBJECT_H
 
 #include "AnimatedSprite.hpp"
 #include "SDL2/SDL.h"
 #include "SDL2_image/SDL_image.h"
-//#include "Map.hpp"
 
 enum Direction {
     LEFT,
@@ -22,27 +23,12 @@ class Player : public AnimatedSprite {
 public:
     Player();
     Player(Vector2 spawnPoint);
-    void draw();
+    void draw(int camx, int camy);
     void update(float elapsedTime);
     
-    /* void moveLeft
-     * Moves the player left by -dx
-     */
     void moveLeft();
-    
-    /* void moveRight
-     * Moves the player right by dx
-     */
     void moveRight();
-    
-    /* void stopMoving
-     * Stops moving the player
-     */
     void stopMoving();
-    
-    /* void jump
-     * Starts jumping
-     */
     void jump();
     
     virtual void animationDone(std::string currentAnimation);
@@ -50,8 +36,8 @@ public:
     
     void handleTileCollisions(std::vector<Rectangle> &others);
     
-    const float getX() const;
-    const float getY() const;
+    float getX();
+    float getY();
     
 private:
     SDL_Window* window = SDL_GL_GetCurrentWindow();
@@ -62,3 +48,4 @@ private:
     
     bool grounded;
 };
+#endif

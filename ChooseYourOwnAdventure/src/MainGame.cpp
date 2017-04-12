@@ -70,8 +70,8 @@ void MainGame::gameLoop(){
     Map firstlevel = *new Map();
     player = *new Player(Vector2(0,300));
     firstlevel.mapInit("Images/map.bmp", "level1");
-    character.getCurrentMapInfo(firstlevel);
-    screen.initCamera(character);
+    player.getCurrentMapInfo(firstlevel);
+    screen.initCamera(player);
     camera = screen.getCamInfo();
     
     int lastUpdate = SDL_GetTicks();
@@ -79,9 +79,7 @@ void MainGame::gameLoop(){
     //Game loop starts
     while(currentState != GameState::EXIT){
         //-------------------Calculate FPS-------------------//
-        
         processInput();
-        camera = screen.getCamInfo();
         
         const int currentTimeMS = SDL_GetTicks();
         int elaspedTime = currentTimeMS - lastUpdate;
@@ -89,13 +87,16 @@ void MainGame::gameLoop(){
         lastUpdate = currentTimeMS;
         
         //------------------Render graphics--------------------//
-        
         SDL_RenderClear(renderer);
         
+        //screen.updateMap(firstlevel.getlevelWidth(), firstlevel.getlevelHeight());
+        
+        camera = screen.getCamInfo();
+        std::cout << camera.x << " " << camera.y << " " << camera.w << " " << camera.h << std::endl;
         firstlevel.draw(camera);
         //firstlevel.renderMap("firstlevel");
-        //character.render(camera.x, camera.y);
-        player.draw();
+        screen.updateCamera(player.getX(), player.getY());
+        player.draw(screen.getCamX(), screen.getCamY());
         
         SDL_RenderPresent(renderer);
     }
@@ -122,7 +123,10 @@ void MainGame::processInput(){
                         player.jump();
                         break;
                 }
-            break;
+                break;
+            case SDL_KEYUP:
+                player.stopMoving();
+                break;
         }
     }
 }

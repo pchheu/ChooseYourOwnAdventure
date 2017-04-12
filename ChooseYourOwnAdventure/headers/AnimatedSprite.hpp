@@ -6,6 +6,7 @@
 //  Copyright © 2017 Peter Chheu. All rights reserved.
 //
 
+
 #include <stdio.h>
 #include "Sprite.hpp"
 #include "Vector2.h"
@@ -34,7 +35,7 @@ public:
     void update(int elapsedTime);
     
     //Draws the sprite to the screen
-    void draw(int x, int y);
+    void draw(int x, int y, int camx, int camy);
     
     virtual void setupAnimations();
     
