@@ -69,7 +69,6 @@ void AnimatedSprite::update(int elapsedTime){
                 this->setVisible(false);
             }
             frameIndex = 0;
-            this->animationDone(this->currentAnimation);
         }
     }
 }
@@ -79,6 +78,19 @@ void AnimatedSprite::draw(int x, int y, int camx, int camy){
         SDL_Rect destRect;
         destRect.x = (x + offsets[currentAnimation].x) - camx;
         destRect.y = (y + offsets[currentAnimation].y) - camy;
+        destRect.w = Sprite::getWidth();
+        destRect.h = Sprite::getHeight();
+        
+        SDL_Rect sourceRect = animations[currentAnimation][frameIndex];
+        SDL_RenderCopy(renderer, tsprite, &sourceRect, &destRect);
+    }
+}
+
+void AnimatedSprite::draw(int x, int y){
+    if(this->visible){
+        SDL_Rect destRect;
+        destRect.x = (x + offsets[currentAnimation].x);
+        destRect.y = (y + offsets[currentAnimation].y);
         destRect.w = Sprite::getWidth();
         destRect.h = Sprite::getHeight();
         

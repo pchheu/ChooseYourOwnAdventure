@@ -15,7 +15,6 @@
 #include "SDL2_image/SDL_image.h"
 #include <OpenGL/gl.h>
 #include <stdio.h>
-#include "Timer.hpp"
 
 enum class GameState{PLAY, EXIT};
 
@@ -49,5 +48,4 @@ private:
     Sprite character = *new Sprite();
     Player player = *new Player();
     Camera screen = *new Camera();
-    Timer fpsTimer;
 };

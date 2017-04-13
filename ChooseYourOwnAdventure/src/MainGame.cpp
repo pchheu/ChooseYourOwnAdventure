@@ -9,7 +9,7 @@
 #include "MainGame.hpp"
 #include "Errors.hpp"
 
-const int FPS = 60;
+const int FPS = 100;
 const int maxFPS = 1000/FPS;
 
 MainGame::MainGame(){
@@ -93,7 +93,7 @@ void MainGame::gameLoop(){
         
         camera = screen.getCamInfo();
         firstlevel.draw(camera);
-        //firstlevel.renderMap("firstlevel");
+        firstlevel.renderMap("level1");
         screen.updateCamera(player.getX(), player.getY());
         player.draw(screen.getCamX(), screen.getCamY());
         

@@ -33,6 +33,12 @@ void Map::mapInit(const char *path, std::string name){
 }
 
 void Map::draw(SDL_Rect c){
+    //Draws tiles onto map
+    for(int i = 0; i < _tileList.size(); i++){
+        _tileList.at(i).draw();
+    }
+    
+    //Draws the background
     SDL_RenderCopy(renderer, map_texture, &c, NULL);
 }
 
@@ -51,16 +57,16 @@ void Map::updateCamera(SDL_Rect c){
 
 void Map::renderMap(char* mapName) {
     //Parse the .tmx file
+    XMLDocument doc;
     std::stringstream ss;
     ss << "Maps/" << mapName << ".tmx"; //Pass in Map 1, we get maps/Map 1.tmx
-    XMLDocument doc(ss.str().c_str());
-    
+    doc.LoadFile(ss.str().c_str());
+    std::cout << ss.str().c_str() << std::endl;
     XMLElement* mapNode = doc.FirstChildElement("map");
     
     if(mapNode == nullptr){
         std::cout << "Unable to retreive first node" << std::endl;
     }
-    
     
     //Get the width and the height of the whole map and store it in _size
     int width, height;
@@ -92,7 +98,7 @@ void Map::renderMap(char* mapName) {
             //Get all of the animations for that tileset
             XMLElement* pTileA = pTileset->FirstChildElement("tile");
             if (pTileA != NULL) {
-                while (pTileA) {
+                while (pTileA){
                     AnimatedTileInfo ati;
                     ati.StartTileId = pTileA->IntAttribute("id") + firstgid;
                     ati.TilesetsFirstGid = firstgid;
@@ -114,8 +120,8 @@ void Map::renderMap(char* mapName) {
                     pTileA = pTileA->NextSiblingElement("tile");
                 }
             }
-            pTileset = pTileset->NextSiblingElement("tileset");
             */
+            pTileset = pTileset->NextSiblingElement("tileset");
         }
     }
     

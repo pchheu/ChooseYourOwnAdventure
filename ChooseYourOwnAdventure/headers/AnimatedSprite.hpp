@@ -36,6 +36,7 @@ public:
     
     //Draws the sprite to the screen
     void draw(int x, int y, int camx, int camy);
+    void draw(int x, int y);
     
     virtual void setupAnimations();
     

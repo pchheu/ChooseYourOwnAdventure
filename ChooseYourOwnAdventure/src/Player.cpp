@@ -19,7 +19,7 @@ Player::Player(){
 }
 
 Player::Player(Vector2 spawnPoint) :
-AnimatedSprite("Images/bunny2.png", 0, 300, 145, 105, spawnPoint.x, spawnPoint.y, 175){
+AnimatedSprite("Images/bunny2.png", 0, 300, 145, 105, spawnPoint.x, spawnPoint.y, 150){
     
     dx = 0;
     dy = 0;
@@ -146,7 +146,6 @@ void Player::update(float elapsedTime) {
     if( y > getLevelHeight()){
         y = getLevelHeight();
     }
-    std::cout << "x: " << x << " y: " << y << std::endl;
     
     AnimatedSprite::update(elapsedTime);
 }
