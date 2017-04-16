@@ -107,3 +107,7 @@ const sides::Side Sprite::getCollisionSide(Rectangle &other) const{
 const Rectangle Sprite::getBoundingBox() const{
     return boundingBox;
 }
+
+void Sprite::update(){
+    boundingBox = Rectangle(x, y, width, height);
+}

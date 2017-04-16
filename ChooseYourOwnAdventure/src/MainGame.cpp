@@ -67,14 +67,15 @@ void MainGame::initSystems(){
 }
 
 void MainGame::gameLoop(){
-    Map firstlevel = *new Map();
-    player = *new Player(Vector2(0,300));
-    firstlevel.mapInit("Images/map.bmp", "level1");
-    player.getCurrentMapInfo(firstlevel);
-    screen.initCamera(player);
-    camera = screen.getCamInfo();
+    currentlevel = Map();
+    player = Player(Vector2(0,300));
+    currentlevel.mapInit("Images/map.bmp", "level1");
+    player.getCurrentMapInfo(currentlevel);
+    screen.initCamera();
     
     int lastUpdate = SDL_GetTicks();
+    currentlevel.renderMap("level1");
+    screen.updateMap(currentlevel.getlevelWidth(), currentlevel.getlevelHeight());
     
     //Game loop starts
     while(currentState != GameState::EXIT){
@@ -89,13 +90,9 @@ void MainGame::gameLoop(){
         //------------------Render graphics--------------------//
         SDL_RenderClear(renderer);
         
-        //screen.updateMap(firstlevel.getlevelWidth(), firstlevel.getlevelHeight());
-        
-        camera = screen.getCamInfo();
-        firstlevel.draw(camera);
-        firstlevel.renderMap("level1");
-        screen.updateCamera(player.getX(), player.getY());
-        player.draw(screen.getCamX(), screen.getCamY());
+        currentlevel.draw(Camera::camera);
+        screen.updateCamera(player.getX(),player.getY());
+        player.draw();
         
         SDL_RenderPresent(renderer);
     }
@@ -136,4 +133,11 @@ void MainGame::drawGame(){
 
 void MainGame::update(float elaspedTime){
     player.update(elaspedTime);
+    
+    //Check tile collisions
+    std::vector<Rectangle> others;
+    if((others = currentlevel.checkTileCollisions(player.getBoundingBox())).size() > 0){
+        //Player has collided with a tile
+        player.handleTileCollisions(others);
+    }
 }

@@ -30,12 +30,12 @@ class Rectangle {
 public:
     Rectangle() {}
     
-    Rectangle(int x, int y, int width, int height) :
-    _x(x),
-    _y(y),
-    _width(width),
-    _height(height)
-    {}
+    Rectangle(int x, int y, int width, int height){
+        _x = x;
+        _y = y;
+        _width = width;
+        _height = height;
+    }
     
     const int getCenterX() const { return this->_x + this->_width / 2; }
     const int getCenterY() const { return this->_y + this->_height / 2; }

@@ -22,7 +22,10 @@ void Tile::update(int elapsedTime){
 }
 
 void Tile::draw() {
-    SDL_Rect destRect = { this->_position.x, this->_position.y, this->_size.x, this->_size.y};
+    SDL_Rect destRect = { this->_position.x - Camera::getCamX(),
+                          this->_position.y - Camera::getCamY(),
+                          this->_size.x,
+                          this->_size.y};
     SDL_Rect sourceRect = { this->_tilesetPosition.x, this->_tilesetPosition.y, this->_size.x, this->_size.y };
 
     SDL_RenderCopy(renderer, _tileset, &sourceRect, &destRect);

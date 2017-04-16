@@ -132,16 +132,16 @@
 		ABF749BF1E5D010E00A7699D /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				ABBE229C1E84B4CC0067FB70 /* Rectangle.hpp */,
-				ABBE229A1E84B1520067FB70 /* Map.hpp */,
 				ABA4EE1D1E838C5500241D99 /* tinyxml2.h */,
+				ABF749BA1E5CE8FB00A7699D /* MainGame.hpp */,
+				ABBE229C1E84B4CC0067FB70 /* Rectangle.hpp */,
 				ABB7B11F1E8223C2005DCFB4 /* Vector2.h */,
-				ABA4EE1F1E83F9A200241D99 /* AnimatedSprite.hpp */,
 				AB235EB71E7DE3E6008F8C19 /* Camera.hpp */,
 				AB235EB41E7CC553008F8C19 /* Errors.hpp */,
 				AB235EA91E79F9B9008F8C19 /* Tile.hpp */,
-				ABF749BA1E5CE8FB00A7699D /* MainGame.hpp */,
+				ABBE229A1E84B1520067FB70 /* Map.hpp */,
 				ABF749BD1E5D010400A7699D /* Sprite.hpp */,
+				ABA4EE1F1E83F9A200241D99 /* AnimatedSprite.hpp */,
 				ABBE229F1E84ED740067FB70 /* Player.hpp */,
 			);
 			name = Headers;
@@ -154,12 +154,12 @@
 				ABA4EE1B1E838C4C00241D99 /* tinyxml2.cpp */,
 				ABF749A01E5B7BD700A7699D /* main.cpp */,
 				ABF749B91E5CE8FB00A7699D /* MainGame.cpp */,
-				ABF749BC1E5D010400A7699D /* Sprite.cpp */,
 				ABBE22971E84AF370067FB70 /* Map.cpp */,
-				ABA4EE1E1E83F9A200241D99 /* AnimatedSprite.cpp */,
 				AB235EA81E79F9B9008F8C19 /* Tile.cpp */,
 				AB235EB31E7CC553008F8C19 /* Errors.cpp */,
 				AB235EB61E7DE3E6008F8C19 /* Camera.cpp */,
+				ABF749BC1E5D010400A7699D /* Sprite.cpp */,
+				ABA4EE1E1E83F9A200241D99 /* AnimatedSprite.cpp */,
 				ABBE229E1E84ED740067FB70 /* Player.cpp */,
 			);
 			name = "Source Files";

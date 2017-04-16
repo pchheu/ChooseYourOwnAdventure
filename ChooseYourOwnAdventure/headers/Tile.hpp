@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <fstream>
 #include "Vector2.h"
+#include "Camera.hpp"
 
 class Tile {
 public:

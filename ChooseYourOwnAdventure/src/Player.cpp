@@ -9,7 +9,7 @@
 
 namespace player_constants {
     const float WALK_SPEED = 0.2f;
-    const float JUMP_SPEED = 0.7f;
+    const float JUMP_SPEED = 1.0f;
     
     const float GRAVITY = 0.002f;
     const float GRAVITY_CAP = 0.8f;
@@ -51,18 +51,20 @@ float Player::getY(){
 }
 
 void Player::moveLeft() {
-    if (this->grounded == true) {
+    if (this->grounded == false) {
         return;
     }
+    
     this->dx = -player_constants::WALK_SPEED;
     this->playAnimation("RunLeft");
     this->facing = LEFT;
 }
 
 void Player::moveRight() {
-    if (this->grounded == true) {
+    if (this->grounded == false) {
         return;
     }
+    
     this->dx = player_constants::WALK_SPEED;
     this->playAnimation("RunRight");
     this->facing = RIGHT;
@@ -79,9 +81,9 @@ void Player::jump() {
         this->dy = 0;
         this->dy -= player_constants::JUMP_SPEED;
         if(facing == LEFT){
-            this->playAnimation("JumpLeft");
-        }else if(facing == RIGHT){
             this->playAnimation("JumpRight");
+        }else if(facing == RIGHT){
+            this->playAnimation("JumpLeft");
         }
         this->grounded = false;
     }
@@ -121,12 +123,10 @@ void Player::handleTileCollisions(std::vector<Rectangle> &others) {
 }
 
 void Player::update(float elapsedTime) {
-    /*
     //Apply gravity
     if (dy <= player_constants::GRAVITY_CAP) {
         dy += player_constants::GRAVITY * elapsedTime;
     }
-    */
     
     //Move by dx
     x += dx * elapsedTime;
@@ -150,6 +150,6 @@ void Player::update(float elapsedTime) {
     AnimatedSprite::update(elapsedTime);
 }
 
-void Player::draw(int camx, int camy){
-    AnimatedSprite::draw(x, y, camx, camy);
+void Player::draw(){
+    AnimatedSprite::draw(x, y);
 }

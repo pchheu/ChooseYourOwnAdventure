@@ -19,6 +19,8 @@
 #include "Tile.hpp"
 #include "Rectangle.hpp"
 
+class Camera;
+
 struct Tileset;
 
 class Map{

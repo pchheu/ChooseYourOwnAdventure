@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="8" tilewidth="100" tileheight="100" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="8" tilewidth="100" tileheight="100" nextobjectid="3">
  <tileset firstgid="1" name="/Images/springtiles" tilewidth="100" tileheight="100" tilecount="35" columns="7">
   <image source="/Images/springtiles.png" width="760" height="504"/>
  </tileset>
@@ -247,4 +247,8 @@
    <tile gid="0"/>
   </data>
  </layer>
+ <objectgroup name="collisions">
+  <object id="1" x="1896.97" y="345.455" width="300" height="54.5455"/>
+  <object id="2" x="-3.0303" y="554.545" width="3003.03" height="42.4242"/>
+ </objectgroup>
 </map>

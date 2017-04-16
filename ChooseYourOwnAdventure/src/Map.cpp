@@ -33,26 +33,16 @@ void Map::mapInit(const char *path, std::string name){
 }
 
 void Map::draw(SDL_Rect c){
+    //Draws the background
+    SDL_RenderCopy(renderer, map_texture, &c, NULL);
+    
     //Draws tiles onto map
     for(int i = 0; i < _tileList.size(); i++){
         _tileList.at(i).draw();
     }
-    
-    //Draws the background
-    SDL_RenderCopy(renderer, map_texture, &c, NULL);
 }
 
 void Map::destroyMap(){
-    /* Unsure if these exit the program or just delete the local variables
-     
-    SDL_DestroyWindow(window);
-    SDL_DestroyRenderer(renderer);
-     
-    */
-}
-
-void Map::updateCamera(SDL_Rect c){
-    camera = c;
 }
 
 void Map::renderMap(char* mapName) {

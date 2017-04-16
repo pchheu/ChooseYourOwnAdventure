@@ -11,32 +11,26 @@
 const int SCREEN_WIDTH = 1080;
 const int SCREEN_HEIGHT = 800;
 
+SDL_Rect Camera::camera;
+
 Camera::Camera(){
 }
 
 Camera::~Camera(){
 }
 
-void Camera::initCamera(Player p){
+void Camera::initCamera(){
     //Sets up the size of the camera
     camera.x = 0;
     camera.y = 0;
     camera.w = SCREEN_WIDTH;
     camera.h = SCREEN_HEIGHT;
     
-    p1 = &p;
-    
     swidth = 145;
     sheight = 105;
-    
-    LEVEL_WIDTH = p.getLevelWidth();
-    LEVEL_HEIGHT = p.getLevelHeight();
 }
 
-void Camera::updateCamera(float x, float y){
-    LEVEL_WIDTH = p1->getLevelWidth();
-    LEVEL_HEIGHT = p1->getLevelHeight();
-    
+void Camera::updateCamera(int x, int y){
     //Gets position of the sprite in respect to the camera
     posX = x;
     posY = y;

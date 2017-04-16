@@ -59,6 +59,8 @@ void AnimatedSprite::setVisible(bool visible){
 }
 
 void AnimatedSprite::update(int elapsedTime){
+    Sprite::update();
+    
     timeElapsed += elapsedTime;
     if(timeElapsed > timeToUpdate){
         timeElapsed -= timeToUpdate;
@@ -73,24 +75,11 @@ void AnimatedSprite::update(int elapsedTime){
     }
 }
 
-void AnimatedSprite::draw(int x, int y, int camx, int camy){
-    if(this->visible){
-        SDL_Rect destRect;
-        destRect.x = (x + offsets[currentAnimation].x) - camx;
-        destRect.y = (y + offsets[currentAnimation].y) - camy;
-        destRect.w = Sprite::getWidth();
-        destRect.h = Sprite::getHeight();
-        
-        SDL_Rect sourceRect = animations[currentAnimation][frameIndex];
-        SDL_RenderCopy(renderer, tsprite, &sourceRect, &destRect);
-    }
-}
-
 void AnimatedSprite::draw(int x, int y){
     if(this->visible){
         SDL_Rect destRect;
-        destRect.x = (x + offsets[currentAnimation].x);
-        destRect.y = (y + offsets[currentAnimation].y);
+        destRect.x = (x + offsets[currentAnimation].x) - Camera::getCamX();
+        destRect.y = (y + offsets[currentAnimation].y) - Camera::getCamY();
         destRect.w = Sprite::getWidth();
         destRect.h = Sprite::getHeight();
         
@@ -98,7 +87,6 @@ void AnimatedSprite::draw(int x, int y){
         SDL_RenderCopy(renderer, tsprite, &sourceRect, &destRect);
     }
 }
-
 
 void AnimatedSprite::animationDone(std::string currentAnimation){
     frameIndex = 0;

@@ -46,6 +46,7 @@ private:
     GameState currentState;
     
     Sprite character = *new Sprite();
-    Player player = *new Player();
-    Camera screen = *new Camera();
+    Player player;
+    Map currentlevel, nextlevel;
+    Camera screen;
 };

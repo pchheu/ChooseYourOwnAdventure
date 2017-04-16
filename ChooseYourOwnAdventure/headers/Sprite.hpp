@@ -14,6 +14,7 @@
 #include <OpenGL/gl.h>
 #include <stdio.h>
 #include <string>
+#include "Camera.hpp"
 
 enum class Movement{LEFT, RIGHT, JUMP};
 
@@ -27,6 +28,7 @@ public:
     
     void render(float camX, float camY);
     void getCurrentMapInfo(Map m);
+    void update();
     
     int getLevelWidth();
     int getLevelHeight();

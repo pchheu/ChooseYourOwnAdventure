@@ -9,8 +9,6 @@
 #define OBJECT_H
 
 #include "AnimatedSprite.hpp"
-#include "SDL2/SDL.h"
-#include "SDL2_image/SDL_image.h"
 
 enum Direction {
     LEFT,
@@ -23,7 +21,7 @@ class Player : public AnimatedSprite {
 public:
     Player();
     Player(Vector2 spawnPoint);
-    void draw(int camx, int camy);
+    void draw();
     void update(float elapsedTime);
     
     void moveLeft();
