@@ -84,33 +84,6 @@ void Map::renderMap(char* mapName) {
             SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer, img);
             this->_tilesets.push_back(Tileset(tex, firstgid));
             
-            /*
-            //Get all of the animations for that tileset
-            XMLElement* pTileA = pTileset->FirstChildElement("tile");
-            if (pTileA != NULL) {
-                while (pTileA){
-                    AnimatedTileInfo ati;
-                    ati.StartTileId = pTileA->IntAttribute("id") + firstgid;
-                    ati.TilesetsFirstGid = firstgid;
-                    XMLElement* pAnimation = pTileA->FirstChildElement("animation");
-                    if (pAnimation != NULL) {
-                        while (pAnimation) {
-                            XMLElement* pFrame = pAnimation->FirstChildElement("frame");
-                            if (pFrame != NULL) {
-                                while (pFrame) {
-                                    ati.TileIds.push_back(pFrame->IntAttribute("tileid") + firstgid);
-                                    ati.Duration = pFrame->IntAttribute("duration");
-                                    pFrame = pFrame->NextSiblingElement("frame");
-                                }
-                            }
-                            pAnimation = pAnimation->NextSiblingElement("animation");
-                        }
-                    }
-                    this->_animatedTileInfos.push_back(ati);
-                    pTileA = pTileA->NextSiblingElement("tile");
-                }
-            }
-            */
             pTileset = pTileset->NextSiblingElement("tileset");
         }
     }
@@ -177,32 +150,10 @@ void Map::renderMap(char* mapName) {
                             //Calculate the position of the tile in the tileset
                             Vector2 finalTilesetPosition = this->getTilesetPosition(tls, gid, tileWidth, tileHeight);
                             
-                            //Build the actual tile and add it to the level's tile list
-                            /*
-                            bool isAnimatedTile = false;
-                            AnimatedTileInfo ati;
-                            for (int i = 0; i < this->_animatedTileInfos.size(); i++) {
-                                if (this->_animatedTileInfos.at(i).StartTileId == gid) {
-                                    ati = this->_animatedTileInfos.at(i);
-                                    isAnimatedTile = true;
-                                    break;
-                                }
-                            }
-                            if (isAnimatedTile == true) {
-                                std::vector<Vector2> tilesetPositions;
-                                for (int i = 0; i < ati.TileIds.size(); i++) {
-                                    tilesetPositions.push_back(this->getTilesetPosition(tls, ati.TileIds.at(i),
-                                                                                        tileWidth, tileHeight));
-                                }
-                                AnimatedTile tile(tilesetPositions, ati.Duration,
-                                                  tls.Texture, Vector2(tileWidth, tileHeight), finalTilePosition);
-                                this->_animatedTileList.push_back(tile);
-                            }
-                            else {*/
-                                Tile tile(tls.Texture, Vector2(tileWidth, tileHeight),
-                                          finalTilesetPosition, finalTilePosition);
-                                this->_tileList.push_back(tile);
-                            //}
+                            Tile tile(tls.Texture, Vector2(tileWidth, tileHeight),
+                            finalTilesetPosition, finalTilePosition);
+                            this->_tileList.push_back(tile);
+                            
                             tileCounter++;
                             pTile = pTile->NextSiblingElement("tile");
                         }
@@ -261,65 +212,6 @@ void Map::renderMap(char* mapName) {
                     }
                 }
             }
-            /*
-            else if (ss.str() == "doors") {
-                XMLElement* pObject = pObjectGroup->FirstChildElement("object");
-                if (pObject != NULL) {
-                    while (pObject) {
-                        float x = pObject->FloatAttribute("x");
-                        float y = pObject->FloatAttribute("y");
-                        float w = pObject->FloatAttribute("width");
-                        float h = pObject->FloatAttribute("height");
-                        Rectangle rect = Rectangle(x, y, w, h);
-                        
-                        XMLElement* pProperties = pObject->FirstChildElement("properties");
-                        if (pProperties != NULL) {
-                            while (pProperties) {
-                                XMLElement* pProperty = pProperties->FirstChildElement("property");
-                                if (pProperty != NULL) {
-                                    while (pProperty) {
-                                        const char* name = pProperty->Attribute("name");
-                                        std::stringstream ss;
-                                        ss << name;
-                                        if (ss.str() == "destination") {
-                                            const char* value = pProperty->Attribute("value");
-                                            std::stringstream ss2;
-                                            ss2 << value;
-                                            Door door = Door(rect, ss2.str());
-                                            this->_doorList.push_back(door);
-                                        }
-                                        pProperty = pProperty->NextSiblingElement("property");
-                                    }
-                                }
-                                pProperties = pProperties->NextSiblingElement("properties");
-                            }
-                        }
-                        
-                        pObject = pObject->NextSiblingElement("object");
-                    }
-                }
-            }*/
-            /*
-            else if (ss.str() == "enemies") {
-                float x, y;
-                XMLElement* pObject = pObjectGroup->FirstChildElement("object");
-                if (pObject != NULL) {
-                    while (pObject) {
-                        x = pObject->FloatAttribute("x");
-                        y = pObject->FloatAttribute("y");
-                        const char* name = pObject->Attribute("name");
-                        std::stringstream ss;
-                        ss << name;
-                        if (ss.str() == "bat") {
-                            this->_enemies.push_back(new Bat(graphics, Vector2(std::floor(x) * globals::SPRITE_SCALE,
-                                                                               std::floor(y) * globals::SPRITE_SCALE)));
-                        }
-                        
-                        pObject = pObject->NextSiblingElement("object");
-                    }
-                }
-            }*/
-            
             pObjectGroup = pObjectGroup->NextSiblingElement("objectgroup");
         }
     }

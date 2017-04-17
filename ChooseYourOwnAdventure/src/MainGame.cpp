@@ -91,8 +91,8 @@ void MainGame::gameLoop(){
         SDL_RenderClear(renderer);
         
         currentlevel.draw(Camera::camera);
-        screen.updateCamera(player.getX(),player.getY());
         player.draw();
+        screen.updateCamera(player.getX(),player.getY());
         
         SDL_RenderPresent(renderer);
     }
