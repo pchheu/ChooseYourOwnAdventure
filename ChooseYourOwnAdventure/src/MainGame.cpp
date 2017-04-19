@@ -63,13 +63,12 @@ void MainGame::initSystems(){
     
     //Sets the background color once the screen is flushed
     glClearColor(1.0f, 1.0f, 1.0f, 1.0);
-    
 }
 
 void MainGame::gameLoop(){
     currentlevel = Map();
     player = Player(Vector2(0,300));
-    currentlevel.mapInit("Images/map.bmp", "level1");
+    currentlevel.mapInit("Images/newbackgroundcolor.jpg", "level1");
     player.getCurrentMapInfo(currentlevel);
     screen.initCamera();
     

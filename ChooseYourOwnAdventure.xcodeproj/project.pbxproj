@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB09CF241EA5C3D500983BF1 /* HUD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB09CF221EA5C3D500983BF1 /* HUD.cpp */; };
 		AB235EAA1E79F9B9008F8C19 /* Tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB235EA81E79F9B9008F8C19 /* Tile.cpp */; };
 		AB235EB51E7CC553008F8C19 /* Errors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB235EB31E7CC553008F8C19 /* Errors.cpp */; };
 		AB235EB81E7DE3E6008F8C19 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB235EB61E7DE3E6008F8C19 /* Camera.cpp */; };
@@ -43,6 +44,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB09CF221EA5C3D500983BF1 /* HUD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HUD.cpp; sourceTree = "<group>"; };
+		AB09CF231EA5C3D500983BF1 /* HUD.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = HUD.hpp; path = ../src/HUD.hpp; sourceTree = "<group>"; };
 		AB235EA81E79F9B9008F8C19 /* Tile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tile.cpp; sourceTree = "<group>"; };
 		AB235EA91E79F9B9008F8C19 /* Tile.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tile.hpp; sourceTree = "<group>"; };
 		AB235EB31E7CC553008F8C19 /* Errors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Errors.cpp; sourceTree = "<group>"; };
@@ -132,6 +135,7 @@
 		ABF749BF1E5D010E00A7699D /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				AB09CF231EA5C3D500983BF1 /* HUD.hpp */,
 				ABA4EE1D1E838C5500241D99 /* tinyxml2.h */,
 				ABF749BA1E5CE8FB00A7699D /* MainGame.hpp */,
 				ABBE229C1E84B4CC0067FB70 /* Rectangle.hpp */,
@@ -151,6 +155,7 @@
 		ABF749C01E5D013200A7699D /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
+				AB09CF221EA5C3D500983BF1 /* HUD.cpp */,
 				ABA4EE1B1E838C4C00241D99 /* tinyxml2.cpp */,
 				ABF749A01E5B7BD700A7699D /* main.cpp */,
 				ABF749B91E5CE8FB00A7699D /* MainGame.cpp */,
@@ -228,6 +233,7 @@
 			files = (
 				ABF749BB1E5CE8FB00A7699D /* MainGame.cpp in Sources */,
 				ABF749A11E5B7BD700A7699D /* main.cpp in Sources */,
+				AB09CF241EA5C3D500983BF1 /* HUD.cpp in Sources */,
 				ABA4EE1C1E838C4C00241D99 /* tinyxml2.cpp in Sources */,
 				AB235EB81E7DE3E6008F8C19 /* Camera.cpp in Sources */,
 				ABBE22981E84AF370067FB70 /* Map.cpp in Sources */,
