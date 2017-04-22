@@ -38,7 +38,7 @@ void Camera::updateCamera(int x, int y){
     //Centers the camera over the sprite
     camera.x = (posX + swidth/2) - SCREEN_WIDTH/2;
     camera.y = (posY + sheight/2) - SCREEN_HEIGHT/2;
-    
+     
     //Keeps the camera in bounds
     if( camera.x < 0 ){
         camera.x = 0;

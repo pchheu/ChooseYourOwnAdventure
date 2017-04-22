@@ -22,6 +22,7 @@ public:
     ~HUD();
     
     void display();
+    void hide();
     void setupDialogue();
     
 private:

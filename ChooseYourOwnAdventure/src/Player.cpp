@@ -35,8 +35,8 @@ void Player::setupAnimations() {
     this->addAnimation(1, 0, 105, "IdleRight", 145, 105, Vector2(0,0));
     this->addAnimation(3, 0, 0, "RunLeft", 145, 105, Vector2(0,0));
     this->addAnimation(3, 0, 105, "RunRight", 145, 105, Vector2(0,0));
-    this->addAnimation(1, 0, 210, "JumpLeft", 145, 105, Vector2(0,0));
-    this->addAnimation(1, 1, 210, "JumpRight", 145, 105, Vector2(0,0));
+    this->addAnimation(1, 0, 210, "JumpRight", 145, 105, Vector2(0,0));
+    this->addAnimation(1, 1, 210, "JumpLeft", 145, 105, Vector2(0,0));
 }
 
 void Player::animationDone(std::string currentAnimation){
@@ -50,7 +50,7 @@ float Player::getY(){
     return this->y;
 }
 
-void Player::moveLeft() {
+void Player::moveLeft(){
     if (this->grounded == false) {
         return;
     }
@@ -58,9 +58,10 @@ void Player::moveLeft() {
     this->dx = -player_constants::WALK_SPEED;
     this->playAnimation("RunLeft");
     this->facing = LEFT;
+    this->moving = true;
 }
 
-void Player::moveRight() {
+void Player::moveRight(){
     if (this->grounded == false) {
         return;
     }
@@ -68,11 +69,13 @@ void Player::moveRight() {
     this->dx = player_constants::WALK_SPEED;
     this->playAnimation("RunRight");
     this->facing = RIGHT;
+    this->moving = true;
 }
 
 void Player::stopMoving() {
     this->dx = 0.0f;
     this->playAnimation(this->facing == RIGHT ? "IdleRight" : "IdleLeft");
+    this->moving = false;
 }
 
 
@@ -81,11 +84,12 @@ void Player::jump() {
         this->dy = 0;
         this->dy -= player_constants::JUMP_SPEED;
         if(facing == LEFT){
-            this->playAnimation("JumpRight");
-        }else if(facing == RIGHT){
             this->playAnimation("JumpLeft");
+        }else if(facing == RIGHT){
+            this->playAnimation("JumpRight");
         }
         this->grounded = false;
+        this->jumped = true;
     }
 }
 
@@ -103,9 +107,15 @@ void Player::handleTileCollisions(std::vector<Rectangle> &others) {
                         this->dx = 0;
                         this->x -= this->facing == RIGHT ? 1.0f : -1.0f;
                     }
-                    
                     break;
                 case sides::BOTTOM:
+                    if(jumped && moving){
+                        this->playAnimation(this->facing == RIGHT ? "RunRight" : "RunLeft");
+                        jumped = false;
+                    }else if(jumped){
+                        this->playAnimation(this->facing == RIGHT ? "IdleRight" : "IdleLeft");
+                        jumped = false;
+                    }
                     this->y = others.at(i).getTop() - this->boundingBox.getHeight() - 1;
                     this->dy = 0;
                     this->grounded = true;

@@ -30,6 +30,10 @@ void Map::mapInit(const char *path, std::string name){
     map_texture = SDL_CreateTextureFromSurface(renderer, map_surface);
     
     mapName = name;
+    levelWidth = map_surface->w;
+    levelHeight = map_surface->h;
+    
+    SDL_FreeSurface(map_surface);
 }
 
 void Map::draw(SDL_Rect c){
@@ -204,7 +208,7 @@ void Map::renderMap(char* mapName) {
                         std::stringstream ss;
                         ss << name;
                         if (ss.str() == "player") {
-                            this->_spawnPoint = Vector2(std::ceil(x),
+                            this->spawnPoint = Vector2(std::ceil(x),
                                                         std::ceil(y));
                         }
                         
@@ -228,19 +232,15 @@ std::vector<Rectangle> Map::checkTileCollisions(const Rectangle &other) {
 }
 
 int Map::getlevelWidth(){
-    return map_surface->w;
+    return levelWidth;
 }
 
 int Map::getlevelHeight(){
-    return map_surface->h;
-}
-
-SDL_Surface* Map::getMapSurface(){
-    return map_surface;
+    return levelHeight;
 }
 
 const Vector2 Map::getPlayerSpawnPoint() const {
-    return this->_spawnPoint;
+    return spawnPoint;
 }
 
 Vector2 Map::getTilesetPosition(Tileset tls, int gid, int tileWidth, int tileHeight) {

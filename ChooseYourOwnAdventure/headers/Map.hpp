@@ -46,6 +46,9 @@ public:
     SDL_Surface* getMapSurface();
     
 private:
+    int levelWidth;
+    int levelHeight;
+    
     SDL_Window* window = SDL_GL_GetCurrentWindow();
     SDL_Renderer* renderer = SDL_GetRenderer(window);
     SDL_Texture* map_texture;
@@ -53,7 +56,7 @@ private:
     
     std::string mapName;
     
-    Vector2 _spawnPoint;
+    Vector2 spawnPoint;
     Vector2 _size;
     Vector2 _tileSize;
     

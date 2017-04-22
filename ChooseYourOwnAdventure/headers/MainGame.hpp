@@ -16,7 +16,7 @@
 #include <OpenGL/gl.h>
 #include <stdio.h>
 
-enum class GameState{PLAY, EXIT};
+enum class GameState{MENU, PLAY, EXIT};
 
 class MainGame{
 public:
@@ -31,21 +31,24 @@ private:
     void processInput();
     void drawGame();
     void update(float elapsedTime);
+    void menu();
     
     SDL_Window* window;
     SDL_Rect camera;
     
+    std::map<SDL_Scancode, bool> heldKeys;
+    std::map<SDL_Scancode, bool> pressedKeys;
+    std::map<SDL_Scancode, bool> releasedKeys;
+    
     int screenHeight;
     int screenWidth;
-    int countedFrames;
     
     float elaspedTime;
     
     SDL_Renderer* renderer;
     
     GameState currentState;
-    
-    Sprite character = *new Sprite();
+
     Player player;
     Map currentlevel, nextlevel;
     Camera screen;

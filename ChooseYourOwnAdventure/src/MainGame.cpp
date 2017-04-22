@@ -9,7 +9,7 @@
 #include "MainGame.hpp"
 #include "Errors.hpp"
 
-const int FPS = 100;
+const int FPS = 60;
 const int maxFPS = 1000/FPS;
 
 MainGame::MainGame(){
@@ -17,7 +17,7 @@ MainGame::MainGame(){
     screenWidth = 1080;
     screenHeight = 800;
     
-    currentState = GameState::PLAY;
+    currentState = GameState::MENU;
 }
 
 MainGame::~MainGame(){
@@ -99,35 +99,37 @@ void MainGame::gameLoop(){
 
 void MainGame::processInput(){
     SDL_Event evnt;
-    float posX, posY;
+    const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
     
     while(SDL_PollEvent(&evnt) == true){
         switch (evnt.type){
             case SDL_QUIT:
                 currentState = GameState::EXIT;
                 break;
-            case SDL_KEYUP:
-                player.stopMoving();
-                break;
             case SDL_KEYDOWN:
-                switch (evnt.key.keysym.sym) {
-                    case SDLK_LEFT:
-                        player.moveLeft();
-                        break;
-                    case SDLK_RIGHT:
-                        player.moveRight();
-                        break;
-                    case SDLK_SPACE:
-                        player.jump();
-                        break;
+                if(evnt.key.repeat == 0){
+                    pressedKeys[evnt.key.keysym.scancode] = true;
+                    heldKeys[evnt.key.keysym.scancode] = true;
                 }
                 break;
+            case SDL_KEYUP:
+                releasedKeys[evnt.key.keysym.scancode] = true;
+                heldKeys[evnt.key.keysym.scancode] = false;
+        }
+        
+        if(heldKeys[SDL_SCANCODE_LEFT]){
+            player.moveLeft();
+        }
+        if(heldKeys[SDL_SCANCODE_RIGHT]){
+            player.moveRight();
+        }
+        if(heldKeys[SDL_SCANCODE_SPACE]){
+            player.jump();
+        }
+        if(!heldKeys[SDL_SCANCODE_LEFT] && !heldKeys[SDL_SCANCODE_RIGHT]){
+            player.stopMoving();
         }
     }
-}
-
-void MainGame::drawGame(){
-    //character.render();
 }
 
 void MainGame::update(float elaspedTime){

@@ -35,9 +35,9 @@ public:
     void update(int elapsedTime);
     
     //Draws the sprite to the screen
-    void draw(int x, int y, int camx, int camy);
     void draw(int x, int y);
     
+    //Sets up default animations
     virtual void setupAnimations();
     
 protected:
@@ -54,7 +54,7 @@ protected:
     void setVisible(bool visible);
     
     //Logic that happens when an animation ends
-    virtual void animationDone(std::string currentAnimation);
+    virtual void animationDone(std::string currentAnimation) = 0;
     
 private:
     SDL_Window* window;

@@ -45,5 +45,7 @@ private:
     Direction facing;
     
     bool grounded;
+    bool jumped;
+    bool moving;
 };
 #endif

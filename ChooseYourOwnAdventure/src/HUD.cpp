@@ -21,6 +21,10 @@ void HUD::display(){
     visible = true;
 }
 
+void HUD::hide(){
+    visible = false;
+}
+
 void HUD::setupDialogue(){
     
 }

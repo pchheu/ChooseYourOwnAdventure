@@ -29,11 +29,6 @@ Sprite::Sprite(std::string path, float _width, float _height, float posX, float 
     renderer = SDL_GetRenderer(window);
     tsprite = SDL_CreateTextureFromSurface(renderer, ssprite);
     
-    csprite.x = 0;
-    csprite.y = 300;
-    csprite.w = _width;
-    csprite.h = _height;
-    
     x = posX;
     y = posY;
     
@@ -41,18 +36,16 @@ Sprite::Sprite(std::string path, float _width, float _height, float posX, float 
     height = _height;
     
     boundingBox = Rectangle(x, y, width, height);
+    
+    SDL_FreeSurface(ssprite);
 }
 
 void Sprite::render(float camX, float camY){
-    csprite.x = x - camX;
-    csprite.y = y - camY;
-
     SDL_RenderCopy(renderer, tsprite, NULL, &csprite);
 }
 
 void Sprite::getCurrentMapInfo(Map m){
     currentMap = m;
-    scurrentMap = m.getMapSurface();
     LEVEL_WIDTH = m.getlevelWidth();
     LEVEL_HEIGHT = m.getlevelHeight();
 }

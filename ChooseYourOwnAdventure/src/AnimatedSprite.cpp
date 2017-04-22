@@ -58,6 +58,11 @@ void AnimatedSprite::setVisible(bool visible){
     this->visible = visible;
 }
 
+void AnimatedSprite::stopAnimation(){
+    frameIndex = 0;
+    animationDone(currentAnimation);
+}
+
 void AnimatedSprite::update(int elapsedTime){
     Sprite::update();
     
@@ -70,7 +75,7 @@ void AnimatedSprite::update(int elapsedTime){
             if(currentAnimationOnce == true){
                 this->setVisible(false);
             }
-            frameIndex = 0;
+            stopAnimation();
         }
     }
 }
@@ -88,11 +93,6 @@ void AnimatedSprite::draw(int x, int y){
     }
 }
 
-void AnimatedSprite::animationDone(std::string currentAnimation){
-    frameIndex = 0;
-    animationDone(currentAnimation);
-}
-
 void AnimatedSprite::setupAnimations(){
-    this->addAnimation(3, 0, 0, "runLeft", 100, 100, Vector2(0,0));
+    this->addAnimation(3, 0, 0, "idle", 85, 131, Vector2(0,0));
 }
