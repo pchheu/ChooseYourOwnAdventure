@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <map>
+#include <vector>
 #include "SDL2/SDL.h"
 #include "SDL2_image/SDL_image.h"
 #include "Camera.hpp"

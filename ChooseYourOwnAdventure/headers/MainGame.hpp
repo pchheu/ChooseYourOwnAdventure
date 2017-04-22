@@ -10,11 +10,11 @@
 
 #include "Camera.hpp"
 #include "Player.hpp"
-#include <iostream>
 #include "SDL2/SDL.h"
 #include "SDL2_image/SDL_image.h"
 #include <OpenGL/gl.h>
 #include <stdio.h>
+#include <iostream>
 
 enum class GameState{MENU, PLAY, EXIT};
 
