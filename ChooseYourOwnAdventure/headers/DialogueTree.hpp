@@ -13,8 +13,15 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include "SDL2/SDL.h"
+#include "SDL2_image/SDL_image.h"
+#include "SDL2_ttf/SDL_ttf.h"
+#include "Errors.hpp"
+#include "Camera.hpp"
 
 using namespace std;
+
+enum class WORLDSTATE{PAINTEDWORLD, UNPAINTEDWORLD};
 
 class DialogueNode;
 
@@ -28,8 +35,9 @@ public:
 
 class DialogueNode{
 public:
+    DialogueNode(string _text);
     string text;
-    vector <DialogueOption> dialogueOptions;
+    vector<DialogueOption> dialogueOptions;
 };
 
 class DialogueTree{
@@ -39,10 +47,14 @@ public:
     void init();
     void destroyTree();
     
-    int performDialogue();
+    WORLDSTATE performDialogue();
+    
+    string getCurrentString();
     
 private:
-    vector <DialogueNode *> dialogueNodes;
+    vector<DialogueNode *> dialogueNodes;
+    SDL_Window* window = SDL_GL_GetCurrentWindow();
+    SDL_Renderer* renderer = SDL_GetRenderer(window);
     
 };
 

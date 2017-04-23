@@ -23,16 +23,25 @@ MainGame::MainGame(){
 MainGame::~MainGame(){
 }
 
+//Runs the game
 void MainGame::run(){
     initSystems();
     gameLoop();
 }
 
+//Initializes all the graphics
 void MainGame::initSystems(){
     //Initializes SDL and other packages
-    SDL_Init(SDL_INIT_EVERYTHING);
+    if(SDL_Init(SDL_INIT_EVERYTHING == -1)){
+        fatalError(SDL_GetError());
+    }
+    
+    if(TTF_Init() == -1){
+        fatalError(TTF_GetError());
+    }
+    
     if(!IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG)){
-        std::cout << "Init Error: " << IMG_GetError() << std::endl;
+        fatalError(IMG_GetError());
     }
     
     //Creates the window
@@ -65,7 +74,10 @@ void MainGame::initSystems(){
     glClearColor(1.0f, 1.0f, 1.0f, 1.0);
 }
 
+//Game loop where most of the logic is handled
 void MainGame::gameLoop(){
+    DialogueTree tree = *new DialogueTree();
+    tree.init();
     currentlevel = Map();
     player = Player(Vector2(0,300));
     currentlevel.mapInit("Images/newbackgroundcolor.jpg", "level1");
@@ -91,12 +103,14 @@ void MainGame::gameLoop(){
         
         currentlevel.draw(Camera::camera);
         player.draw();
+        tree.performDialogue();
         screen.updateCamera(player.getX(),player.getY());
         
         SDL_RenderPresent(renderer);
     }
 }
 
+//Handles keyboard inputs from the player
 void MainGame::processInput(){
     SDL_Event evnt;
     const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
@@ -132,6 +146,7 @@ void MainGame::processInput(){
     }
 }
 
+//Updates everything in the game based on the elasped time
 void MainGame::update(float elaspedTime){
     player.update(elaspedTime);
     

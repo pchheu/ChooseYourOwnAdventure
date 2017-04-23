@@ -55,7 +55,6 @@ void Map::renderMap(char* mapName) {
     std::stringstream ss;
     ss << "Maps/" << mapName << ".tmx"; //Pass in Map 1, we get maps/Map 1.tmx
     doc.LoadFile(ss.str().c_str());
-    std::cout << ss.str().c_str() << std::endl;
     XMLElement* mapNode = doc.FirstChildElement("map");
     
     if(mapNode == nullptr){

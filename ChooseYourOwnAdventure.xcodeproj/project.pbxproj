@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB09CF241EA5C3D500983BF1 /* HUD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB09CF221EA5C3D500983BF1 /* HUD.cpp */; };
 		AB235EAA1E79F9B9008F8C19 /* Tile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB235EA81E79F9B9008F8C19 /* Tile.cpp */; };
 		AB235EB51E7CC553008F8C19 /* Errors.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB235EB31E7CC553008F8C19 /* Errors.cpp */; };
 		AB235EB81E7DE3E6008F8C19 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AB235EB61E7DE3E6008F8C19 /* Camera.cpp */; };
@@ -19,6 +18,7 @@
 		ABBE22E91E8512C30067FB70 /* spritesheets in Copy Files */ = {isa = PBXBuildFile; fileRef = ABBE22E81E8512C30067FB70 /* spritesheets */; };
 		ABDA02EE1EABE95C00A361BD /* MainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABDA02EC1EABE95C00A361BD /* MainMenu.cpp */; };
 		ABDA02F11EABF74B00A361BD /* DialogueTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABDA02EF1EABF74B00A361BD /* DialogueTree.cpp */; };
+		ABDA02F31EAC2F7C00A361BD /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABDA02F21EAC2F7C00A361BD /* SDL2_ttf.framework */; };
 		ABF749A11E5B7BD700A7699D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF749A01E5B7BD700A7699D /* main.cpp */; };
 		ABF749A91E5B7E9500A7699D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF749A81E5B7E9500A7699D /* Cocoa.framework */; };
 		ABF749AB1E5B7ED800A7699D /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF749AA1E5B7ED800A7699D /* SDL2.framework */; };
@@ -46,8 +46,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AB09CF221EA5C3D500983BF1 /* HUD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HUD.cpp; sourceTree = "<group>"; };
-		AB09CF231EA5C3D500983BF1 /* HUD.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = HUD.hpp; sourceTree = "<group>"; };
 		AB235EA81E79F9B9008F8C19 /* Tile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tile.cpp; sourceTree = "<group>"; };
 		AB235EA91E79F9B9008F8C19 /* Tile.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tile.hpp; sourceTree = "<group>"; };
 		AB235EB31E7CC553008F8C19 /* Errors.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Errors.cpp; sourceTree = "<group>"; };
@@ -70,6 +68,7 @@
 		ABDA02ED1EABE95C00A361BD /* MainMenu.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MainMenu.hpp; sourceTree = "<group>"; };
 		ABDA02EF1EABF74B00A361BD /* DialogueTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DialogueTree.cpp; sourceTree = "<group>"; };
 		ABDA02F01EABF74B00A361BD /* DialogueTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DialogueTree.hpp; sourceTree = "<group>"; };
+		ABDA02F21EAC2F7C00A361BD /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		ABF7499D1E5B7BD700A7699D /* ChooseYourOwnAdventure */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChooseYourOwnAdventure; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABF749A01E5B7BD700A7699D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		ABF749A81E5B7E9500A7699D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -88,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABDA02F31EAC2F7C00A361BD /* SDL2_ttf.framework in Frameworks */,
 				ABF749B61E5CE58300A7699D /* OpenGL.framework in Frameworks */,
 				ABF749AD1E5B7EE200A7699D /* SDL2_image.framework in Frameworks */,
 				ABF749AB1E5B7ED800A7699D /* SDL2.framework in Frameworks */,
@@ -130,6 +130,7 @@
 		ABF749A71E5B7E9500A7699D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ABDA02F21EAC2F7C00A361BD /* SDL2_ttf.framework */,
 				ABF749B51E5CE58300A7699D /* OpenGL.framework */,
 				ABF749AC1E5B7EE200A7699D /* SDL2_image.framework */,
 				ABF749AA1E5B7ED800A7699D /* SDL2.framework */,
@@ -142,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				ABDA02ED1EABE95C00A361BD /* MainMenu.hpp */,
-				AB09CF231EA5C3D500983BF1 /* HUD.hpp */,
 				ABA4EE1D1E838C5500241D99 /* tinyxml2.h */,
 				ABF749BA1E5CE8FB00A7699D /* MainGame.hpp */,
 				ABDA02F01EABF74B00A361BD /* DialogueTree.hpp */,
@@ -164,7 +164,6 @@
 			isa = PBXGroup;
 			children = (
 				ABDA02EC1EABE95C00A361BD /* MainMenu.cpp */,
-				AB09CF221EA5C3D500983BF1 /* HUD.cpp */,
 				ABA4EE1B1E838C4C00241D99 /* tinyxml2.cpp */,
 				ABDA02EF1EABF74B00A361BD /* DialogueTree.cpp */,
 				ABF749A01E5B7BD700A7699D /* main.cpp */,
@@ -243,7 +242,6 @@
 			files = (
 				ABF749BB1E5CE8FB00A7699D /* MainGame.cpp in Sources */,
 				ABF749A11E5B7BD700A7699D /* main.cpp in Sources */,
-				AB09CF241EA5C3D500983BF1 /* HUD.cpp in Sources */,
 				ABA4EE1C1E838C4C00241D99 /* tinyxml2.cpp in Sources */,
 				AB235EB81E7DE3E6008F8C19 /* Camera.cpp in Sources */,
 				ABBE22981E84AF370067FB70 /* Map.cpp in Sources */,

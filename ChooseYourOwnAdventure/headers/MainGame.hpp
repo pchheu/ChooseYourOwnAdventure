@@ -10,8 +10,11 @@
 
 #include "Camera.hpp"
 #include "Player.hpp"
+#include "Errors.hpp"
 #include "SDL2/SDL.h"
+#include "DialogueTree.hpp"
 #include "SDL2_image/SDL_image.h"
+#include "SDL2_ttf/SDL_ttf.h"
 #include <OpenGL/gl.h>
 #include <stdio.h>
 #include <iostream>
