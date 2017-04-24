@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="8" tilewidth="100" tileheight="100" nextobjectid="3">
- <tileset firstgid="1" name="/Images/springtiles" tilewidth="100" tileheight="100" tilecount="35" columns="7">
+ <tileset firstgid="1" name="/tilesheets/springtiles" tilewidth="100" tileheight="100" tilecount="35" columns="7">
   <image source="/Images/springtiles.png" width="760" height="504"/>
  </tileset>
  <layer name="Tile Layer 1" width="30" height="8">
