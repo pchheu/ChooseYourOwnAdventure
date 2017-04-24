@@ -57,9 +57,6 @@ WORLDSTATE DialogueTree::performDialogue(){
     SDL_Rect option1;
     SDL_Rect option2;
     
-    SDL_Surface* dialoguebox = IMG_Load("/Images/dialoguebox.png");
-    SDL_Texture* dialoguebox_texture = SDL_CreateTextureFromSurface(renderer, dialoguebox);
-    
     if(dialogueNodes.empty()){
         fatalError("Unable to build dialogue tree");
         return WORLDSTATE::PAINTEDWORLD;
@@ -67,23 +64,23 @@ WORLDSTATE DialogueTree::performDialogue(){
     
     DialogueNode *currentNode = dialogueNodes[0];
     
-    //Sets up the font for the dialogue box
-    TTF_Font* Chalkboard = TTF_OpenFont("/Library/Fonts/Chalkboard.ttc", 32);
-    SDL_Color Black = {0,0,0};
-    
+    //Sets up the color for the font
+    SDL_Color color = {255, 255, 255};
     
     const char* text = (currentNode->text).c_str();
-    SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Chalkboard, text, Black);
+    SDL_Surface* surfaceMessage = TTF_RenderUTF8_Solid(Chalkboard, text, color);
     SDL_Texture* textureMessage = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
     
     message.w = surfaceMessage->w;
     message.h = surfaceMessage->h;
-    SDL_FreeSurface(surfaceMessage);
     
     box = {Camera::camera.x + 350, Camera::camera.y + 250, surfaceMessage->w + 50, surfaceMessage->h + 25};
     
     SDL_RenderCopy(renderer, dialoguebox_texture, NULL, &box);
     SDL_RenderCopy(renderer, textureMessage, NULL, &message);
+    
+    SDL_FreeSurface(surfaceMessage);
+    SDL_DestroyTexture(textureMessage);
     //while(true){
     //}
     return WORLDSTATE::PAINTEDWORLD;

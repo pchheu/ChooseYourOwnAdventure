@@ -52,10 +52,14 @@ public:
     string getCurrentString();
     
 private:
+    TTF_Font* Chalkboard = TTF_OpenFont("/Library/Fonts/Chalkboard.ttc", 32);
+    
     vector<DialogueNode *> dialogueNodes;
     SDL_Window* window = SDL_GL_GetCurrentWindow();
     SDL_Renderer* renderer = SDL_GetRenderer(window);
     
+    SDL_Surface* dialoguebox = IMG_Load("/Images/dialoguebox.png");
+    SDL_Texture* dialoguebox_texture = SDL_CreateTextureFromSurface(renderer, dialoguebox);
 };
 
 #endif /* DialogueTree_hpp */

@@ -10,7 +10,7 @@
 #include "Errors.hpp"
 
 const int FPS = 60;
-const int maxFPS = 1000/FPS;
+const int maxFPS = 100000/FPS;
 
 MainGame::MainGame(){
     window = nullptr;
