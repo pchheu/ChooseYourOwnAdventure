@@ -15,6 +15,7 @@
 #include <OpenGL/gl.h>
 #include <stdio.h>
 #include <string>
+#include <unistd.h>
 #include "Camera.hpp"
 
 class Sprite{

@@ -161,7 +161,7 @@ void Player::update(float elapsedTime) {
     y += dy * elapsedTime;
     
     //Respawns if fallen out of map
-    if(y > getLevelHeight() + 750){
+    if(y > getLevelHeight() + 500){
         x = respawn.x;
         y = respawn.y;
     }

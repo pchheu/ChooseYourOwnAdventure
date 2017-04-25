@@ -27,6 +27,7 @@ void Map::mapInit(const char *path, std::string name){
     if(map_surface == nullptr){
         std::cout << "Error: Could not load map image" << std::endl;
     }
+    this->format = *map_surface->format;
     map_texture = SDL_CreateTextureFromSurface(renderer, map_surface);
     
     mapName = name;
@@ -85,6 +86,7 @@ void Map::renderMap(char* mapName) {
             pTileset->QueryIntAttribute("firstgid", &firstgid);
             SDL_Surface* img = IMG_Load(ss.str().c_str());
             SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer, img);
+            SDL_FreeSurface(img);
             this->_tilesets.push_back(Tileset(tex, firstgid));
             
             pTileset = pTileset->NextSiblingElement("tileset");
@@ -218,6 +220,25 @@ void Map::renderMap(char* mapName) {
                     }
                 }
             }
+            else if(ss.str() == "portal"){
+                XMLElement* pObject = pObjectGroup->FirstChildElement("object");
+                if(pObject != NULL){
+                    while(pObject){
+                        float x = pObject->FloatAttribute("x");
+                        float y = pObject->FloatAttribute("y");
+                        const char* name = pObject->Attribute("name");
+                        std::stringstream ss;
+                        ss << name;
+                        if(ss.str() == "portal"){
+                            this->portalSpawn = Vector2(std::ceil(x),
+                                                        std::ceil(y));
+                        }
+                        
+                        pObject = pObject->NextSiblingElement("object");
+                    }
+                }
+            }
+            
             pObjectGroup = pObjectGroup->NextSiblingElement("objectgroup");
         }
     }
@@ -247,6 +268,10 @@ const Vector2 Map::getPlayerSpawnPoint() const {
 
 const Vector2 Map::getNPCSpawnPoint() const {
     return npcSpawn;
+}
+
+const Vector2 Map::getPortalLocation() const {
+    return portalSpawn;
 }
 
 Vector2 Map::getTilesetPosition(Tileset tls, int gid, int tileWidth, int tileHeight) {

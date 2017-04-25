@@ -11,6 +11,8 @@
 #include "Camera.hpp"
 #include "Player.hpp"
 #include "Errors.hpp"
+#include "Portal.hpp"
+#include "NPC.hpp"
 #include "SDL2/SDL.h"
 #include "DialogueTree.hpp"
 #include "SDL2_image/SDL_image.h"
@@ -19,6 +21,7 @@
 #include <OpenGL/gl.h>
 #include <stdio.h>
 #include <iostream>
+#include <unistd.h>
 
 enum class GameState{MENU, PLAY, EXIT};
 
@@ -56,7 +59,9 @@ private:
     
     GameState currentState;
 
+    Portal p;
     DialogueTree tree;
+    NPC owl;
     Player player;
     Map currentlevel, nextlevel;
     Camera screen;

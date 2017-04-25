@@ -77,8 +77,9 @@ void MainGame::initSystems(){
     glClearColor(1.0f, 1.0f, 1.0f, 1.0);
     
     //Initializes music
-    music = Mix_LoadMUS("/music/ramune.mp3");
+    music = Mix_LoadMUS("/music/cappuccino.mp3");
     Mix_PlayMusic(music, -1);
+    Mix_VolumeMusic(60);
 }
 
 //Game loop where most of the logic is handled
@@ -102,8 +103,11 @@ void MainGame::gameLoop(){
         SDL_RenderClear(renderer);
         
         currentlevel.draw(Camera::camera);
+        owl.draw();
         player.draw();
-        //tree.performDialogue(player.getX(), player.getY(), 0, 0);
+        p.draw();
+        
+        tree.performDialogue(player.getX(), player.getY(), 0, 0);
         screen.updateCamera(player.getX(),player.getY());
         
         SDL_RenderPresent(renderer);
@@ -148,8 +152,8 @@ void MainGame::processInput(){
 
 //Updates everything in the game based on the elasped time
 void MainGame::update(float elaspedTime){
-    SDL_UpdateWindowSurface(window);
     player.update(elaspedTime);
+    owl.update(elaspedTime);
     
     //Check tile collisions
     std::vector<Rectangle> others;
@@ -167,9 +171,16 @@ void MainGame::initObjects(){
     currentlevel = *new Map();
     currentlevel.renderMap("level1");
     currentlevel.mapInit("Images/newbackgroundcolor.jpg", "level1");
+    usleep(500000);
+    
+    owl = *new NPC(currentlevel.getNPCSpawnPoint());
+    usleep(100000);
     
     player = *new Player(currentlevel.getPlayerSpawnPoint());
     player.getCurrentMapInfo(currentlevel);
+    usleep(100000);
+    
+    p = *new Portal("Images/portal2.png", currentlevel.getPortalLocation());
     
     screen.initCamera();
 }

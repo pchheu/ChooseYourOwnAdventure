@@ -22,6 +22,7 @@
 		ABDA02F51EAEFDA100A361BD /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABDA02F41EAEFDA100A361BD /* SDL2_mixer.framework */; };
 		ABDA02F71EAF090900A361BD /* music in Copy Files */ = {isa = PBXBuildFile; fileRef = ABDA02F61EAF090900A361BD /* music */; };
 		ABDA02FC1EAFB9A600A361BD /* NPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABDA02FB1EAFB9A600A361BD /* NPC.cpp */; };
+		ABDA02FF1EAFE2B800A361BD /* Portal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABDA02FD1EAFE2B800A361BD /* Portal.cpp */; };
 		ABF749A11E5B7BD700A7699D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF749A01E5B7BD700A7699D /* main.cpp */; };
 		ABF749A91E5B7E9500A7699D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF749A81E5B7E9500A7699D /* Cocoa.framework */; };
 		ABF749AB1E5B7ED800A7699D /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF749AA1E5B7ED800A7699D /* SDL2.framework */; };
@@ -77,6 +78,8 @@
 		ABDA02F61EAF090900A361BD /* music */ = {isa = PBXFileReference; lastKnownFileType = folder; name = music; path = ChooseYourOwnAdventure/music; sourceTree = "<group>"; };
 		ABDA02F91EAFB93500A361BD /* NPC.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NPC.hpp; sourceTree = "<group>"; };
 		ABDA02FB1EAFB9A600A361BD /* NPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NPC.cpp; sourceTree = "<group>"; };
+		ABDA02FD1EAFE2B800A361BD /* Portal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Portal.cpp; sourceTree = "<group>"; };
+		ABDA02FE1EAFE2B800A361BD /* Portal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Portal.hpp; sourceTree = "<group>"; };
 		ABF7499D1E5B7BD700A7699D /* ChooseYourOwnAdventure */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChooseYourOwnAdventure; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABF749A01E5B7BD700A7699D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		ABF749A81E5B7E9500A7699D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -153,6 +156,7 @@
 		ABF749BF1E5D010E00A7699D /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				ABDA02FE1EAFE2B800A361BD /* Portal.hpp */,
 				ABDA02ED1EABE95C00A361BD /* MainMenu.hpp */,
 				ABA4EE1D1E838C5500241D99 /* tinyxml2.h */,
 				ABF749BA1E5CE8FB00A7699D /* MainGame.hpp */,
@@ -175,6 +179,7 @@
 		ABF749C01E5D013200A7699D /* Source Files */ = {
 			isa = PBXGroup;
 			children = (
+				ABDA02FD1EAFE2B800A361BD /* Portal.cpp */,
 				ABDA02EC1EABE95C00A361BD /* MainMenu.cpp */,
 				ABA4EE1B1E838C4C00241D99 /* tinyxml2.cpp */,
 				ABDA02EF1EABF74B00A361BD /* DialogueTree.cpp */,
@@ -254,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABF749BB1E5CE8FB00A7699D /* MainGame.cpp in Sources */,
+				ABDA02FF1EAFE2B800A361BD /* Portal.cpp in Sources */,
 				ABF749A11E5B7BD700A7699D /* main.cpp in Sources */,
 				ABA4EE1C1E838C4C00241D99 /* tinyxml2.cpp in Sources */,
 				AB235EB81E7DE3E6008F8C19 /* Camera.cpp in Sources */,

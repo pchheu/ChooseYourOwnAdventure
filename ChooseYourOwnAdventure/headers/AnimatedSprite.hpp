@@ -5,6 +5,8 @@
 //  Created by Peter Chheu on 3/23/17.
 //  Copyright © 2017 Peter Chheu. All rights reserved.
 //
+#ifndef AnimatedSprite_hpp
+#define AnimatedSprite_hpp
 
 #include <stdio.h>
 #include "Sprite.hpp"
@@ -66,3 +68,5 @@ private:
     double timeElapsed;
     bool visible;
 };
+
+#endif

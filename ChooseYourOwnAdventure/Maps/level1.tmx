@@ -272,7 +272,7 @@
  </objectgroup>
  <objectgroup name="trigger"/>
  <objectgroup color="#0000ff" name="portal">
-  <object id="56" name="portal" x="2828" y="204" width="29" height="44">
+  <object id="56" name="portal" x="2740" y="73" width="29" height="44">
    <ellipse/>
   </object>
  </objectgroup>

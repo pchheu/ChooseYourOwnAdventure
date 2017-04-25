@@ -9,13 +9,13 @@
 #pragma once
 
 #include <iostream>
-#include "SDL2/SDL.h"
-#include "SDL2_image/SDL_image.h"
+#include <vector>
 #include <OpenGL/gl.h>
 #include <stdio.h>
 #include <string>
+#include "SDL2/SDL.h"
+#include "SDL2_image/SDL_image.h"
 #include "Vector2.h"
-#include <vector>
 #include "Tile.hpp"
 #include "Rectangle.hpp"
 
@@ -43,6 +43,7 @@ public:
     
     const Vector2 getPlayerSpawnPoint() const;
     const Vector2 getNPCSpawnPoint() const;
+    const Vector2 getPortalLocation() const;
     
     SDL_Surface* getMapSurface();
     
@@ -57,7 +58,7 @@ private:
     
     std::string mapName;
     
-    Vector2 spawnPoint, npcSpawn;
+    Vector2 spawnPoint, npcSpawn, portalSpawn;
     Vector2 _size;
     Vector2 _tileSize;
     
@@ -68,6 +69,7 @@ private:
     Vector2 getTilesetPosition(Tileset tls, int gid, int tileWidth, int tileHeight);
     
     SDL_Rect camera;
+    SDL_PixelFormat format;
 };
 
 struct Tileset{

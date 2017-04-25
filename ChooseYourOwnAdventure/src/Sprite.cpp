@@ -27,6 +27,7 @@ Sprite::Sprite(std::string path, float _width, float _height, float posX, float 
     
     window = SDL_GL_GetCurrentWindow();
     renderer = SDL_GetRenderer(window);
+    
     tsprite = SDL_CreateTextureFromSurface(renderer, ssprite);
     
     x = posX;
