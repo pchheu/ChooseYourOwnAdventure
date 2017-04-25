@@ -43,6 +43,10 @@ void MainGame::initSystems(){
     if(!IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG)){
         fatalError(IMG_GetError());
     }
+
+    if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0){
+        fatalError(Mix_GetError());
+    }
     
     //Creates the window
     window = SDL_CreateWindow("ChooseYourOwnAdventure",
@@ -55,7 +59,6 @@ void MainGame::initSystems(){
     if(window == nullptr){
         fatalError("SDL Window could not be created.");
     }
-    
     
     //Sets up our OpenGL context
     SDL_GLContext glContext = SDL_GL_CreateContext(window);
@@ -72,20 +75,17 @@ void MainGame::initSystems(){
     
     //Sets the background color once the screen is flushed
     glClearColor(1.0f, 1.0f, 1.0f, 1.0);
+    
+    //Initializes music
+    music = Mix_LoadMUS("/music/ramune.mp3");
+    Mix_PlayMusic(music, -1);
 }
 
 //Game loop where most of the logic is handled
 void MainGame::gameLoop(){
-    DialogueTree tree = *new DialogueTree();
-    tree.init();
-    currentlevel = Map();
-    player = Player(Vector2(0,300));
-    currentlevel.mapInit("Images/newbackgroundcolor.jpg", "level1");
-    player.getCurrentMapInfo(currentlevel);
-    screen.initCamera();
+    initObjects();
     
     int lastUpdate = SDL_GetTicks();
-    currentlevel.renderMap("level1");
     screen.updateMap(currentlevel.getlevelWidth(), currentlevel.getlevelHeight());
     
     //Game loop starts
@@ -103,7 +103,7 @@ void MainGame::gameLoop(){
         
         currentlevel.draw(Camera::camera);
         player.draw();
-        tree.performDialogue();
+        //tree.performDialogue(player.getX(), player.getY(), 0, 0);
         screen.updateCamera(player.getX(),player.getY());
         
         SDL_RenderPresent(renderer);
@@ -148,6 +148,7 @@ void MainGame::processInput(){
 
 //Updates everything in the game based on the elasped time
 void MainGame::update(float elaspedTime){
+    SDL_UpdateWindowSurface(window);
     player.update(elaspedTime);
     
     //Check tile collisions
@@ -156,4 +157,19 @@ void MainGame::update(float elaspedTime){
         //Player has collided with a tile
         player.handleTileCollisions(others);
     }
+}
+
+//Initializes all entities, maps, and other assets
+void MainGame::initObjects(){
+    tree = *new DialogueTree();
+    tree.init();
+    
+    currentlevel = *new Map();
+    currentlevel.renderMap("level1");
+    currentlevel.mapInit("Images/newbackgroundcolor.jpg", "level1");
+    
+    player = *new Player(currentlevel.getPlayerSpawnPoint());
+    player.getCurrentMapInfo(currentlevel);
+    
+    screen.initCamera();
 }

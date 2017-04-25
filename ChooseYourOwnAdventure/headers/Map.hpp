@@ -42,6 +42,7 @@ public:
     std::vector<Rectangle> checkTileCollisions(const Rectangle &other);
     
     const Vector2 getPlayerSpawnPoint() const;
+    const Vector2 getNPCSpawnPoint() const;
     
     SDL_Surface* getMapSurface();
     
@@ -56,7 +57,7 @@ private:
     
     std::string mapName;
     
-    Vector2 spawnPoint;
+    Vector2 spawnPoint, npcSpawn;
     Vector2 _size;
     Vector2 _tileSize;
     

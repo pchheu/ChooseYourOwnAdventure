@@ -26,6 +26,8 @@ Sprite(filePath, width, height, posX, posY){
     currentAnimationOnce = false;
     visible = true;
     
+    this->setupAnimations();
+    
     window = SDL_GL_GetCurrentWindow();
     renderer = SDL_GetRenderer(window);
 }

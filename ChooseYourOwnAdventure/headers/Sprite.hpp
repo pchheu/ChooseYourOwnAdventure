@@ -11,12 +11,11 @@
 #include <iostream>
 #include "SDL2/SDL.h"
 #include "SDL2_image/SDL_image.h"
+#include "SDL2_mixer/SDL_mixer.h"
 #include <OpenGL/gl.h>
 #include <stdio.h>
 #include <string>
 #include "Camera.hpp"
-
-enum class Movement{LEFT, RIGHT, JUMP};
 
 class Sprite{
 public:

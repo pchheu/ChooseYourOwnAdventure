@@ -15,6 +15,7 @@
 #include "DialogueTree.hpp"
 #include "SDL2_image/SDL_image.h"
 #include "SDL2_ttf/SDL_ttf.h"
+#include "SDL2_mixer/SDL_mixer.h"
 #include <OpenGL/gl.h>
 #include <stdio.h>
 #include <iostream>
@@ -35,6 +36,7 @@ private:
     void drawGame();
     void update(float elapsedTime);
     void menu();
+    void initObjects();
     
     SDL_Window* window;
     SDL_Rect camera;
@@ -42,6 +44,8 @@ private:
     std::map<SDL_Scancode, bool> heldKeys;
     std::map<SDL_Scancode, bool> pressedKeys;
     std::map<SDL_Scancode, bool> releasedKeys;
+    
+    Mix_Music *music;
     
     int screenHeight;
     int screenWidth;
@@ -52,6 +56,7 @@ private:
     
     GameState currentState;
 
+    DialogueTree tree;
     Player player;
     Map currentlevel, nextlevel;
     Camera screen;

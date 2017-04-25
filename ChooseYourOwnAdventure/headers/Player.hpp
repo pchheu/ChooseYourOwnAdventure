@@ -40,9 +40,15 @@ public:
 private:
     SDL_Window* window = SDL_GL_GetCurrentWindow();
     SDL_Renderer* renderer = SDL_GetRenderer(window);
+    
+    Vector2 respawn;
+    
     float dx, dy;
     
     Direction facing;
+    
+    Mix_Chunk *jumpNoise = Mix_LoadWAV("/music/jump.wav");
+    bool playOnce = false;
     
     bool grounded;
     bool jumped;

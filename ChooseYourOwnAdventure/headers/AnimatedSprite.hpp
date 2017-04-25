@@ -6,7 +6,6 @@
 //  Copyright © 2017 Peter Chheu. All rights reserved.
 //
 
-
 #include <stdio.h>
 #include "Sprite.hpp"
 #include "Vector2.h"

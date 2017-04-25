@@ -19,6 +19,9 @@
 		ABDA02EE1EABE95C00A361BD /* MainMenu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABDA02EC1EABE95C00A361BD /* MainMenu.cpp */; };
 		ABDA02F11EABF74B00A361BD /* DialogueTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABDA02EF1EABF74B00A361BD /* DialogueTree.cpp */; };
 		ABDA02F31EAC2F7C00A361BD /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABDA02F21EAC2F7C00A361BD /* SDL2_ttf.framework */; };
+		ABDA02F51EAEFDA100A361BD /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABDA02F41EAEFDA100A361BD /* SDL2_mixer.framework */; };
+		ABDA02F71EAF090900A361BD /* music in Copy Files */ = {isa = PBXBuildFile; fileRef = ABDA02F61EAF090900A361BD /* music */; };
+		ABDA02FC1EAFB9A600A361BD /* NPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABDA02FB1EAFB9A600A361BD /* NPC.cpp */; };
 		ABF749A11E5B7BD700A7699D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ABF749A01E5B7BD700A7699D /* main.cpp */; };
 		ABF749A91E5B7E9500A7699D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF749A81E5B7E9500A7699D /* Cocoa.framework */; };
 		ABF749AB1E5B7ED800A7699D /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF749AA1E5B7ED800A7699D /* SDL2.framework */; };
@@ -36,6 +39,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				ABDA02F71EAF090900A361BD /* music in Copy Files */,
 				ABBE22E91E8512C30067FB70 /* tilesheets in Copy Files */,
 				ABBE22D11E8508E90067FB70 /* Maps in Copy Files */,
 				ABF749CA1E5E0DAC00A7699D /* Images in Copy Files */,
@@ -69,6 +73,10 @@
 		ABDA02EF1EABF74B00A361BD /* DialogueTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DialogueTree.cpp; sourceTree = "<group>"; };
 		ABDA02F01EABF74B00A361BD /* DialogueTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DialogueTree.hpp; sourceTree = "<group>"; };
 		ABDA02F21EAC2F7C00A361BD /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
+		ABDA02F41EAEFDA100A361BD /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
+		ABDA02F61EAF090900A361BD /* music */ = {isa = PBXFileReference; lastKnownFileType = folder; name = music; path = ChooseYourOwnAdventure/music; sourceTree = "<group>"; };
+		ABDA02F91EAFB93500A361BD /* NPC.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NPC.hpp; sourceTree = "<group>"; };
+		ABDA02FB1EAFB9A600A361BD /* NPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NPC.cpp; sourceTree = "<group>"; };
 		ABF7499D1E5B7BD700A7699D /* ChooseYourOwnAdventure */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChooseYourOwnAdventure; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABF749A01E5B7BD700A7699D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		ABF749A81E5B7E9500A7699D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -87,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABDA02F51EAEFDA100A361BD /* SDL2_mixer.framework in Frameworks */,
 				ABDA02F31EAC2F7C00A361BD /* SDL2_ttf.framework in Frameworks */,
 				ABF749B61E5CE58300A7699D /* OpenGL.framework in Frameworks */,
 				ABF749AD1E5B7EE200A7699D /* SDL2_image.framework in Frameworks */,
@@ -101,6 +110,7 @@
 		ABF749941E5B7BD700A7699D = {
 			isa = PBXGroup;
 			children = (
+				ABDA02F61EAF090900A361BD /* music */,
 				ABBE22E81E8512C30067FB70 /* tilesheets */,
 				ABBE22D01E8508E90067FB70 /* Maps */,
 				ABF749C91E5E0DAC00A7699D /* Images */,
@@ -130,6 +140,7 @@
 		ABF749A71E5B7E9500A7699D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ABDA02F41EAEFDA100A361BD /* SDL2_mixer.framework */,
 				ABDA02F21EAC2F7C00A361BD /* SDL2_ttf.framework */,
 				ABF749B51E5CE58300A7699D /* OpenGL.framework */,
 				ABF749AC1E5B7EE200A7699D /* SDL2_image.framework */,
@@ -155,6 +166,7 @@
 				ABF749BD1E5D010400A7699D /* Sprite.hpp */,
 				ABA4EE1F1E83F9A200241D99 /* AnimatedSprite.hpp */,
 				ABBE229F1E84ED740067FB70 /* Player.hpp */,
+				ABDA02F91EAFB93500A361BD /* NPC.hpp */,
 			);
 			name = Headers;
 			path = headers;
@@ -175,6 +187,7 @@
 				ABF749BC1E5D010400A7699D /* Sprite.cpp */,
 				ABA4EE1E1E83F9A200241D99 /* AnimatedSprite.cpp */,
 				ABBE229E1E84ED740067FB70 /* Player.cpp */,
+				ABDA02FB1EAFB9A600A361BD /* NPC.cpp */,
 			);
 			name = "Source Files";
 			path = "/Users/peterchheu/Documents/Software Design/ChooseYourOwnAdventure/ChooseYourOwnAdventure/src";
@@ -252,6 +265,7 @@
 				ABA4EE201E83F9A200241D99 /* AnimatedSprite.cpp in Sources */,
 				AB235EAA1E79F9B9008F8C19 /* Tile.cpp in Sources */,
 				AB235EB51E7CC553008F8C19 /* Errors.cpp in Sources */,
+				ABDA02FC1EAFB9A600A361BD /* NPC.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

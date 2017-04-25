@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="8" tilewidth="100" tileheight="100" nextobjectid="3">
- <tileset firstgid="1" name="/tilesheets/springtiles" tilewidth="100" tileheight="100" tilecount="35" columns="7">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="8" tilewidth="100" tileheight="100" nextobjectid="61">
+ <tileset firstgid="1" name="springtiles" tilewidth="100" tileheight="100" tilecount="35" columns="7">
   <image source="/Images/springtiles.png" width="760" height="504"/>
  </tileset>
  <layer name="Tile Layer 1" width="30" height="8">
@@ -65,124 +65,89 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="1"/>
-   <tile gid="2"/>
-   <tile gid="3"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="1"/>
-   <tile gid="2"/>
-   <tile gid="2"/>
    <tile gid="2"/>
    <tile gid="3"/>
    <tile gid="4"/>
-   <tile gid="3"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="4"/>
-   <tile gid="2"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="1"/>
    <tile gid="2"/>
    <tile gid="3"/>
    <tile gid="4"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="3"/>
+   <tile gid="4"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="4"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="4"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="4"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="1"/>
    <tile gid="2"/>
    <tile gid="3"/>
-   <tile gid="4"/>
-   <tile gid="1"/>
-   <tile gid="2"/>
-   <tile gid="3"/>
-   <tile gid="4"/>
-   <tile gid="1"/>
-   <tile gid="2"/>
-   <tile gid="3"/>
-   <tile gid="4"/>
-   <tile gid="1"/>
-   <tile gid="1"/>
-   <tile gid="2"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
    <tile gid="3"/>
    <tile gid="4"/>
    <tile gid="0"/>
@@ -217,6 +182,9 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="1"/>
+   <tile gid="2"/>
+   <tile gid="3"/>
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
@@ -245,10 +213,67 @@
    <tile gid="0"/>
    <tile gid="0"/>
    <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="1"/>
+   <tile gid="2"/>
+   <tile gid="3"/>
+   <tile gid="4"/>
+   <tile gid="1"/>
+   <tile gid="2"/>
+   <tile gid="3"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="2"/>
+   <tile gid="3"/>
+   <tile gid="0"/>
+   <tile gid="0"/>
+   <tile gid="2"/>
+   <tile gid="3"/>
+   <tile gid="4"/>
+   <tile gid="1"/>
+   <tile gid="2"/>
+   <tile gid="3"/>
+   <tile gid="4"/>
+   <tile gid="1"/>
+   <tile gid="2"/>
+   <tile gid="3"/>
+   <tile gid="4"/>
+   <tile gid="1"/>
+   <tile gid="2"/>
+   <tile gid="3"/>
+   <tile gid="4"/>
+   <tile gid="1"/>
+   <tile gid="2"/>
   </data>
  </layer>
- <objectgroup name="collisions">
-  <object id="1" x="1896.97" y="345.455" width="300" height="54.5455"/>
-  <object id="2" x="-3.0303" y="554.545" width="3003.03" height="42.4242"/>
+ <objectgroup name="collisions" offsetx="-2.84217e-14" offsety="-0.530303">
+  <object id="3" x="1300" y="751.515" width="1696.97" height="45.4545"/>
+  <object id="27" x="296.97" y="451.515" width="103.03" height="48.4848"/>
+  <object id="28" x="603.03" y="351.515" width="93.9394" height="48.4848"/>
+  <object id="29" x="896.97" y="251.515" width="100" height="48.4848"/>
+  <object id="30" x="1100" y="354.545" width="100" height="48.4848"/>
+  <object id="31" x="1300" y="457.576" width="293.939" height="39.3939"/>
+  <object id="33" x="2300" y="454.545" width="196.97" height="45.4545"/>
+  <object id="34" x="2703.03" y="554.545" width="293.939" height="42.4242"/>
+  <object id="38" x="1802" y="256.53" width="395" height="41"/>
+  <object id="44" x="20" y="255.53" width="279" height="43"/>
+  <object id="49" x="2" y="757.53" width="682" height="42"/>
+  <object id="59" x="903" y="757.53" width="193" height="41"/>
+  <object id="60" x="2703" y="256.53" width="196" height="30"/>
+ </objectgroup>
+ <objectgroup color="#00ff00" name="spawn points">
+  <object id="24" name="player" x="154.545" y="496.97" width="33.3333" height="36.3636">
+   <ellipse/>
+  </object>
+  <object id="52" name="npc" x="62" y="244" width="12" height="8">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="trigger"/>
+ <objectgroup color="#0000ff" name="portal">
+  <object id="56" name="portal" x="2828" y="204" width="29" height="44">
+   <ellipse/>
+  </object>
  </objectgroup>
 </map>

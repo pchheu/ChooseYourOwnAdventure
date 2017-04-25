@@ -18,6 +18,7 @@
 #include "SDL2_ttf/SDL_ttf.h"
 #include "Errors.hpp"
 #include "Camera.hpp"
+#include "Player.hpp"
 
 using namespace std;
 
@@ -47,7 +48,7 @@ public:
     void init();
     void destroyTree();
     
-    WORLDSTATE performDialogue();
+    WORLDSTATE performDialogue(int playerX, int playerY, int npcX, int npcY);
     
     string getCurrentString();
     

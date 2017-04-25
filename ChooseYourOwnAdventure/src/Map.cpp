@@ -197,7 +197,7 @@ void Map::renderMap(char* mapName) {
                     }
                 }
             }
-            if (ss.str() == "spawn points") {
+            else if (ss.str() == "spawn points") {
                 XMLElement* pObject = pObjectGroup->FirstChildElement("object");
                 if (pObject != NULL) {
                     while (pObject) {
@@ -208,7 +208,10 @@ void Map::renderMap(char* mapName) {
                         ss << name;
                         if (ss.str() == "player") {
                             this->spawnPoint = Vector2(std::ceil(x),
-                                                        std::ceil(y));
+                                                       std::ceil(y));
+                        }else if(ss.str() == "npc"){
+                            this->npcSpawn = Vector2(std::ceil(x),
+                                                       std::ceil(y));
                         }
                         
                         pObject = pObject->NextSiblingElement("object");
@@ -240,6 +243,10 @@ int Map::getlevelHeight(){
 
 const Vector2 Map::getPlayerSpawnPoint() const {
     return spawnPoint;
+}
+
+const Vector2 Map::getNPCSpawnPoint() const {
+    return npcSpawn;
 }
 
 Vector2 Map::getTilesetPosition(Tileset tls, int gid, int tileWidth, int tileHeight) {

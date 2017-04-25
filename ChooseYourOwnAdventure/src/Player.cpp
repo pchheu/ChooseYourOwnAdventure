@@ -20,6 +20,7 @@ Player::Player(){
 
 Player::Player(Vector2 spawnPoint) :
 AnimatedSprite("Images/bunny2.png", 0, 300, 145, 105, spawnPoint.x, spawnPoint.y, 150){
+    respawn = spawnPoint;
     
     dx = 0;
     dy = 0;
@@ -43,11 +44,11 @@ void Player::animationDone(std::string currentAnimation){
 }
 
 float Player::getX(){
-    return this->x;
+    return x;
 }
 
 float Player::getY(){
-    return this->y;
+    return y;
 }
 
 void Player::moveLeft(){
@@ -80,6 +81,11 @@ void Player::stopMoving() {
 
 
 void Player::jump() {
+    if(!playOnce){
+        Mix_PlayChannel(-1, jumpNoise, 0);
+        playOnce = true;
+    }
+    
     if (this->grounded) {
         this->dy = 0;
         this->dy -= player_constants::JUMP_SPEED;
@@ -112,9 +118,11 @@ void Player::handleTileCollisions(std::vector<Rectangle> &others) {
                     if(jumped && moving){
                         this->playAnimation(this->facing == RIGHT ? "RunRight" : "RunLeft");
                         jumped = false;
+                        playOnce = false;
                     }else if(jumped){
                         this->playAnimation(this->facing == RIGHT ? "IdleRight" : "IdleLeft");
                         jumped = false;
+                        playOnce = false;
                     }
                     this->y = others.at(i).getTop() - this->boundingBox.getHeight() - 1;
                     this->dy = 0;
@@ -152,9 +160,10 @@ void Player::update(float elapsedTime) {
     //Move by dy
     y += dy * elapsedTime;
     
-    //Checks upper bounds
-    if( y > getLevelHeight()){
-        y = getLevelHeight();
+    //Respawns if fallen out of map
+    if(y > getLevelHeight() + 750){
+        x = respawn.x;
+        y = respawn.y;
     }
     
     AnimatedSprite::update(elapsedTime);
