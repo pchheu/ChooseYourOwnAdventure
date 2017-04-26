@@ -164,6 +164,7 @@ void Player::update(float elapsedTime) {
     if(y > getLevelHeight() + 500){
         x = respawn.x;
         y = respawn.y;
+        dy = 0;
     }
     
     AnimatedSprite::update(elapsedTime);

@@ -76,10 +76,10 @@
 		ABDA02F21EAC2F7C00A361BD /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
 		ABDA02F41EAEFDA100A361BD /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
 		ABDA02F61EAF090900A361BD /* music */ = {isa = PBXFileReference; lastKnownFileType = folder; name = music; path = ChooseYourOwnAdventure/music; sourceTree = "<group>"; };
-		ABDA02F91EAFB93500A361BD /* NPC.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NPC.hpp; sourceTree = "<group>"; };
 		ABDA02FB1EAFB9A600A361BD /* NPC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NPC.cpp; sourceTree = "<group>"; };
 		ABDA02FD1EAFE2B800A361BD /* Portal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Portal.cpp; sourceTree = "<group>"; };
 		ABDA02FE1EAFE2B800A361BD /* Portal.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Portal.hpp; sourceTree = "<group>"; };
+		ABDA03021EB033F600A361BD /* NPC.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = NPC.hpp; sourceTree = "<group>"; };
 		ABF7499D1E5B7BD700A7699D /* ChooseYourOwnAdventure */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ChooseYourOwnAdventure; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABF749A01E5B7BD700A7699D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		ABF749A81E5B7E9500A7699D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -170,7 +170,7 @@
 				ABF749BD1E5D010400A7699D /* Sprite.hpp */,
 				ABA4EE1F1E83F9A200241D99 /* AnimatedSprite.hpp */,
 				ABBE229F1E84ED740067FB70 /* Player.hpp */,
-				ABDA02F91EAFB93500A361BD /* NPC.hpp */,
+				ABDA03021EB033F600A361BD /* NPC.hpp */,
 			);
 			name = Headers;
 			path = headers;
@@ -368,6 +368,7 @@
 		ABF749A51E5B7BD700A7699D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					/Library/Frameworks,
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
@@ -380,6 +381,7 @@
 		ABF749A61E5B7BD700A7699D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					/Library/Frameworks,
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",

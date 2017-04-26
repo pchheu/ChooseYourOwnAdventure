@@ -238,17 +238,46 @@ void Map::renderMap(char* mapName) {
                     }
                 }
             }
+            else if(ss.str() == "trigger"){
+                XMLElement* pObject = pObjectGroup->FirstChildElement("object");
+                if(pObject != NULL){
+                    while(pObject){
+                        float x, y, width, height;
+                        std::stringstream ss;
+                        x = pObject->FloatAttribute("x");
+                        y = pObject->FloatAttribute("y");
+                        width = pObject->FloatAttribute("width");
+                        height = pObject->FloatAttribute("height");
+                        this->_dialogueTriggers.push_back(Rectangle(std::ceil(x),
+                                                                    std::ceil(y),
+                                                                    std::ceil(width),
+                                                                    std::ceil(height)));
+                        
+                        pObject = pObject->NextSiblingElement("object");
+                    }
+                }
+            }
             
             pObjectGroup = pObjectGroup->NextSiblingElement("objectgroup");
         }
     }
 }
 
-std::vector<Rectangle> Map::checkTileCollisions(const Rectangle &other) {
+std::vector<Rectangle> Map::checkTileCollisions(const Rectangle &other){
     std::vector<Rectangle> others;
     for (int i = 0; i < this->_collisionRects.size(); i++) {
         if (this->_collisionRects.at(i).collidesWith(other)) {
             others.push_back(this->_collisionRects.at(i));
+        }
+    }
+    return others;
+}
+
+std::vector<Rectangle> Map::checkTriggerCollisions(const Rectangle &other){
+    std::vector<Rectangle> others;
+    for(int i = 0; i < this->_dialogueTriggers.size(); i++){
+        if(this->_dialogueTriggers.at(i).collidesWith(other)){
+            others.push_back(this->_dialogueTriggers.at(i));
         }
     }
     return others;

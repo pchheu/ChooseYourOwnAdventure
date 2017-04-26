@@ -55,6 +55,8 @@ private:
     
     float elaspedTime;
     
+    bool dialogueEngaged = false;
+    
     SDL_Renderer* renderer;
     
     GameState currentState;

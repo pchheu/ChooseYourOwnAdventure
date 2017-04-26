@@ -91,7 +91,7 @@ void MainGame::gameLoop(){
     
     //Game loop starts
     while(currentState != GameState::EXIT){
-        //-------------------Calculate FPS-------------------//
+        //-------------------Calculate FPS/Process inputs-------------------//
         processInput();
         
         const int currentTimeMS = SDL_GetTicks();
@@ -107,7 +107,11 @@ void MainGame::gameLoop(){
         player.draw();
         p.draw();
         
-        tree.performDialogue(player.getX(), player.getY(), 0, 0);
+        if(dialogueEngaged){
+            player.stopMoving();
+            tree.performDialogue(player.getX(), player.getY(), owl.getX(), owl.getY());
+        }
+        
         screen.updateCamera(player.getX(),player.getY());
         
         SDL_RenderPresent(renderer);
@@ -160,6 +164,12 @@ void MainGame::update(float elaspedTime){
     if((others = currentlevel.checkTileCollisions(player.getBoundingBox())).size() > 0){
         //Player has collided with a tile
         player.handleTileCollisions(others);
+    }
+    
+    //Checks for any special events that triggered
+    std::vector<Rectangle> triggers;
+    if((triggers = currentlevel.checkTriggerCollisions(player.getBoundingBox())).size() > 0){
+        dialogueEngaged = true;
     }
 }
 

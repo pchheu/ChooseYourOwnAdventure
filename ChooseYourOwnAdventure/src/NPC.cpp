@@ -37,3 +37,11 @@ void NPC::update(float elapsedTime){
 void NPC::draw(){
     AnimatedSprite::draw(x, y);
 }
+
+float NPC::getX(){
+    return x;
+}
+
+float NPC::getY(){
+    return y;
+}

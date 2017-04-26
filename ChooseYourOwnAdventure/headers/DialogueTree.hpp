@@ -10,6 +10,7 @@
 #define DialogueTree_hpp
 
 #include <stdio.h>
+#include <unistd.h>
 #include <string>
 #include <iostream>
 #include <vector>

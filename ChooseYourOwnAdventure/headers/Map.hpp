@@ -40,6 +40,7 @@ public:
     bool Test();
     
     std::vector<Rectangle> checkTileCollisions(const Rectangle &other);
+    std::vector<Rectangle> checkTriggerCollisions(const Rectangle &other);
     
     const Vector2 getPlayerSpawnPoint() const;
     const Vector2 getNPCSpawnPoint() const;
@@ -65,6 +66,7 @@ private:
     std::vector<Tile> _tileList;
     std::vector<Tileset> _tilesets;
     std::vector<Rectangle> _collisionRects;
+    std::vector<Rectangle> _dialogueTriggers;
     
     Vector2 getTilesetPosition(Tileset tls, int gid, int tileWidth, int tileHeight);
     
