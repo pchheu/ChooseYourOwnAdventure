@@ -9,6 +9,7 @@
 #pragma once
 
 #include "Camera.hpp"
+#include "MainMenu.hpp"
 #include "Player.hpp"
 #include "Errors.hpp"
 #include "Portal.hpp"
@@ -39,7 +40,6 @@ private:
     void processInput();
     void drawGame();
     void update(float elapsedTime);
-    void menu();
     void initObjects();
     
     SDL_Window* window;
@@ -63,6 +63,7 @@ private:
     GameState currentState;
 
     int world;
+    MainMenu menu;
     Portal p;
     DialogueTree tree;
     NPC owl;

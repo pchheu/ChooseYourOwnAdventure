@@ -14,23 +14,24 @@
 #include <stdio.h>
 #include <string>
 #include <fstream>
+#include <iostream>
 
 class MainMenu{
     
 public:
-    MainMenu(int w, int h);
+    MainMenu();
+    MainMenu(char* filePath, int w, int h);
     ~MainMenu();
     
     void draw();
-    void handlePlay();
-    void handleLoad();
+    int handlePlay();
     
 private:
     int screenWidth;
     int screenHeight;
     
     SDL_Rect playButton;
-    SDL_Rect loadButton;
+    SDL_Rect background;
     
     SDL_Surface* menu_surface;
     SDL_Texture* menu_texture;
@@ -41,6 +42,7 @@ private:
     SDL_Surface* loadButton_surface;
     SDL_Texture* loadButton_texture;
 
-    SDL_Rect menu;
+    SDL_Window* window = SDL_GL_GetCurrentWindow();
+    SDL_Renderer* renderer = SDL_GetRenderer(window);
 };
 #endif /* MainMenu_hpp */

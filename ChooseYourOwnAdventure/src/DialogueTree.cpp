@@ -30,9 +30,9 @@ DialogueTree::DialogueTree(){
 //Sets up the tree
 void DialogueTree::init(){
     DialogueNode *node0 = new DialogueNode("Hello there!");
-    DialogueNode *node1 = new DialogueNode("You seem like a kind fellow, what are you doing aroud here?");
+    DialogueNode *node1 = new DialogueNode("Say, what are you doing aroud here?");
     DialogueNode *node2 = new DialogueNode("Wow so rude!");
-    DialogueNode *node3 = new DialogueNode("Aimless wanderer eh? Well maybe that portal over there is somewhere you need to go.");
+    DialogueNode *node3 = new DialogueNode("Aimless wanderer eh? Well maybe you should check out that portal");
     DialogueNode *node4 = new DialogueNode("Carrots! Try that portal over there.");
     DialogueNode *node5 = new DialogueNode("");
     

@@ -26,6 +26,18 @@ MainGame::~MainGame(){
 //Runs the game
 void MainGame::run(){
     initSystems();
+    
+    while(currentState == GameState::MENU){
+        int a;
+        SDL_RenderClear(renderer);
+        menu.draw();
+        a = menu.handlePlay();
+        if(a == 1){
+            currentState = GameState::PLAY;
+        }
+        SDL_RenderPresent(renderer);
+    }
+     
     gameLoop();
 }
 
@@ -77,9 +89,12 @@ void MainGame::initSystems(){
     glClearColor(0.0f, 0.0f, 0.0f, 0.0);
     
     //Initializes music
-    music = Mix_LoadMUS("/music/Ma Chouchoute.mp3");
+    music = Mix_LoadMUS("/music/cappuccino.mp3");
     Mix_PlayMusic(music, -1);
     Mix_VolumeMusic(50);
+    
+    //Initializes main menu
+    menu = *new MainMenu("/Images/tempmenu.png", screenWidth, screenHeight);
 }
 
 //Game loop where most of the logic is handled
