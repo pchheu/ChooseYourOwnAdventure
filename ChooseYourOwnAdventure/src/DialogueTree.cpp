@@ -25,21 +25,27 @@ DialogueOption::DialogueOption(string _text, int _returnCode, DialogueNode *_nex
 
 //Constructor for the tree
 DialogueTree::DialogueTree(){
-    
 }
 
 //Sets up the tree
 void DialogueTree::init(){
     DialogueNode *node0 = new DialogueNode("Hello there!");
-    DialogueNode *node1 = new DialogueNode("");
-    DialogueNode *node2 = new DialogueNode("");
+    DialogueNode *node1 = new DialogueNode("Are you no stranger to love?");
+    DialogueNode *node2 = new DialogueNode("Wow so rude!");
     DialogueNode *node3 = new DialogueNode("");
     DialogueNode *node4 = new DialogueNode("");
     
     //Node 0
-    node0->dialogueOptions.push_back(DialogueOption("What is this place?", 0, node1));
-    node0->dialogueOptions.push_back(DialogueOption("Who are you?", 0, node2));
+    node0->dialogueOptions.push_back(DialogueOption("Hi!", 0, node1));
+    node0->dialogueOptions.push_back(DialogueOption("Don't talk to me", 1, node2));
     dialogueNodes.push_back(node0);
+    
+    //Node 1
+    node1->dialogueOptions.push_back(DialogueOption("Yes, you know the rules and so do I", 0, node3));
+    node1->dialogueOptions.push_back(DialogueOption("What are you talking about?", 0, node4));
+    dialogueNodes.push_back(node1);
+    
+    currentNode = dialogueNodes[0];
 }
 
 //Destroys the tree to free up memory
@@ -55,74 +61,73 @@ void DialogueTree::destroyTree(){
 //returns the value of the outcomes of the dialogue
 WORLDSTATE DialogueTree::performDialogue(int playerX, int playerY, int npcX, int npcY){
     //Sets dimenions of the dialogue box
-    SDL_Rect message = {npcX - 30, npcY - 70};
-    SDL_Rect box;
-    
-    SDL_Rect option1Box;
-    SDL_Rect option1 = {(playerX - Camera::camera.x) - 105, (playerY - Camera::camera.y) - 90};
-    
-    SDL_Rect option2Box;
-    SDL_Rect option2 = {(playerX - Camera::camera.x) + 55, (playerY - Camera::camera.y) - 90};
-    
+    message = {npcX - 30, npcY - 70};
     
     if(dialogueNodes.empty()){
         fatalError("Unable to build dialogue tree");
-        return WORLDSTATE::PAINTEDWORLD;
+        return world;
     }
     
-    DialogueNode *currentNode = dialogueNodes[0];
-    
-    //Sets up the color for the font
-    SDL_Color white = {255, 255, 255};
-    SDL_Color black = {0, 0, 0};
+    if(currentNode->dialogueOptions.empty()){
+        dialogueOnce = true;
+        return world;
+    }
     
     const char* text = (currentNode->text).c_str();
-    SDL_Surface* surfaceMessage = TTF_RenderText_Solid(Chalkboard, text, white);
-    SDL_Texture* textureMessage = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
+    surfaceMessage = TTF_RenderText_Solid(Chalkboard, text, white);
+    textureMessage = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
     
     string option1text = currentNode->dialogueOptions[0].text;
-    const char* text1 = option1text.c_str();
-    SDL_Surface* surfaceOption1 = TTF_RenderText_Solid(Chalkboard, text1, white);
-    SDL_Texture* textureOption1 = SDL_CreateTextureFromSurface(renderer, surfaceOption1);
-    
     string option2text = currentNode->dialogueOptions[1].text;
-    const char* text2 = option2text.c_str();
-    SDL_Surface* surfaceOption2 = TTF_RenderText_Solid(Chalkboard, text2, white);
-    SDL_Texture* textureOption2 = SDL_CreateTextureFromSurface(renderer, surfaceOption2);
-    
+        
     message.w = surfaceMessage->w;
     message.h = surfaceMessage->h;
-    
-    option1.x = surfaceOption1->w;
-    option1.y = surfaceOption1->h;
     
     box = {message.x - 25,
            message.y - 10,
            surfaceMessage->w + 50,
            surfaceMessage->h + 25};
+        
+    SDL_RenderCopy(renderer, dialoguebox_texture, NULL, &box);
+    SDL_RenderCopy(renderer, textureMessage, NULL, &message);
     
+    setupButtons(option1text, option2text);
+    
+    SDL_FreeSurface(surfaceMessage);
+    SDL_DestroyTexture(textureMessage);
+    
+    return world;
+}
+
+//Sets up the buttons for the dialogue options
+void DialogueTree::setupButtons(std::string option1text, std::string option2text){
+    const char* text1 = option1text.c_str();
+    surfaceOption1 = TTF_RenderText_Solid(Chalkboard, text1, white);
+    textureOption1 = SDL_CreateTextureFromSurface(renderer, surfaceOption1);
+    
+    const char* text2 = option2text.c_str();
+    surfaceOption2 = TTF_RenderText_Solid(Chalkboard, text2, white);
+    textureOption2 = SDL_CreateTextureFromSurface(renderer, surfaceOption2);
+
     option1Box = {Camera::getCamX() + ((screenWidth/2) - (surfaceOption1->w/2)),
-                  Camera::getCamY() + screenHeight/2,
-                   surfaceOption1->w + 30,
-                   surfaceOption1->h + 15};
+                  Camera::getCamY() + ((screenHeight/2) - 75),
+                  surfaceOption1->w + 40,
+                  surfaceOption1->h + 15};
     
     option2Box = {Camera::getCamX() + ((screenWidth/2) - (surfaceOption2->w/2)),
-                  Camera::getCamY() + ((screenHeight/2) - 75),
-                  surfaceOption2->w + 30,
+                  Camera::getCamY() + screenHeight/2,
+                  surfaceOption2->w + 40,
                   surfaceOption2->h + 15};
     
-    option1 = {option1Box.x + 17,
+    option1 = {option1Box.x + 20,
                option1Box.y + 5,
                surfaceOption1->w,
                surfaceOption1->h};
     
-    option2 = {option2Box.x + 17,
+    option2 = {option2Box.x + 20,
                option2Box.y + 5,
                surfaceOption2->w,
                surfaceOption2->h};
-    
-    SDL_RenderCopy(renderer, dialoguebox_texture, NULL, &box);
-    SDL_RenderCopy(renderer, textureMessage, NULL, &message);
     
     SDL_RenderCopy(renderer, dialoguebox_texture, NULL, &option1Box);
     SDL_RenderCopy(renderer, textureOption1, NULL, &option1);
@@ -130,15 +135,88 @@ WORLDSTATE DialogueTree::performDialogue(int playerX, int playerY, int npcX, int
     SDL_RenderCopy(renderer, dialoguebox_texture, NULL, &option2Box);
     SDL_RenderCopy(renderer, textureOption2, NULL, &option2);
     
+    buttonHandler();
+    
+    if(button == BUTTONSTATE::BUTTON1){
+        button = BUTTONSTATE::NEUTRAL;
+        currentNode = currentNode->dialogueOptions[0].nextNode;
+    
+        if(currentNode == nullptr){
+            return;
+        }
+    }else if(button == BUTTONSTATE::BUTTON2){
+        button = BUTTONSTATE::NEUTRAL;
+        currentNode = currentNode->dialogueOptions[1].nextNode;
+        
+        if(currentNode == nullptr){
+            return;
+        }
+    }
+    
     SDL_FreeSurface(surfaceOption1);
-    SDL_DestroyTexture(textureOption1);
-    
     SDL_FreeSurface(surfaceOption2);
-    SDL_DestroyTexture(textureOption2);
     
-    SDL_FreeSurface(surfaceMessage);
-    SDL_DestroyTexture(textureMessage);
-    //while(true){
-    //}
-    return WORLDSTATE::PAINTEDWORLD;
+    SDL_DestroyTexture(textureOption1);
+    SDL_DestroyTexture(textureOption2);
+}
+
+void DialogueTree::buttonHandler(){
+    //Check if the mouse is inside either buttons
+    bool insideButton1 = true;
+    bool insideButton2 = true;
+    
+    while(SDL_PollEvent(&click) == true){
+        if(click.type == SDL_MOUSEBUTTONDOWN){
+            //Get mouse position
+            int x, y;
+            SDL_GetMouseState(&x, &y);
+            
+            //Mouse is inside the buttons
+            if(x < option1Box.x){
+                insideButton1 = false;
+            }
+            if(x < option2Box.x){
+                insideButton2 = false;
+            }
+            
+            //Mouse is right of the buttons
+            if(x > option1Box.x + option1Box.w){
+                insideButton1 = false;
+            }
+            if(x > option2Box.x + option2Box.w){
+                insideButton2 = false;
+            }
+            
+            //Mouse is above the buttons
+            if(y < option1Box.y){
+                insideButton1 = false;
+            }
+            if(y < option2Box.y){
+                insideButton2 = false;
+            }
+            
+            //Mouse is below the buttons
+            if(y > option1Box.y + option1Box.h){
+                insideButton1 = false;
+            }
+            if(y > option2Box.y + option2Box.h){
+                insideButton2 = false;
+            }
+            
+            //Mouse is over the buttons
+            if(insideButton1 == true){
+                button = BUTTONSTATE::BUTTON1;
+                pressed = true;
+                std::cout << "Button 1 pressed" << std::endl;
+            }else if(insideButton2 == true){
+                button = BUTTONSTATE::BUTTON2;
+                pressed = true;
+                std::cout << "Button 2 pressed" << std::endl;
+            }
+        }
+    }
+}
+
+bool DialogueTree::hasTalked(){
+    return dialogueOnce;
 }

@@ -66,5 +66,6 @@ private:
     NPC owl;
     Player player;
     Map currentlevel, nextlevel;
+    Map level1, level2, level3;
     Camera screen;
 };

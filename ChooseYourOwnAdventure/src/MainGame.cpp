@@ -74,12 +74,12 @@ void MainGame::initSystems(){
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     
     //Sets the background color once the screen is flushed
-    glClearColor(1.0f, 1.0f, 1.0f, 1.0);
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0);
     
     //Initializes music
-    music = Mix_LoadMUS("/music/cappuccino.mp3");
+    music = Mix_LoadMUS("/music/Ma Chouchoute.mp3");
     Mix_PlayMusic(music, -1);
-    Mix_VolumeMusic(60);
+    Mix_VolumeMusic(50);
 }
 
 //Game loop where most of the logic is handled
@@ -107,9 +107,15 @@ void MainGame::gameLoop(){
         player.draw();
         p.draw();
         
+        if(tree.hasTalked()){
+            dialogueEngaged = false;
+        }
+        
         if(dialogueEngaged){
             player.stopMoving();
             tree.performDialogue(player.getX(), player.getY(), owl.getX(), owl.getY());
+            heldKeys[SDL_SCANCODE_LEFT] = false;
+            heldKeys[SDL_SCANCODE_RIGHT] = false;
         }
         
         screen.updateCamera(player.getX(),player.getY());
@@ -129,7 +135,7 @@ void MainGame::processInput(){
                 currentState = GameState::EXIT;
                 break;
             case SDL_KEYDOWN:
-                if(evnt.key.repeat == 0){
+                if(evnt.key.repeat == 0 && !dialogueEngaged){
                     pressedKeys[evnt.key.keysym.scancode] = true;
                     heldKeys[evnt.key.keysym.scancode] = true;
                 }
@@ -139,13 +145,13 @@ void MainGame::processInput(){
                 heldKeys[evnt.key.keysym.scancode] = false;
         }
         
-        if(heldKeys[SDL_SCANCODE_LEFT]){
+        if(heldKeys[SDL_SCANCODE_LEFT] && !dialogueEngaged){
             player.moveLeft();
         }
-        if(heldKeys[SDL_SCANCODE_RIGHT]){
+        if(heldKeys[SDL_SCANCODE_RIGHT] && !dialogueEngaged){
             player.moveRight();
         }
-        if(heldKeys[SDL_SCANCODE_SPACE]){
+        if(heldKeys[SDL_SCANCODE_SPACE] && !dialogueEngaged){
             player.jump();
         }
         if(!heldKeys[SDL_SCANCODE_LEFT] && !heldKeys[SDL_SCANCODE_RIGHT]){
@@ -175,20 +181,29 @@ void MainGame::update(float elaspedTime){
 
 //Initializes all entities, maps, and other assets
 void MainGame::initObjects(){
+    //Loads all the maps
+    level1 = *new Map();
+    level2 = *new Map();
+    level3 = *new Map();
+    
+    level1.renderMap("level1");
+    level2.renderMap("level2");
+    //level3.renderMap("level3");
+    
+    level1.mapInit("/Images/newbackgroundcolor.jpg", "level1");
+    level2.mapInit("/Images/newbackground.jpg", "level2");
+    //level3.mapInit("/Images/newbackgroundcolor.jpg", "level3");
+    
     tree = *new DialogueTree();
     tree.init();
     
-    currentlevel = *new Map();
-    currentlevel.renderMap("level1");
-    currentlevel.mapInit("Images/newbackgroundcolor.jpg", "level1");
-    usleep(500000);
+    currentlevel = level1;
+    nextlevel = level2;
     
     owl = *new NPC(currentlevel.getNPCSpawnPoint());
-    usleep(100000);
     
     player = *new Player(currentlevel.getPlayerSpawnPoint());
     player.getCurrentMapInfo(currentlevel);
-    usleep(100000);
     
     p = *new Portal("Images/portal2.png", currentlevel.getPortalLocation());
     

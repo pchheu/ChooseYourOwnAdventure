@@ -271,7 +271,7 @@
   </object>
  </objectgroup>
  <objectgroup color="#fc0006" name="trigger">
-  <object id="65" name="dialoguetrigger1" x="82" y="253" width="78" height="19"/>
+  <object id="65" name="dialoguetrigger1" x="160" y="253" height="19"/>
  </objectgroup>
  <objectgroup color="#0000ff" name="portal">
   <object id="56" name="portal" x="2740" y="73" width="29" height="44">
