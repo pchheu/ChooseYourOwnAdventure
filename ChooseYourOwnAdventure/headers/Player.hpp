@@ -28,6 +28,7 @@ public:
     void moveRight();
     void stopMoving();
     void jump();
+    void setLocation(Vector2 spawn);
     
     virtual void animationDone(std::string currentAnimation);
     virtual void setupAnimations();

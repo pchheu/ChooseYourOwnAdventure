@@ -22,10 +22,10 @@ public:
     Portal();
     Portal(const char* filePath, Vector2 spawn);
     
-    void loadNextMap(Map m);
-    
     virtual void animationDone(std::string currentAnimation);
     virtual void setupAnimations();
+    
+    void updateLocation(Vector2 spawn);
     
     void draw();
     
@@ -41,7 +41,6 @@ private:
     SDL_Rect portalRect;
     
     Vector2 spawn;
-    
 };
 
 #endif /* Portal_hpp */

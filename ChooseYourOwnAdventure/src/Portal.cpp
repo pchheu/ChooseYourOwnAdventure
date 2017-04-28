@@ -31,3 +31,8 @@ void Portal::animationDone(std::string currentAnimation){
 void Portal::setupAnimations(){
     this->addAnimation(1, 0, 0, "door", 131, 181, Vector2(0, 0));
 }
+
+void Portal::updateLocation(Vector2 spawn){
+    posX = spawn.x;
+    posY = spawn.y;
+}

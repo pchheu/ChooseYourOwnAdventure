@@ -34,6 +34,8 @@ public:
     void destroyMap();
     void updateCamera(SDL_Rect c);
     
+    std::string mapName;
+    
     int getlevelWidth();
     int getlevelHeight();
     
@@ -56,8 +58,6 @@ private:
     SDL_Renderer* renderer = SDL_GetRenderer(window);
     SDL_Texture* map_texture;
     SDL_Surface* map_surface;
-    
-    std::string mapName;
     
     Vector2 spawnPoint, npcSpawn, portalSpawn;
     Vector2 _size;

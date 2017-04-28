@@ -30,10 +30,11 @@ DialogueTree::DialogueTree(){
 //Sets up the tree
 void DialogueTree::init(){
     DialogueNode *node0 = new DialogueNode("Hello there!");
-    DialogueNode *node1 = new DialogueNode("Are you no stranger to love?");
+    DialogueNode *node1 = new DialogueNode("You seem like a kind fellow, what are you doing aroud here?");
     DialogueNode *node2 = new DialogueNode("Wow so rude!");
-    DialogueNode *node3 = new DialogueNode("");
-    DialogueNode *node4 = new DialogueNode("");
+    DialogueNode *node3 = new DialogueNode("Aimless wanderer eh? Well maybe that portal over there is somewhere you need to go.");
+    DialogueNode *node4 = new DialogueNode("Carrots! Try that portal over there.");
+    DialogueNode *node5 = new DialogueNode("");
     
     //Node 0
     node0->dialogueOptions.push_back(DialogueOption("Hi!", 0, node1));
@@ -41,9 +42,24 @@ void DialogueTree::init(){
     dialogueNodes.push_back(node0);
     
     //Node 1
-    node1->dialogueOptions.push_back(DialogueOption("Yes, you know the rules and so do I", 0, node3));
-    node1->dialogueOptions.push_back(DialogueOption("What are you talking about?", 0, node4));
+    node1->dialogueOptions.push_back(DialogueOption("I'm not entirely sure", 1, node3));
+    node1->dialogueOptions.push_back(DialogueOption("I'm just here to collect carrots", 0, node4));
     dialogueNodes.push_back(node1);
+    
+    //Node 2
+    node2->dialogueOptions.push_back(DialogueOption("I'm leaving now", 1, node5));
+    node2->dialogueOptions.push_back(DialogueOption("I better not see you ever again", 1, node5));
+    dialogueNodes.push_back(node2);
+    
+    //Node 3
+    node3->dialogueOptions.push_back(DialogueOption("Hopefully I'll find something interesting", 1, node5));
+    node3->dialogueOptions.push_back(DialogueOption("Hopefully I'll find meaning in life again", 0, node5));
+    dialogueNodes.push_back(node3);
+    
+    //Node 4
+    node4->dialogueOptions.push_back(DialogueOption("Thank you so much! I haven't eaten in days and I'm starving", 1, node5));
+    node4->dialogueOptions.push_back(DialogueOption("Thank you so much!", 1, nullptr));
+    dialogueNodes.push_back(node4);
     
     currentNode = dialogueNodes[0];
 }
@@ -59,18 +75,22 @@ void DialogueTree::destroyTree(){
 
 //Goes through the dialogue logic and brings up the HUD,
 //returns the value of the outcomes of the dialogue
-WORLDSTATE DialogueTree::performDialogue(int playerX, int playerY, int npcX, int npcY){
+int DialogueTree::performDialogue(int playerX, int playerY, int npcX, int npcY){
     //Sets dimenions of the dialogue box
     message = {npcX - 30, npcY - 70};
     
     if(dialogueNodes.empty()){
         fatalError("Unable to build dialogue tree");
-        return world;
+        return 0;
     }
     
     if(currentNode->dialogueOptions.empty()){
         dialogueOnce = true;
-        return world;
+        if(world == WORLDSTATE::PAINTEDWORLD){
+            return 0;
+        }else{
+            return 1;
+        }
     }
     
     const char* text = (currentNode->text).c_str();
@@ -96,7 +116,7 @@ WORLDSTATE DialogueTree::performDialogue(int playerX, int playerY, int npcX, int
     SDL_FreeSurface(surfaceMessage);
     SDL_DestroyTexture(textureMessage);
     
-    return world;
+    return 0;
 }
 
 //Sets up the buttons for the dialogue options
@@ -139,6 +159,11 @@ void DialogueTree::setupButtons(std::string option1text, std::string option2text
     
     if(button == BUTTONSTATE::BUTTON1){
         button = BUTTONSTATE::NEUTRAL;
+        if(currentNode->dialogueOptions[0].returnCode == 0){
+            world = WORLDSTATE::PAINTEDWORLD;
+        }else{
+            world = WORLDSTATE::UNPAINTEDWORLD;
+        }
         currentNode = currentNode->dialogueOptions[0].nextNode;
     
         if(currentNode == nullptr){
@@ -146,6 +171,11 @@ void DialogueTree::setupButtons(std::string option1text, std::string option2text
         }
     }else if(button == BUTTONSTATE::BUTTON2){
         button = BUTTONSTATE::NEUTRAL;
+        if(currentNode->dialogueOptions[1].returnCode == 0){
+            world = WORLDSTATE::PAINTEDWORLD;
+        }else{
+            world = WORLDSTATE::UNPAINTEDWORLD;
+        }
         currentNode = currentNode->dialogueOptions[1].nextNode;
         
         if(currentNode == nullptr){

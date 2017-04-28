@@ -283,6 +283,8 @@ std::vector<Rectangle> Map::checkTriggerCollisions(const Rectangle &other){
     return others;
 }
 
+
+
 int Map::getlevelWidth(){
     return levelWidth;
 }

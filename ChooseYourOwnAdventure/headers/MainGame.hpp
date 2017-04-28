@@ -25,6 +25,7 @@
 
 enum class GameState{MENU, PLAY, EXIT};
 
+
 class MainGame{
 public:
     MainGame();
@@ -61,11 +62,12 @@ private:
     
     GameState currentState;
 
+    int world;
     Portal p;
     DialogueTree tree;
     NPC owl;
     Player player;
-    Map currentlevel, nextlevel;
+    Map currentlevel, nextlevel, previouslevel;
     Map level1, level2, level3;
     Camera screen;
 };

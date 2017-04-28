@@ -103,9 +103,17 @@ void MainGame::gameLoop(){
         SDL_RenderClear(renderer);
         
         currentlevel.draw(Camera::camera);
-        owl.draw();
+        
+        Vector2 npcspawn = currentlevel.getNPCSpawnPoint();
+        if(npcspawn.x != 0 && npcspawn.y != 0){
+            owl.draw();
+        }
         player.draw();
-        p.draw();
+        
+        Vector2 portalspawn = currentlevel.getPortalLocation();
+        if(portalspawn.x != 0 && portalspawn.y != 0){
+            p.draw();
+        }
         
         if(tree.hasTalked()){
             dialogueEngaged = false;
@@ -113,7 +121,7 @@ void MainGame::gameLoop(){
         
         if(dialogueEngaged){
             player.stopMoving();
-            tree.performDialogue(player.getX(), player.getY(), owl.getX(), owl.getY());
+            world = tree.performDialogue(player.getX(), player.getY(), owl.getX(), owl.getY());
             heldKeys[SDL_SCANCODE_LEFT] = false;
             heldKeys[SDL_SCANCODE_RIGHT] = false;
         }
@@ -157,6 +165,31 @@ void MainGame::processInput(){
         if(!heldKeys[SDL_SCANCODE_LEFT] && !heldKeys[SDL_SCANCODE_RIGHT]){
             player.stopMoving();
         }
+        if(evnt.type == SDL_KEYDOWN){
+            if(evnt.key.keysym.sym == SDLK_UP){
+                Rectangle playerRect = player.getBoundingBox();
+                Rectangle portalRect = p.getBoundingBox();
+                
+                if(playerRect.collidesWith(portalRect)){
+                    std::cout << "Up pressed at portal" << std::endl;
+                    if(world == 0){
+                        currentlevel = level2;
+                        
+                        p.updateLocation(currentlevel.getPortalLocation());
+                        owl.updateLocation(currentlevel.getNPCSpawnPoint());
+                        
+                        player.setLocation(currentlevel.getPlayerSpawnPoint());
+                    }else if(world == 1){
+                        currentlevel = level3;;
+                        
+                        p.updateLocation(currentlevel.getPortalLocation());
+                        owl.updateLocation(currentlevel.getNPCSpawnPoint());
+                        
+                        player.setLocation(currentlevel.getPlayerSpawnPoint());
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -188,11 +221,11 @@ void MainGame::initObjects(){
     
     level1.renderMap("level1");
     level2.renderMap("level2");
-    //level3.renderMap("level3");
+    level3.renderMap("level3");
     
     level1.mapInit("/Images/newbackgroundcolor.jpg", "level1");
     level2.mapInit("/Images/newbackground.jpg", "level2");
-    //level3.mapInit("/Images/newbackgroundcolor.jpg", "level3");
+    level3.mapInit("/Images/newbackgroundcolor.jpg", "level3");
     
     tree = *new DialogueTree();
     tree.init();

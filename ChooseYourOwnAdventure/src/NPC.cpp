@@ -45,3 +45,8 @@ float NPC::getX(){
 float NPC::getY(){
     return y;
 }
+
+void NPC::updateLocation(Vector2 spawn){
+    x = spawn.x;
+    y = spawn.y;
+}

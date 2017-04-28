@@ -52,7 +52,7 @@ public:
     
     bool hasTalked();
     
-    WORLDSTATE performDialogue(int playerX, int playerY, int npcX, int npcY);
+    int performDialogue(int playerX, int playerY, int npcX, int npcY);
     
     string getCurrentString();
     bool dialogueOnce = false;

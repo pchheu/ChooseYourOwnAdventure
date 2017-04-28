@@ -18,6 +18,7 @@ public:
     
     void draw();
     void update(float elapsedTime);
+    void updateLocation(Vector2 spawn);
     
     virtual void animationDone(std::string currentAnimation);
     virtual void setupAnimations();

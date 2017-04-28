@@ -173,3 +173,8 @@ void Player::update(float elapsedTime) {
 void Player::draw(){
     AnimatedSprite::draw(x, y);
 }
+
+void Player::setLocation(Vector2 spawn){
+    x = spawn.x;
+    y = spawn.y;
+}
