@@ -89,12 +89,12 @@ void MainGame::initSystems(){
     glClearColor(0.0f, 0.0f, 0.0f, 0.0);
     
     //Initializes music
-    music = Mix_LoadMUS("/music/cappuccino.mp3");
+    music = Mix_LoadMUS("/music/Ma Chouchoute.mp3");
     Mix_PlayMusic(music, -1);
     Mix_VolumeMusic(50);
     
     //Initializes main menu
-    menu = *new MainMenu("/Images/tempmenu.png", screenWidth, screenHeight);
+    menu = *new MainMenu("/Images/tempmainmenu.png", screenWidth, screenHeight);
 }
 
 //Game loop where most of the logic is handled

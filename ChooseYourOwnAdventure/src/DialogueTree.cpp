@@ -37,28 +37,28 @@ void DialogueTree::init(){
     DialogueNode *node5 = new DialogueNode("");
     
     //Node 0
-    node0->dialogueOptions.push_back(DialogueOption("Hi!", 0, node1));
-    node0->dialogueOptions.push_back(DialogueOption("Don't talk to me", 1, node2));
+    node0->dialogueOptions.push_back(DialogueOption("Hi!", 1, node1));
+    node0->dialogueOptions.push_back(DialogueOption("Don't talk to me", 0, node2));
     dialogueNodes.push_back(node0);
     
     //Node 1
-    node1->dialogueOptions.push_back(DialogueOption("I'm not entirely sure", 1, node3));
-    node1->dialogueOptions.push_back(DialogueOption("I'm just here to collect carrots", 0, node4));
+    node1->dialogueOptions.push_back(DialogueOption("I'm not entirely sure", 0, node3));
+    node1->dialogueOptions.push_back(DialogueOption("I'm just here to find some carrots", 1, node4));
     dialogueNodes.push_back(node1);
     
     //Node 2
-    node2->dialogueOptions.push_back(DialogueOption("I'm leaving now", 1, node5));
-    node2->dialogueOptions.push_back(DialogueOption("I better not see you ever again", 1, node5));
+    node2->dialogueOptions.push_back(DialogueOption("I'm leaving now", 0, node5));
+    node2->dialogueOptions.push_back(DialogueOption("I don't want to see you ever again", 0, node5));
     dialogueNodes.push_back(node2);
     
     //Node 3
-    node3->dialogueOptions.push_back(DialogueOption("Hopefully I'll find something interesting", 1, node5));
-    node3->dialogueOptions.push_back(DialogueOption("Hopefully I'll find meaning in life again", 0, node5));
+    node3->dialogueOptions.push_back(DialogueOption("Hopefully I'll find something interesting", 0, node5));
+    node3->dialogueOptions.push_back(DialogueOption("Yeah I hope this game gets more interesting", 0, node5));
     dialogueNodes.push_back(node3);
     
     //Node 4
-    node4->dialogueOptions.push_back(DialogueOption("Thank you so much! I haven't eaten in days and I'm starving", 1, node5));
-    node4->dialogueOptions.push_back(DialogueOption("Thank you so much!", 1, nullptr));
+    node4->dialogueOptions.push_back(DialogueOption("Thank you so much! I haven't eaten in days", 1, node5));
+    node4->dialogueOptions.push_back(DialogueOption("You are much too kind!", 1, node5));
     dialogueNodes.push_back(node4);
     
     currentNode = dialogueNodes[0];
